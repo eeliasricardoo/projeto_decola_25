@@ -20,9 +20,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR">
+    <html lang="pt-BR" suppressHydrationWarning>
+      <head>
+        <meta name="format-detection" content="telephone=no, date=no, email=no, address=no" />
+      </head>
       <body
         className={`${instrumentSans.variable} font-sans antialiased`}
+        suppressHydrationWarning
       >
         {children}
         <Toaster />
