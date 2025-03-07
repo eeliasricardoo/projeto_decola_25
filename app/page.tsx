@@ -1,19 +1,15 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardTitle } from "@/components/ui/card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleDown, faArrowRight, faBrain } from "@fortawesome/free-solid-svg-icons";
+import { faAngleDown, faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { faHydra, faUserBountyHunter, faSparkles, faChartTreeMap } from "@fortawesome/pro-solid-svg-icons";
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { 
-  UserBountyHunterIcon, 
-  SparklesIcon, 
-  ChartTreeMapIcon 
-} from "@/components/icons";
 import Image from "next/image";
 
 // Adicionando ícones à biblioteca
-library.add(faAngleDown, faArrowRight);
+library.add(faAngleDown, faArrowRight, faHydra, faUserBountyHunter, faSparkles, faChartTreeMap);
 
 export default function Home() {
   // Função para lidar com o clique no botão Ver backlog
@@ -33,18 +29,9 @@ export default function Home() {
       {/* Container principal com largura máxima */}
       <div className="w-full max-w-8xl mx-auto px-4 md:px-8 lg:px-16">
         <div className="relative">
-          {/* Logo Toolzz no topo */}
-          <div className="absolute top-8 left-0 right-0 flex justify-center z-20">
-            <div className="flex items-center justify-center">
-              <div className="bg-black rounded-lg w-8 h-8 flex items-center justify-center text-white font-bold mr-2">
-                <span className="text-xs">TZ</span>
-              </div>
-              <span className="font-semibold text-xl">Toolzz</span>
-            </div>
-          </div>
-
           {/* Banner com conteúdo centralizado */}
           <div className="relative">
+            
             <Image 
               src="/banner.png" 
               alt="Banner Principal" 
@@ -76,77 +63,87 @@ export default function Home() {
               </div>
             </div>
           </div>
+        </div>
 
-          {/* Cards Grid - Bento Grid sobre o banner */}
-          <div className="relative -mt-24 sm:-mt-32 md:-mt-40 lg:-mt-48 z-10 cards-section flex flex-col items-center">
+        {/* Cards Grid - Bento Grid sobre o banner */}
+        <div className="relative -mt-24 sm:-mt-32 md:-mt-40 lg:-mt-48 z-10 cards-section">
+          <div className="flex flex-col items-center">
             {/* Primeira linha de cards - Layout customizado */}
-            <div className="flex flex-col lg:flex-row justify-center gap-8 mb-8 w-full px-4">
+            <div className="flex flex-col lg:flex-row justify-center gap-8 mb-8 w-full">
               {/* Card 1 - Decola OS (752px de largura) */}
-              <Card 
-                className="relative p-0 hover:shadow-lg transition-shadow border border-gray-200 rounded-xl bg-white w-full overflow-hidden" 
-                style={{ maxWidth: '752px', height: '276px' }}
+              <div 
+                className="relative p-0 hover:shadow-lg transition-shadow border border-gray-200 rounded-xl bg-white w-full overflow-hidden h-[276px]"
+                style={{ maxWidth: '752px' }}
               >
-                <div className="absolute bottom-0 left-0 right-0 flex flex-col items-start p-8 pb-[30px]">
-                  <div className="bg-gray-100 p-4 rounded-lg">
-                    <UserBountyHunterIcon size={24} className="text-gray-600" />
+                <div className="absolute bottom-0 left-0 w-full p-8 pb-8">
+                  <div className="flex flex-col">
+                    <div className="bg-gray-100 p-4 rounded-lg inline-block w-max">
+                      <FontAwesomeIcon icon={faUserBountyHunter} size="lg" className="text-gray-600" />
+                    </div>
+                    <h3 className="text-xl font-bold mt-5">Decola OS</h3>
+                    <p className="text-sm text-gray-500 mt-2">
+                      Força de Trabalho com Agentes de IA
+                    </p>
                   </div>
-                  <CardTitle className="text-xl font-bold mt-5">Decola OS</CardTitle>
-                  <p className="text-sm text-gray-500 mt-[10px]">
-                    Força de Trabalho com Agentes de IA
-                  </p>
                 </div>
-              </Card>
+              </div>
 
               {/* Card 2 - Geração de Conteúdo (360px de largura) */}
-              <Card 
-                className="relative p-0 hover:shadow-lg transition-shadow border border-gray-200 rounded-xl bg-white w-full overflow-hidden" 
-                style={{ maxWidth: '360px', height: '276px' }}
+              <div 
+                className="relative p-0 hover:shadow-lg transition-shadow border border-gray-200 rounded-xl bg-white w-full overflow-hidden h-[276px]"
+                style={{ maxWidth: '360px' }}
               >
-                <div className="absolute bottom-0 left-0 right-0 flex flex-col items-start p-8 pb-[30px]">
-                  <div className="bg-gray-100 p-4 rounded-lg">
-                    <SparklesIcon size={24} className="text-gray-600" />
+                <div className="absolute bottom-0 left-0 w-full p-8 pb-8">
+                  <div className="flex flex-col">
+                    <div className="bg-gray-100 p-4 rounded-lg inline-block w-max">
+                      <FontAwesomeIcon icon={faSparkles} size="lg" className="text-gray-600" />
+                    </div>
+                    <h3 className="text-xl font-bold mt-5">Geração de Conteúdo com Clones de IA</h3>
+                    <p className="text-sm text-gray-500 mt-2">
+                      Ferramenta para construção de vídeos e outras mídias
+                    </p>
                   </div>
-                  <CardTitle className="text-xl font-bold mt-5">Geração de Conteúdo com Clones de IA</CardTitle>
-                  <p className="text-sm text-gray-500 mt-[10px]">
-                    Ferramenta para construção de vídeos e outras mídias
-                  </p>
                 </div>
-              </Card>
+              </div>
             </div>
 
             {/* Segunda linha de cards - Layout customizado */}
-            <div className="flex flex-col lg:flex-row justify-center gap-8 mb-8 w-full px-4">
+            <div className="flex flex-col lg:flex-row justify-center gap-8 mb-8 w-full">
               {/* Card 3 - HYDRA (360px de largura) */}
-              <Card 
-                className="relative p-0 hover:shadow-lg transition-shadow border border-gray-200 rounded-xl bg-white w-full overflow-hidden" 
-                style={{ maxWidth: '360px', height: '276px' }}
+              <div 
+                className="relative p-0 hover:shadow-lg transition-shadow border border-gray-200 rounded-xl bg-white w-full overflow-hidden h-[276px]"
+                style={{ maxWidth: '360px' }}
               >
-                <div className="absolute bottom-0 left-0 right-0 flex flex-col items-start p-8 pb-[30px]">
-                  <div className="bg-gray-100 p-4 rounded-lg">
-                    <FontAwesomeIcon icon={faBrain} size="lg" className="text-gray-600" />
+                <div className="absolute bottom-0 left-0 w-full p-8 pb-8">
+                  <div className="flex flex-col">
+                    <div className="bg-gray-100 p-4 rounded-lg inline-block w-max">
+                      <FontAwesomeIcon icon={faHydra} size="lg" className="text-gray-600" />
+                    </div>
+                    <h3 className="text-xl font-bold mt-2">Experiência 3.0 do Hub de Conhecimento</h3>
+                    <p className="text-sm text-gray-500 mt-2">
+                      Conexão direta com banco do LMS para aprendizado de estruturas
+                    </p>
                   </div>
-                  <CardTitle className="text-xl font-bold mt-[10px]">Experiência 3.0 do Hub de Conhecimento</CardTitle>
-                  <p className="text-sm text-gray-500 mt-[10px]">
-                    Conexão direta com banco do LMS para aprendizado de estruturas
-                  </p>
                 </div>
-              </Card>
+              </div>
 
               {/* Card 4 - Dashboards (752px de largura) */}
-              <Card 
-                className="relative p-0 hover:shadow-lg transition-shadow border border-gray-200 rounded-xl bg-white w-full overflow-hidden" 
-                style={{ maxWidth: '752px', height: '276px' }}
+              <div 
+                className="relative p-0 hover:shadow-lg transition-shadow border border-gray-200 rounded-xl bg-white w-full overflow-hidden h-[276px]"
+                style={{ maxWidth: '752px' }}
               >
-                <div className="absolute bottom-0 left-0 right-0 flex flex-col items-start p-8 pb-[30px]">
-                  <div className="bg-gray-100 p-4 rounded-lg">
-                    <ChartTreeMapIcon size={24} className="text-gray-600" />
+                <div className="absolute bottom-0 left-0 w-full p-8 pb-8">
+                  <div className="flex flex-col">
+                    <div className="bg-gray-100 p-4 rounded-lg inline-block w-max">
+                      <FontAwesomeIcon icon={faChartTreeMap} size="lg" className="text-gray-600" />
+                    </div>
+                    <h3 className="text-xl font-bold mt-5">Dashboards para Governança e Análises</h3>
+                    <p className="text-sm text-gray-500 mt-2">
+                      Adaptação dos conteúdos de vídeo e outros materiais para tunning da IA
+                    </p>
                   </div>
-                  <CardTitle className="text-xl font-bold mt-5">Dashboards para Governança e Análises</CardTitle>
-                  <p className="text-sm text-gray-500 mt-[10px]">
-                    Adaptação dos conteúdos de vídeo e outros materiais para tunning da IA
-                  </p>
                 </div>
-              </Card>
+              </div>
             </div>
 
             {/* Botão Ver Backlog */}
