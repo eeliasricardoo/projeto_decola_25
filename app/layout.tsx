@@ -1,21 +1,17 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Instrument_Sans } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const instrumentSans = Instrument_Sans({
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-instrument-sans",
 });
 
 export const metadata: Metadata = {
-  title: "Projeto Next.js + Shadcn UI",
-  description: "Um projeto inicial com Next.js, TypeScript, Tailwind CSS e Shadcn UI",
+  title: "Projeto Decola 25 - Toolzz",
+  description: "Solução Integrada de Gestão, Criação e Aprendizado para Entregadores e Restaurantes",
 };
 
 export default function RootLayout({
@@ -26,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${instrumentSans.variable} font-sans antialiased`}
       >
         {children}
         <Toaster />
