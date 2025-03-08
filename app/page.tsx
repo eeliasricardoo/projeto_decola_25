@@ -3,16 +3,14 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { 
-  UserBountyHunterIcon,
-  SparklesIcon,
-  HydraIcon,
-  ChartTreeMapIcon
-} from "@/components/icons";
 import { BorderBeam } from "@/components/magicui/border-beam";
+import { WhiteBorderBeam } from "@/components/white-border-beam";
 import { TextAnimate } from "@/components/magicui/text-animate";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown, faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { faUserBountyHunter, faSparkles, faHydra, faChartTreeMap } from "@fortawesome/pro-solid-svg-icons";
+import { motion } from "framer-motion";
+import Link from "next/link";
 
 // Componente cliente para conteúdo interativo
 function ClientContent() {
@@ -47,16 +45,39 @@ function ClientContent() {
             {/* Conteúdo sobreposto ao banner */}
             <div className="absolute inset-0 flex flex-col items-center justify-center" suppressHydrationWarning>
               <div className="flex flex-col items-center gap-4 text-center">
-                <TextAnimate 
-                  as="h1" 
-                  className="text-4xl md:text-5xl lg:text-6xl font-bold" 
-                  by="word" 
-                  animation="blurInUp"
-                  delay={0.2}
-                  duration={0.5}
+                {/* Título com formatação personalizada e animação */}
+                <motion.h1 
+                  className="text-4xl md:text-5xl lg:text-6xl text-center"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, ease: "easeOut" }}
                 >
-                  Projeto Decola 25,
-                </TextAnimate>
+                  <motion.span 
+                    className="font-normal text-black"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.3, delay: 0.2 }}
+                  >
+                    Projeto 
+                  </motion.span>
+                  <motion.span 
+                    className="font-bold text-[#F01624]"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.3, delay: 0.5 }}
+                  >
+                    Decola
+                  </motion.span>
+                  <motion.span 
+                    className="font-bold text-black"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.3, delay: 0.8 }}
+                  >
+                    &nbsp;25,
+                  </motion.span>
+                </motion.h1>
+
                 <TextAnimate 
                   as="p" 
                   className="text-base md:text-lg lg:text-xl text-gray-700 max-w-2xl mt-2"
@@ -89,53 +110,50 @@ function ClientContent() {
             {/* Primeira linha de cards - Layout customizado */}
             <div className="flex flex-col lg:flex-row justify-center gap-8 mb-8 w-full">
               {/* Card 1 - Decola OS (752px de largura) */}
-              <div 
-                className="relative p-0 hover:shadow-lg transition-shadow border border-gray-200 rounded-xl bg-white w-full overflow-hidden h-[276px]"
-                style={{ maxWidth: '752px' }}
-              >
-                <BorderBeam 
-                  colorFrom="#F01624" 
-                  colorTo="#FF6B00" 
-                  size={40} 
-                  duration={8}
-                />
-                <div className="absolute bottom-0 left-0 w-full p-8 pb-8">
-                  <div className="flex flex-col">
-                    <div className="bg-gray-100 p-4 rounded-lg inline-block w-max">
-                      <UserBountyHunterIcon size={24} className="text-gray-600" />
+              <Link href="/decola-os" className="block w-full" style={{ maxWidth: '752px' }}>
+                <div 
+                  className="relative p-0 hover:shadow-lg transition-shadow border border-gray-200 rounded-xl bg-white w-full overflow-hidden h-[276px] cursor-pointer"
+                >
+                  <WhiteBorderBeam 
+                    size={40} 
+                    duration={8}
+                  />
+                  <div className="absolute bottom-0 left-0 w-full p-8 pb-8">
+                    <div className="flex flex-col">
+                      <div className="bg-gray-100 p-4 rounded-lg inline-block w-max">
+                        <FontAwesomeIcon icon={faUserBountyHunter} size="lg" className="text-gray-600" />
+                      </div>
+                      <TextAnimate 
+                        as="h3" 
+                        className="text-xl font-bold mt-5"
+                        animation="slideUp"
+                        startOnView
+                        once
+                        delay={0.1}
+                      >
+                        Decola OS
+                      </TextAnimate>
+                      <TextAnimate
+                        as="p"
+                        className="text-sm text-gray-500 mt-2"
+                        animation="fadeIn"
+                        startOnView
+                        once
+                        delay={0.3}
+                      >
+                        Força de Trabalho com Agentes de IA
+                      </TextAnimate>
                     </div>
-                    <TextAnimate 
-                      as="h3" 
-                      className="text-xl font-bold mt-5"
-                      animation="slideUp"
-                      startOnView
-                      once
-                      delay={0.1}
-                    >
-                      Decola OS
-                    </TextAnimate>
-                    <TextAnimate
-                      as="p"
-                      className="text-sm text-gray-500 mt-2"
-                      animation="fadeIn"
-                      startOnView
-                      once
-                      delay={0.3}
-                    >
-                      Força de Trabalho com Agentes de IA
-                    </TextAnimate>
                   </div>
                 </div>
-              </div>
+              </Link>
 
               {/* Card 2 - Geração de Conteúdo (360px de largura) */}
               <div 
                 className="relative p-0 hover:shadow-lg transition-shadow border border-gray-200 rounded-xl bg-white w-full overflow-hidden h-[276px]"
                 style={{ maxWidth: '360px' }}
               >
-                <BorderBeam 
-                  colorFrom="#F01624" 
-                  colorTo="#FF6B00" 
+                <WhiteBorderBeam 
                   size={40} 
                   duration={8}
                   reverse
@@ -144,7 +162,7 @@ function ClientContent() {
                 <div className="absolute bottom-0 left-0 w-full p-8 pb-8">
                   <div className="flex flex-col">
                     <div className="bg-gray-100 p-4 rounded-lg inline-block w-max">
-                      <SparklesIcon size={24} className="text-gray-600" />
+                      <FontAwesomeIcon icon={faSparkles} size="lg" className="text-gray-600" />
                     </div>
                     <TextAnimate 
                       as="h3" 
@@ -178,9 +196,7 @@ function ClientContent() {
                 className="relative p-0 hover:shadow-lg transition-shadow border border-gray-200 rounded-xl bg-white w-full overflow-hidden h-[276px]"
                 style={{ maxWidth: '360px' }}
               >
-                <BorderBeam 
-                  colorFrom="#F01624" 
-                  colorTo="#FF6B00" 
+                <WhiteBorderBeam 
                   size={40} 
                   duration={8}
                   initialOffset={50}
@@ -188,7 +204,7 @@ function ClientContent() {
                 <div className="absolute bottom-0 left-0 w-full p-8 pb-8">
                   <div className="flex flex-col">
                     <div className="bg-gray-100 p-4 rounded-lg inline-block w-max">
-                      <HydraIcon size={24} className="text-gray-600" />
+                      <FontAwesomeIcon icon={faHydra} size="lg" className="text-gray-600" />
                     </div>
                     <TextAnimate 
                       as="h3" 
@@ -219,9 +235,7 @@ function ClientContent() {
                 className="relative p-0 hover:shadow-lg transition-shadow border border-gray-200 rounded-xl bg-white w-full overflow-hidden h-[276px]"
                 style={{ maxWidth: '752px' }}
               >
-                <BorderBeam 
-                  colorFrom="#F01624" 
-                  colorTo="#FF6B00" 
+                <WhiteBorderBeam 
                   size={40} 
                   duration={8}
                   reverse
@@ -230,7 +244,7 @@ function ClientContent() {
                 <div className="absolute bottom-0 left-0 w-full p-8 pb-8">
                   <div className="flex flex-col">
                     <div className="bg-gray-100 p-4 rounded-lg inline-block w-max">
-                      <ChartTreeMapIcon size={24} className="text-gray-600" />
+                      <FontAwesomeIcon icon={faChartTreeMap} size="lg" className="text-gray-600" />
                     </div>
                     <TextAnimate 
                       as="h3" 
