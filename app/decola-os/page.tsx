@@ -5,14 +5,22 @@ import { faUserAstronaut, faTableColumns } from "@fortawesome/pro-solid-svg-icon
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 
 // Componentes
-import { NavMenu } from "@/components/decolaos/NavMenu";
-import { HeroSection } from "@/components/decolaos/HeroSection";
+import { HeroSectionProps } from "@/components/layout";
 import { AgentCard } from "@/components/decolaos/AgentCard";
 import { FeatureCard } from "@/components/decolaos/FeatureCard";
 import { Footer } from "@/components/decolaos/Footer";
 import { TextSection } from "@/components/decolaos/TextSection";
 import { StepSection } from "@/components/decolaos/StepSection";
 import { BenefitSection } from "@/components/decolaos/BenefitSection";
+
+// Configuração do HeroSection para esta página
+export const heroProps: HeroSectionProps = {
+  title: "Decola OS,",
+  subtitle: "Força de Trabalho com IA",
+  description: "Agentes treinadas com conteúdos e preparada para servir ao time de gestão, criação e alunos",
+  size: "large",
+  animation: true
+};
 
 // Dados dos agentes
 const agents = [
@@ -121,18 +129,10 @@ const conclusionSection = {
 export default function DecolaOS() {
   return (
     <div className="flex flex-col items-center min-h-screen bg-white">
-      {/* Menu de navegação vertical flutuante - agora separado do fluxo normal */}
-      <NavMenu />
-
-      {/* Conteúdo principal com margem à esquerda para acomodar o menu */}
-      <div className="w-full pl-24 sm:pl-32 md:pl-36">
-        {/* Hero com texto */}
-        <HeroSection 
-          title="Decola OS," 
-          subtitle="Força de Trabalho com IA" 
-          description="Agentes treinadas com conteúdos e preparada para servir ao time de gestão, criação e alunos" 
-        />
-
+      {/* Conteúdo principal */}
+      <div className="w-full">
+        {/* Nota: O HeroSection agora é renderizado automaticamente pelo AppLayout */}
+        
         {/* Conteúdo principal - apenas imagens */}
         <main className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {/* Grid de imagens - primeira linha */}

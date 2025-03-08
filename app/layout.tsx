@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Instrument_Sans } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
+import { AppLayout } from "@/components/layout";
 import "./globals.css";
 
 const instrumentSans = Instrument_Sans({
@@ -28,7 +29,9 @@ export default function RootLayout({
         className={`${instrumentSans.variable} font-sans antialiased`}
         suppressHydrationWarning
       >
-        {children}
+        <AppLayout heroProps={null}>
+          {children}
+        </AppLayout>
         <Toaster />
       </body>
     </html>
