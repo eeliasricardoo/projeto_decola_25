@@ -5,8 +5,8 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
-import { faUserBountyHunter, faHydra, faChartTreeMap, faSparkles } from "@fortawesome/pro-solid-svg-icons";
-import { faList, faHome } from "@fortawesome/free-solid-svg-icons";
+import { faUserBountyHunter, faHydra, faChartTreeMap, faSparkles, faList } from "@fortawesome/pro-solid-svg-icons";
+import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { memo } from "react";
 import * as Tooltip from "@/components/ui/tooltip";
 
@@ -50,7 +50,7 @@ const defaultItems: MenuItem[] = [
   {
     icon: faList,
     label: "Backlog",
-    href: "#"
+    href: "/backlog"
   }
 ];
 
