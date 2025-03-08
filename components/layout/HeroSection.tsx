@@ -30,7 +30,7 @@ export function HeroSection({
   const subtitleSizes = {
     small: "text-2xl md:text-3xl",
     medium: "text-3xl md:text-4xl",
-    large: "text-4xl md:text-[96px]"
+    large: "text-4xl md:text-[60px]"
   };
 
   const descriptionSizes = {
