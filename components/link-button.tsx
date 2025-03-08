@@ -1,11 +1,13 @@
 "use client";
 
-import { Button, ButtonProps } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { ReactNode } from "react";
 import { VariantProps } from "class-variance-authority";
+import * as React from "react";
 
-// Estendendo o tipo ButtonProps para incluir variant explicitamente
-export interface LinkButtonProps extends ButtonProps {
+// Estendendo o tipo para o componente LinkButton
+export interface LinkButtonProps extends React.ComponentProps<"button">, 
+  VariantProps<typeof buttonVariants> {
   href: string;
   children: ReactNode;
 }

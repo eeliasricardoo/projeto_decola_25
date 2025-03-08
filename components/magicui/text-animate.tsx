@@ -302,7 +302,7 @@ export function TextAnimate({
   children,
   delay = 0,
   duration = 0.3,
-  variants,
+  variants: customVariants,
   className,
   segmentClassName,
   as: Component = "p",
@@ -331,9 +331,12 @@ export function TextAnimate({
       break;
   }
 
-  const showVariant = defaultItemAnimationVariants[animation].item.show;
-
-  const finalVariants = animation
+  const finalVariants = customVariants
+    ? { 
+        container: customVariants, 
+        item: customVariants 
+      } 
+    : animation
     ? {
         container: {
           ...defaultItemAnimationVariants[animation].container,
@@ -341,27 +344,23 @@ export function TextAnimate({
             ...defaultItemAnimationVariants[animation].container.show,
             transition: {
               delayChildren: delay,
-              staggerChildren: duration / segments.length,
+              staggerChildren: staggerTimings[by],
             },
           },
           exit: {
             ...defaultItemAnimationVariants[animation].container.exit,
             transition: {
-              staggerChildren: duration / segments.length,
+              staggerChildren: staggerTimings[by],
               staggerDirection: -1,
             },
           },
         },
-
         item: {
           ...defaultItemAnimationVariants[animation].item,
           show: {
             ...defaultItemAnimationVariants[animation].item.show,
             transition: {
-              ...((typeof showVariant !== "function" &&
-                showVariant.transition) ||
-                {}),
-              ...(segments.length <= 1 && { duration: duration }),
+              duration,
             },
           },
         },

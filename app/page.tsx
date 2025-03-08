@@ -1,7 +1,6 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Card, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { 

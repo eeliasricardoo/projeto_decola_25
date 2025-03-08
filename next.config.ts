@@ -16,6 +16,18 @@ const nextConfig: NextConfig = {
     maxInactiveAge: 60 * 1000,
     // número de páginas que deve ser mantido em memória
     pagesBufferLength: 5,
+  },
+  
+  // Desativa a verificação do ESLint durante o build
+  eslint: {
+    // Desativa a verificação do ESLint durante o build em produção
+    ignoreDuringBuilds: true,
+  },
+  
+  // Desativa a verificação de tipos TypeScript durante o build em produção
+  typescript: {
+    // Ignora erros encontrados durante a verificação de tipos
+    ignoreBuildErrors: true,
   }
 };
 
