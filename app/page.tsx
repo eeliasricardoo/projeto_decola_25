@@ -11,6 +11,8 @@ import {
 } from "@/components/icons";
 import { BorderBeam } from "@/components/magicui/border-beam";
 import { TextAnimate } from "@/components/magicui/text-animate";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleDown, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 // Componente cliente para conteúdo interativo
 function ClientContent() {
@@ -74,20 +76,7 @@ function ClientContent() {
                   onClick={handleConferir}
                 >
                   Conferir 
-                  <svg 
-                    width="16" 
-                    height="16" 
-                    viewBox="0 0 24 24" 
-                    fill="none" 
-                    stroke="currentColor" 
-                    strokeWidth="2" 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round" 
-                    className="ml-2"
-                  >
-                    <path d="M19 14l-7 7-7-7"/>
-                    <path d="M12 3v18"/>
-                  </svg>
+                  <FontAwesomeIcon icon={faAngleDown} className="ml-2" size="sm" />
                 </Button>
               </div>
             </div>
@@ -268,29 +257,17 @@ function ClientContent() {
               </div>
             </div>
 
-            {/* Botão Ver Backlog */}
-            <div className="flex justify-center my-8">
-              <Button 
-                variant="ghost" 
-                className="flex items-center" 
-                onClick={handleVerBacklog}
-              >
-                Ver backlog completo
-                <svg 
-                  width="16" 
-                  height="16" 
-                  viewBox="0 0 24 24" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  strokeWidth="2" 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round" 
-                  className="ml-2"
+            {/* Botão Ver Backlog - Ajustado conforme imagem */}
+            <div className="w-full border-t border-gray-200 py-8">
+              <div className="flex justify-center">
+                <Button 
+                  variant="ghost" 
+                  className="flex items-center text-gray-700" 
+                  onClick={handleVerBacklog}
                 >
-                  <path d="M5 12h14"/>
-                  <path d="M12 5l7 7-7 7"/>
-                </svg>
-              </Button>
+                  Ver backlog completo <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
+                </Button>
+              </div>
             </div>
           </div>
         </div>
