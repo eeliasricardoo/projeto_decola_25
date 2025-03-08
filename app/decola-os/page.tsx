@@ -48,61 +48,64 @@ const featureCards = [
 export default function DecolaOS() {
   return (
     <div className="flex flex-col items-center min-h-screen bg-white">
-      {/* Menu de navegação */}
+      {/* Menu de navegação vertical flutuante - agora separado do fluxo normal */}
       <NavMenu />
 
-      {/* Hero com texto */}
-      <HeroSection 
-        title="Decola OS," 
-        subtitle="Força de Trabalho com IA" 
-        description="Agentes treinadas com conteúdos e preparada para servir ao time de gestão, criação e alunos" 
-      />
+      {/* Conteúdo principal com margem à esquerda para acomodar o menu */}
+      <div className="w-full pl-24 sm:pl-32 md:pl-36">
+        {/* Hero com texto */}
+        <HeroSection 
+          title="Decola OS," 
+          subtitle="Força de Trabalho com IA" 
+          description="Agentes treinadas com conteúdos e preparada para servir ao time de gestão, criação e alunos" 
+        />
 
-      {/* Conteúdo principal - apenas imagens */}
-      <main className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Grid de imagens - primeira linha */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-8 justify-center">
-          {agents.map((agent) => (
-            <AgentCard key={agent.name} name={agent.name} imagePath={agent.imagePath} />
-          ))}
-        </div>
-
-        {/* Edu - Imagem central */}
-        <div className="flex justify-center mb-8">
-          <div className="rounded-2xl overflow-hidden relative" style={{ width: "1144px", height: "260px", maxWidth: "100%" }}>
-            <Image 
-              src="/agentes/Edu.png" 
-              alt="Edu" 
-              fill
-              style={{ objectFit: 'cover' }}
-            />
+        {/* Conteúdo principal - apenas imagens */}
+        <main className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          {/* Grid de imagens - primeira linha */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-8 justify-center">
+            {agents.map((agent) => (
+              <AgentCard key={agent.name} name={agent.name} imagePath={agent.imagePath} />
+            ))}
           </div>
-        </div>
 
-        {/* Grid de imagens - segunda linha */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 justify-center">
-          {secondRowAgents.map((agent) => (
-            <AgentCard key={agent.name} name={agent.name} imagePath={agent.imagePath} />
-          ))}
-        </div>
-      </main>
+          {/* Edu - Imagem central */}
+          <div className="flex justify-center mb-8">
+            <div className="rounded-2xl overflow-hidden relative" style={{ width: "1144px", height: "260px", maxWidth: "100%" }}>
+              <Image 
+                src="/agentes/Edu.png" 
+                alt="Edu" 
+                fill
+                style={{ objectFit: 'cover' }}
+              />
+            </div>
+          </div>
 
-      {/* Cards adicionais */}
-      <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 justify-center">
-          {featureCards.map((card, index) => (
-            <FeatureCard 
-              key={index}
-              title={card.title}
-              description={card.description}
-              icon={card.icon}
-            />
-          ))}
-        </div>
-      </section>
+          {/* Grid de imagens - segunda linha */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 justify-center">
+            {secondRowAgents.map((agent) => (
+              <AgentCard key={agent.name} name={agent.name} imagePath={agent.imagePath} />
+            ))}
+          </div>
+        </main>
 
-      {/* Rodapé simples */}
-      <Footer />
+        {/* Cards adicionais */}
+        <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 justify-center">
+            {featureCards.map((card, index) => (
+              <FeatureCard 
+                key={index}
+                title={card.title}
+                description={card.description}
+                icon={card.icon}
+              />
+            ))}
+          </div>
+        </section>
+
+        {/* Rodapé simples */}
+        <Footer />
+      </div>
     </div>
   );
 } 
