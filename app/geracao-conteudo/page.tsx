@@ -50,16 +50,21 @@ export default function GeracaoConteudoPage() {
           <CardContent className="p-6 h-full flex flex-col justify-between">
             <div className="flex-1">
               <div className="bg-gradient-to-br from-red-500 to-red-700 rounded-xl p-6 mb-4 flex flex-col items-center justify-center h-36 text-white">
-                <div className="flex justify-center items-center h-16 w-16 rounded-full bg-white mb-3">
-                  <FontAwesomeIcon icon={faPlus} className="h-8 w-8 text-red-600" />
+                <div className="flex justify-between w-full mb-2">
+                  <Badge className="bg-white/30 text-white">Representação visual</Badge>
+                  <Badge className="bg-white/30 text-white">Não interativo</Badge>
                 </div>
-                <p className="text-center font-medium text-white text-lg">Criar novo Avatar</p>
-                <p className="text-center text-red-100 text-sm mt-1">Enviar vídeo para processamento</p>
+                <div className="flex items-center gap-3 mt-2">
+                  <FontAwesomeIcon icon={faUserCircle} className="h-10 w-10 text-white" />
+                  <FontAwesomeIcon icon={faRobot} className="h-8 w-8 text-white" />
+                </div>
+                <p className="text-center font-medium text-white text-lg mt-3">Avatares por IA</p>
+                <p className="text-center text-red-100 text-sm mt-1">Processamento de vídeos para avatares</p>
               </div>
               
               <div className="bg-gray-50 rounded-xl p-4 border border-gray-200">
                 <div className="flex justify-between items-center mb-2">
-                  <p className="text-sm font-medium text-gray-900">Exemplo de avatar</p>
+                  <p className="text-sm font-medium text-gray-900">Recursos de avatar</p>
                   <Badge className="bg-gray-200 text-gray-700">Representação visual</Badge>
                 </div>
                 <div className="flex items-center gap-3">
@@ -80,8 +85,8 @@ export default function GeracaoConteudoPage() {
                   <FontAwesomeIcon icon={faFileVideo} className="h-6 w-6 text-red-600" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900">Criar Avatar com IA</h3>
-                  <p className="text-gray-600 text-sm">Tecnologia de ponta para criar avatares realistas</p>
+                  <h3 className="font-semibold text-gray-900">Tecnologia de Avatares</h3>
+                  <p className="text-gray-600 text-sm">Visualização do recurso de criação de avatares</p>
                 </div>
               </div>
             </div>
