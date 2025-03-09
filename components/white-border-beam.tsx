@@ -1,6 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import { memo } from "react";
 import { motion, Transition } from "framer-motion";
 
 interface WhiteBorderBeamProps {
@@ -12,14 +13,14 @@ interface WhiteBorderBeamProps {
   initialOffset?: number;
 }
 
-export const WhiteBorderBeam = ({
+export const WhiteBorderBeam = memo(function WhiteBorderBeam({
   className,
   size = 50,
   delay = 0,
   duration = 6,
   reverse = false,
   initialOffset = 0,
-}: WhiteBorderBeamProps) => {
+}: WhiteBorderBeamProps) {
   return (
     <div className="pointer-events-none absolute inset-0 rounded-[inherit] border border-transparent [mask-clip:padding-box,border-box] [mask-composite:intersect] [mask-image:linear-gradient(transparent,transparent),linear-gradient(#000,#000)]">
       <motion.div
@@ -49,4 +50,4 @@ export const WhiteBorderBeam = ({
       />
     </div>
   );
-}; 
+}); 
