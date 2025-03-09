@@ -74,22 +74,7 @@ export default function GeracaoConteudoPage() {
                 {/* Textos */}
                 <div className="text-center">
                   <p className="text-center font-semibold text-gray-800 text-lg">Criar novo Avatar</p>
-                  <div className="mt-2">
-                    <Badge className="bg-gray-200 text-gray-700 cursor-default py-1">Representação visual</Badge>
-                  </div>
                 </div>
-                
-                {/* Botão de enviar vídeo (apenas visual) */}
-                <div className="mt-4">
-                  <div className="bg-gray-100 hover:bg-gray-200 text-gray-800 py-1 px-4 rounded-md border border-gray-300 text-sm inline-block cursor-default">
-                    Enviar vídeo
-                  </div>
-                </div>
-                
-                {/* Texto informativo */}
-                <p className="text-gray-400 text-xs mt-4">
-                  O seu vídeo deve ter até 2 minutos.
-                </p>
               </div>
               
               {/* Seção de Clone */}
@@ -130,7 +115,6 @@ export default function GeracaoConteudoPage() {
                 <h3 className="font-semibold text-gray-900 mb-2 text-lg">Geração de Conteúdo</h3>
                 <p className="text-gray-600">Ferramenta para construção de vídeos e outras mídias</p>
                 <div className="flex gap-2 mt-4">
-                  <Badge className="bg-red-100 text-red-700">Representação visual</Badge>
                 </div>
               </div>
               <div className="h-20 w-20 flex items-center justify-center">
@@ -205,28 +189,6 @@ export default function GeracaoConteudoPage() {
                 </div>
                 <p className="text-gray-500">Conexão direta com banco do LMS para aprendizado de estruturas</p>
               </div>
-              <Badge className="bg-gray-200 text-gray-700">Indisponível</Badge>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Card de AI Video Insights (4x1) */}
-        <Card className="col-span-4 bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
-          <CardContent className="p-6 h-full">
-            <div className="flex items-center justify-between">
-              <div className="flex gap-4 items-center">
-                <div className="h-14 w-14 bg-gray-100 rounded-xl flex items-center justify-center border border-gray-200">
-                  <FontAwesomeIcon icon={faChartBar} className="h-7 w-7 text-gray-700" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900 text-xl">AI Video Insights</h3>
-                  <p className="text-gray-500 text-sm mt-1">Aplique os metadados extraídos para melhorar a experiência do usuário</p>
-                </div>
-              </div>
-              <Badge className="bg-gray-200 text-gray-700 flex items-center gap-2">
-                <FontAwesomeIcon icon={faInfoCircle} className="h-3 w-3" />
-                <span>Apenas informativo</span>
-              </Badge>
             </div>
           </CardContent>
         </Card>
