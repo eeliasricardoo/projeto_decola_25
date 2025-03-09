@@ -60,116 +60,62 @@ export default function GeracaoConteudoPage() {
       {/* Bento Grid - Layout moderno inspirado em caixas bento */}
       <div className="grid grid-cols-4 gap-4 mb-16 auto-rows-[minmax(160px,auto)]">
         {/* Card de Criar Avatar - DESTAQUE (2x2) */}
-        <Card className="col-span-2 row-span-2 bg-white border border-gray-200 rounded-xl shadow-md overflow-hidden group">
+        <Card className="col-span-2 row-span-2 bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden group">
           <CardContent className="p-0 h-full flex flex-col justify-between">
             <div className="flex-1">
-              <div className="bg-gradient-to-br from-red-500 via-red-600 to-red-800 rounded-t-xl p-0 flex flex-col items-center justify-center h-48 text-white shadow-lg relative overflow-hidden">
-                {/* Efeitos visuais de fundo */}
-                <div className="absolute top-0 left-0 right-0 w-full h-full bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-red-400/30 via-transparent to-transparent"></div>
-                <div className="absolute top-0 right-0 w-48 h-48 rounded-full bg-yellow-400/10 blur-3xl"></div>
-                <div className="absolute bottom-0 left-0 w-40 h-40 rounded-full bg-purple-500/10 blur-2xl"></div>
-                
-                {/* Partículas animadas de fundo */}
-                <div className="absolute inset-0 overflow-hidden">
-                  {Array.from({ length: 10 }).map((_, i) => (
-                    <div 
-                      key={i}
-                      className="absolute w-2 h-2 bg-white rounded-full opacity-30"
-                      style={{
-                        top: `${Math.random() * 100}%`,
-                        left: `${Math.random() * 100}%`,
-                        animation: `float ${3 + Math.random() * 4}s linear infinite`,
-                        animationDelay: `${Math.random() * 5}s`
-                      }}
-                    />
-                  ))}
-                </div>
-                
-                {/* Badges informativos com efeito de glowing */}
-                <div className="absolute top-4 left-4">
-                  <Badge className="bg-white/20 backdrop-blur-md border border-white/30 shadow-sm text-white px-3 animate-pulse">
-                    Representação visual
-                  </Badge>
-                </div>
-                <div className="absolute top-4 right-4">
-                  <Badge className="bg-white/20 backdrop-blur-md border border-white/30 shadow-sm text-white px-3">
-                    Não interativo
-                  </Badge>
-                </div>
-                
-                {/* Container para os ícones animados */}
-                <div className={`flex items-center justify-center gap-8 mt-2 transition-opacity duration-1000 ease-in-out ${showAnimation ? 'opacity-100' : 'opacity-0'}`}>
-                  <div className="w-24 h-24">
-                    <div className="w-full h-full bg-white/20 rounded-full backdrop-blur-md flex items-center justify-center overflow-hidden relative">
-                      <div className="absolute inset-0 bg-gradient-to-br from-red-300/20 to-transparent"></div>
-                      <div className="absolute -inset-1 bg-white/5 animate-spin-slow opacity-70"></div>
-                      <FontAwesomeIcon icon={faUserCircle} className="h-12 w-12 text-white animate-bounce" />
-                    </div>
-                  </div>
-                  <div className="w-24 h-24">
-                    <div className="w-full h-full bg-white/20 rounded-full backdrop-blur-md flex items-center justify-center overflow-hidden relative">
-                      <div className="absolute inset-0 bg-gradient-to-br from-red-300/20 to-transparent"></div>
-                      <div className="absolute w-full h-1 bg-white/10 top-1/2 animate-pulse"></div>
-                      <div className="absolute h-full w-1 bg-white/10 left-1/2 animate-pulse"></div>
-                      <FontAwesomeIcon icon={faRobot} className="h-12 w-12 text-white animate-pulse" />
-                    </div>
+              <div className="bg-white p-8 flex flex-col items-center justify-center h-48 relative overflow-hidden">
+                {/* Ícone grande de adição */}
+                <div className="mb-4">
+                  <div className="h-16 w-16 rounded-full border-2 border-gray-300 flex items-center justify-center">
+                    <FontAwesomeIcon icon={faPlus} className="h-8 w-8 text-gray-800" />
                   </div>
                 </div>
                 
-                {/* Textos com efeito de fade-in */}
-                <div className={`mt-4 transition-all duration-1000 ease-in-out ${showAnimation ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-                  <p className="text-center font-bold text-white text-2xl tracking-tight">Avatares por IA</p>
-                  <p className="text-center text-white/80 text-sm mt-1">Processamento avançado de vídeos para avatares</p>
+                {/* Textos */}
+                <div className="text-center">
+                  <p className="text-center font-semibold text-gray-800 text-lg">Criar novo Avatar</p>
+                  <div className="mt-2">
+                    <Badge className="bg-gray-200 text-gray-700 cursor-default py-1">Representação visual</Badge>
+                  </div>
                 </div>
+                
+                {/* Botão de enviar vídeo (apenas visual) */}
+                <div className="mt-4">
+                  <div className="bg-gray-100 hover:bg-gray-200 text-gray-800 py-1 px-4 rounded-md border border-gray-300 text-sm inline-block cursor-default">
+                    Enviar vídeo
+                  </div>
+                </div>
+                
+                {/* Texto informativo */}
+                <p className="text-gray-400 text-xs mt-4">
+                  O seu vídeo deve ter até 2 minutos.
+                </p>
               </div>
               
-              {/* Seção de recursos do avatar com animações */}
-              <div className="bg-gradient-to-br from-gray-50 to-white p-6 border-b border-gray-200">
-                <div className="flex justify-between items-center mb-4">
-                  <div className="flex items-center gap-2">
-                    <div className="w-1 h-5 bg-red-500 rounded-full animate-pulse"></div>
-                    <p className="font-medium text-gray-900">Recursos do avatar</p>
+              {/* Seção de Clone */}
+              <div className="p-6 bg-gray-50 border-t border-gray-200">
+                <div className="flex flex-col items-center">
+                  <div className="h-16 w-16 rounded-full bg-gray-200 flex items-center justify-center mb-3">
+                    <FontAwesomeIcon icon={faUserCircle} className="h-10 w-10 text-gray-400" />
                   </div>
-                  <Badge className="bg-red-50 text-red-700 border border-red-100">
-                    Representação visual
-                  </Badge>
-                </div>
-                
-                {/* Representação visual dos recursos de avatar */}
-                <div className="flex items-center gap-4 group">
-                  <div className="h-16 w-16 rounded-full bg-gradient-to-br from-red-100 to-red-200 flex-shrink-0 shadow-sm flex items-center justify-center border border-red-200 transition-transform duration-500 ease-in-out group-hover:rotate-12">
-                    <FontAwesomeIcon icon={faUserCircle} className="h-12 w-12 text-red-400" />
-                  </div>
-                  <div className="flex-1">
-                    <div className="relative overflow-hidden h-3 bg-gray-100 rounded-full mb-3 w-full">
-                      <div className={`absolute bg-gradient-to-r from-red-400 to-red-600 h-full transition-all duration-2000 ease-in-out rounded-full ${showAnimation ? 'w-3/4' : 'w-0'}`}></div>
-                    </div>
-                    <div className="relative overflow-hidden h-3 bg-gray-100 rounded-full w-full">
-                      <div className={`absolute bg-gradient-to-r from-red-400 to-red-600 h-full transition-all duration-2000 ease-in-out delay-300 rounded-full ${showAnimation ? 'w-1/2' : 'w-0'}`}></div>
-                    </div>
+                  <div className="text-center">
+                    <Badge className="bg-gray-800 hover:bg-black text-white cursor-default py-1 px-3 mb-2">
+                      Gerar Clone
+                    </Badge>
                   </div>
                 </div>
               </div>
             </div>
             
-            {/* Footer com tecnologia de avatares */}
+            {/* Footer com recursos de clones */}
             <div className="p-6 bg-white border-t border-gray-200">
-              <div className="flex items-center gap-4">
-                <div className="h-16 w-16 rounded-full bg-gradient-to-br from-red-50 to-red-100 flex items-center justify-center border border-red-100 shadow-sm relative">
-                  {/* Efeito de pulsação */}
-                  <div className="absolute inset-0 rounded-full bg-red-400/20 animate-ping opacity-75"></div>
-                  <FontAwesomeIcon icon={faFileVideo} className="h-8 w-8 text-red-600 relative z-10" />
+              <div className="flex items-start gap-3">
+                <div className="h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0 border border-gray-200">
+                  <FontAwesomeIcon icon={faUserCircle} className="h-6 w-6 text-gray-600" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-gray-900 text-lg">Tecnologia de Avatares</h3>
-                  <p className="text-gray-600 text-sm">Visualização do recurso de criação de avatares</p>
-                </div>
-                
-                {/* Pontinhos animados indicando processamento */}
-                <div className="ml-auto flex gap-1">
-                  <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse delay-0"></div>
-                  <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse delay-300"></div>
-                  <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse delay-700"></div>
+                  <h3 className="font-medium text-gray-800 text-base">Clones de Vídeo e Voz</h3>
+                  <p className="text-gray-500 text-sm mt-1">Treinamento e personalização dos Avatars e Clones de Voz</p>
                 </div>
               </div>
             </div>
@@ -182,13 +128,13 @@ export default function GeracaoConteudoPage() {
             <div className="flex items-center h-full justify-between">
               <div className="flex flex-col justify-center">
                 <h3 className="font-semibold text-gray-900 mb-2 text-lg">Geração de Conteúdo</h3>
-                <p className="text-gray-600">Crie vídeos, textos e áudios didáticos com IA</p>
+                <p className="text-gray-600">Ferramenta para construção de vídeos e outras mídias</p>
                 <div className="flex gap-2 mt-4">
                   <Badge className="bg-red-100 text-red-700">Representação visual</Badge>
                 </div>
               </div>
-              <div className="h-20 w-20 bg-red-600 rounded-2xl flex items-center justify-center">
-                <FontAwesomeIcon icon={faWandMagicSparkles} className="h-8 w-8 text-white" />
+              <div className="h-20 w-20 flex items-center justify-center">
+                <FontAwesomeIcon icon={faWandMagicSparkles} className="h-8 w-8 text-gray-700" />
               </div>
             </div>
           </CardContent>
@@ -198,24 +144,24 @@ export default function GeracaoConteudoPage() {
         <Card className="col-span-1 bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
           <CardContent className="p-5 h-full">
             <div className="flex flex-col items-center justify-center h-full text-center">
-              <div className="h-14 w-14 rounded-xl bg-red-600 flex items-center justify-center mb-3">
-                <FontAwesomeIcon icon={faVideo} className="h-6 w-6 text-white" />
+              <div className="h-14 w-14 rounded-xl bg-gray-100 flex items-center justify-center mb-3 border border-gray-200">
+                <FontAwesomeIcon icon={faVideo} className="h-6 w-6 text-gray-700" />
               </div>
               <h3 className="font-semibold text-gray-900 text-base">Clones de Vídeo</h3>
-              <p className="text-gray-600 text-sm mt-1">Representação visual</p>
+              <p className="text-gray-500 text-sm mt-1">Representação visual</p>
             </div>
           </CardContent>
         </Card>
 
         {/* Card de Voz (1x1) */}
-        <Card className="col-span-1 bg-gray-900 border border-gray-800 rounded-xl shadow-sm overflow-hidden text-white">
+        <Card className="col-span-1 bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
           <CardContent className="p-5 h-full">
             <div className="flex flex-col items-center justify-center h-full text-center">
-              <div className="h-14 w-14 rounded-xl bg-red-700 flex items-center justify-center mb-3">
-                <FontAwesomeIcon icon={faVolumeHigh} className="h-6 w-6 text-white" />
+              <div className="h-14 w-14 rounded-xl bg-gray-100 flex items-center justify-center mb-3 border border-gray-200">
+                <FontAwesomeIcon icon={faVolumeHigh} className="h-6 w-6 text-gray-700" />
               </div>
-              <h3 className="font-semibold text-white text-base">Clones de Voz</h3>
-              <p className="text-gray-300 text-sm mt-1">Representação visual</p>
+              <h3 className="font-semibold text-gray-900 text-base">Clones de Voz</h3>
+              <p className="text-gray-500 text-sm mt-1">Representação visual</p>
             </div>
           </CardContent>
         </Card>
@@ -224,11 +170,11 @@ export default function GeracaoConteudoPage() {
         <Card className="col-span-1 bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
           <CardContent className="p-5 h-full">
             <div className="flex flex-col items-center justify-center h-full">
-              <div className="h-14 w-14 rounded-xl bg-red-600 flex items-center justify-center mb-3">
-                <FontAwesomeIcon icon={faFileAudio} className="h-6 w-6 text-white" />
+              <div className="h-14 w-14 rounded-xl bg-gray-100 flex items-center justify-center mb-3 border border-gray-200">
+                <FontAwesomeIcon icon={faFileAudio} className="h-6 w-6 text-gray-700" />
               </div>
               <h3 className="font-semibold text-gray-900 text-base text-center">Video Analyzer</h3>
-              <p className="text-gray-600 text-sm text-center mt-1">Representação visual</p>
+              <p className="text-gray-500 text-sm text-center mt-1">Representação visual</p>
             </div>
           </CardContent>
         </Card>
@@ -237,11 +183,11 @@ export default function GeracaoConteudoPage() {
         <Card className="col-span-1 bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
           <CardContent className="p-5 h-full">
             <div className="flex flex-col items-center justify-center h-full text-center">
-              <div className="h-14 w-14 rounded-xl bg-red-600 flex items-center justify-center mb-3">
-                <FontAwesomeIcon icon={faFileAudio} className="h-6 w-6 text-white" />
+              <div className="h-14 w-14 rounded-xl bg-gray-100 flex items-center justify-center mb-3 border border-gray-200">
+                <FontAwesomeIcon icon={faFileAudio} className="h-6 w-6 text-gray-700" />
               </div>
               <h3 className="font-semibold text-gray-900 text-base">Transcrição</h3>
-              <p className="text-gray-600 text-sm mt-1">Representação visual</p>
+              <p className="text-gray-500 text-sm mt-1">Representação visual</p>
             </div>
           </CardContent>
         </Card>
@@ -252,12 +198,12 @@ export default function GeracaoConteudoPage() {
             <div className="flex items-center h-full justify-between">
               <div>
                 <div className="flex items-center gap-3 mb-2">
-                  <div className="h-12 w-12 rounded-xl bg-red-600 flex items-center justify-center">
-                    <FontAwesomeIcon icon={faPlug} className="h-5 w-5 text-white" />
+                  <div className="h-12 w-12 rounded-xl bg-gray-100 flex items-center justify-center border border-gray-200">
+                    <FontAwesomeIcon icon={faPlug} className="h-5 w-5 text-gray-700" />
                   </div>
                   <h3 className="font-semibold text-gray-900 text-lg">Integração com LMS</h3>
                 </div>
-                <p className="text-gray-600">Representação visual da conexão com LMS</p>
+                <p className="text-gray-500">Conexão direta com banco do LMS para aprendizado de estruturas</p>
               </div>
               <Badge className="bg-gray-200 text-gray-700">Indisponível</Badge>
             </div>
@@ -265,19 +211,19 @@ export default function GeracaoConteudoPage() {
         </Card>
 
         {/* Card de AI Video Insights (4x1) */}
-        <Card className="col-span-4 bg-gradient-to-r from-gray-900 via-slate-800 to-gray-900 rounded-xl shadow-sm overflow-hidden text-white">
+        <Card className="col-span-4 bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
           <CardContent className="p-6 h-full">
             <div className="flex items-center justify-between">
               <div className="flex gap-4 items-center">
-                <div className="h-14 w-14 bg-red-700 rounded-xl flex items-center justify-center">
-                  <FontAwesomeIcon icon={faChartBar} className="h-7 w-7 text-white" />
+                <div className="h-14 w-14 bg-gray-100 rounded-xl flex items-center justify-center border border-gray-200">
+                  <FontAwesomeIcon icon={faChartBar} className="h-7 w-7 text-gray-700" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-white text-xl">AI Video Insights</h3>
-                  <p className="text-gray-300 text-sm mt-1">Representação visual da análise de estatísticas</p>
+                  <h3 className="font-semibold text-gray-900 text-xl">AI Video Insights</h3>
+                  <p className="text-gray-500 text-sm mt-1">Aplique os metadados extraídos para melhorar a experiência do usuário</p>
                 </div>
               </div>
-              <Badge className="bg-gray-700 text-gray-200 flex items-center gap-2">
+              <Badge className="bg-gray-200 text-gray-700 flex items-center gap-2">
                 <FontAwesomeIcon icon={faInfoCircle} className="h-3 w-3" />
                 <span>Apenas informativo</span>
               </Badge>
@@ -288,7 +234,7 @@ export default function GeracaoConteudoPage() {
 
       {/* Seção de Informações do serviço */}
       <div className="max-w-[800px] mx-auto bg-white rounded-xl shadow-sm border border-gray-200 p-8 mb-8">
-        <h2 className="text-xl font-bold mb-6 pb-2 border-b border-gray-200 text-red-800">
+        <h2 className="text-xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-800">
           O time Toolzz AI Content Makers
         </h2>
 
@@ -314,8 +260,8 @@ export default function GeracaoConteudoPage() {
 
       {/* Botão de Demonstração */}
       <div className="flex justify-center mb-16">
-        <Button className="rounded-full py-6 px-8 bg-red-600 hover:bg-red-700 text-white shadow-md flex items-center gap-3">
-          <Badge className="mr-2 bg-white/20 border-0 text-white px-4 py-1 rounded-full">
+        <Button className="rounded-full py-6 px-8 bg-white border border-gray-300 hover:bg-gray-50 text-gray-800 shadow-sm flex items-center gap-3">
+          <Badge className="mr-2 bg-red-600 border-0 text-white px-4 py-1 rounded-full">
             Demonstração
           </Badge>
           Agende sua demonstração
