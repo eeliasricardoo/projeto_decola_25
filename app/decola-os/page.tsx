@@ -26,6 +26,7 @@ import { Footer } from "@/components/decolaos/Footer";
 import { TextSection } from "@/components/decolaos/TextSection";
 import { StepSection } from "@/components/decolaos/StepSection";
 import { BenefitSection } from "@/components/decolaos/BenefitSection";
+import { FadeIn } from "@/components/ui";
 
 // Configuração do HeroSection para esta página
 export const heroProps: HeroSectionProps = {
@@ -183,14 +184,17 @@ export default function DecolaOS() {
 
         {/* Cards adicionais */}
         <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <h2 className="text-2xl font-bold mb-4 text-center">Interfaces do Sistema</h2>
+          <p className="text-gray-600 text-center mb-8 max-w-3xl mx-auto">Múltiplos pontos de interação com o usuário, proporcionando uma experiência completa e integrada para todos os tipos de necessidades.</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 justify-center">
             {featureCards.map((card, index) => (
-              <FeatureCard 
-                key={index}
-                title={card.title}
-                description={card.description}
-                icon={card.icon}
-              />
+              <FadeIn key={index} delay={index * 150} duration={500}>
+                <FeatureCard 
+                  title={card.title}
+                  description={card.description}
+                  icon={card.icon}
+                />
+              </FadeIn>
             ))}
           </div>
         </section>
@@ -272,13 +276,13 @@ export default function DecolaOS() {
 
           {/* Botão de Demonstração */}
           <div className="flex justify-center mb-16">
-            <button className="bg-white rounded-xl border border-gray-200 shadow-md py-4 px-6 text-gray-800 flex items-center hover:shadow-lg transition-all duration-300">
-              <div className="h-12 w-12 bg-red-50 rounded-xl flex-shrink-0 flex items-center justify-center mr-4">
-                <FontAwesomeIcon icon={faCalendar} className="h-5 w-5 text-red-600" />
+            <button className="bg-gradient-to-r from-red-500 to-red-600 rounded-xl shadow-md py-4 px-8 text-white flex items-center hover:shadow-lg transition-all duration-300 hover:translate-y-[-2px]">
+              <div className="h-12 w-12 bg-white/20 rounded-xl flex-shrink-0 flex items-center justify-center mr-4">
+                <FontAwesomeIcon icon={faCalendar} className="h-5 w-5 text-white" />
               </div>
               <div>
-                <span className="font-medium text-gray-900">Demonstração</span>
-                <p className="text-gray-600 text-sm">Agende sua demonstração</p>
+                <span className="font-medium text-white text-lg">Demonstração</span>
+                <p className="text-white/80 text-sm">Agende sua demonstração</p>
               </div>
             </button>
           </div>

@@ -67,17 +67,20 @@ const NavItem = memo(function NavItem({
       <Tooltip.Trigger asChild>
         <Link 
           href={item.href} 
-          className={`flex items-center justify-center w-12 h-12 rounded-xl ${
+          className={`relative flex items-center justify-center w-12 h-12 rounded-xl transition-all duration-300 ${
             isActive 
-              ? "bg-red-600 text-white" 
-              : "text-gray-500 hover:text-red-500 hover:bg-red-50 transition-colors duration-200"
+              ? "bg-gray-100 text-red-600" 
+              : "text-gray-500 hover:text-red-500 hover:bg-gray-50"
           }`}
         >
-          <FontAwesomeIcon icon={item.icon} className="w-5 h-5" />
+          {isActive && (
+            <span className="absolute -left-2 w-1 h-8 bg-red-600 rounded-r-md transform scale-y-100 transition-transform duration-300" />
+          )}
+          <FontAwesomeIcon icon={item.icon} className={`w-5 h-5 ${isActive ? 'transform scale-105' : ''}`} />
         </Link>
       </Tooltip.Trigger>
       {item.label && (
-        <Tooltip.Content side="right" sideOffset={8}>
+        <Tooltip.Content side="right" sideOffset={8} className="bg-gray-800 text-white px-4 py-2 text-xs rounded-md shadow-lg border-0">
           {item.label}
         </Tooltip.Content>
       )}
@@ -100,23 +103,10 @@ export const NavMenu = memo(function NavMenu({ items = defaultItems }: NavMenuPr
   return (
     <Tooltip.Provider>
       <div className="fixed left-8 top-1/2 transform -translate-y-1/2 z-50">
-        <div className="bg-white rounded-2xl shadow-lg py-6 px-1 flex flex-col items-center">
-          {/* Logo */}
-          <div className="mb-6">
-            <div className="flex flex-col items-center gap-2">
-              <Image 
-                src="/logo.svg"
-                alt="Toolzz Logo"
-                width={100}
-                height={22}
-                className="p-1"
-                priority
-              />
-            </div>
-          </div>
-
+        <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl py-8 px-2 flex flex-col items-center gap-8 border border-gray-100">
+         
           {/* Menu de navegação vertical */}
-          <nav className="flex flex-col space-y-5">
+          <nav className="flex flex-col space-y-8">
             {navigationItems.map((item, index) => (
               <NavItem 
                 key={`${item.href}-${index}`} 
