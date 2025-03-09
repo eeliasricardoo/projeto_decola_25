@@ -1,5 +1,3 @@
-'use client';
-
 import { AppLayout } from "@/components/layout";
 import type { Metadata } from "next";
 import { heroProps } from "./page";
