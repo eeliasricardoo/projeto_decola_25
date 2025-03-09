@@ -93,7 +93,7 @@ function ClientContent() {
                 {/* Botão Conferir */}
                 <Button 
                   variant="outline" 
-                  className="mt-8 rounded-full px-6 py-2 border-gray-300 bg-white text-sm" 
+                  className="mt-8 rounded-full px-6 py-2 border-gray-300 bg-white text-sm hover:text-red-600 hover:border-red-200 transition-colors duration-300" 
                   onClick={handleConferir}
                 >
                   Conferir 
@@ -112,7 +112,7 @@ function ClientContent() {
               {/* Card 1 - Decola OS (752px de largura) */}
               <Link href="/decola-os" className="block w-full" style={{ maxWidth: '752px' }}>
                 <div 
-                  className="relative p-0 hover:shadow-lg transition-shadow border border-gray-200 rounded-xl bg-white w-full overflow-hidden h-[276px] cursor-pointer"
+                  className="relative p-0 hover:shadow-lg transition-shadow border border-gray-200 rounded-xl bg-white w-full overflow-hidden h-[276px] cursor-pointer group"
                 >
                   <WhiteBorderBeam 
                     size={40} 
@@ -120,12 +120,12 @@ function ClientContent() {
                   />
                   <div className="absolute bottom-0 left-0 w-full p-8 pb-8">
                     <div className="flex flex-col">
-                      <div className="bg-gray-100 p-4 rounded-lg inline-block w-max">
-                        <FontAwesomeIcon icon={faUserBountyHunter} size="lg" className="text-gray-600" />
+                      <div className="bg-gray-100 p-4 rounded-lg inline-block w-max transition-colors duration-300 group-hover:bg-red-50">
+                        <FontAwesomeIcon icon={faUserBountyHunter} size="lg" className="text-gray-600 transition-colors duration-300 group-hover:text-red-600" />
                       </div>
                       <TextAnimate 
                         as="h3" 
-                        className="text-xl font-bold mt-5"
+                        className="text-xl font-bold mt-5 group-hover:text-red-600 transition-colors duration-300"
                         animation="slideUp"
                         startOnView
                         once
@@ -150,7 +150,7 @@ function ClientContent() {
 
               {/* Card 2 - Geração de Conteúdo (360px de largura) */}
               <div 
-                className="relative p-0 hover:shadow-lg transition-shadow border border-gray-200 rounded-xl bg-white w-full overflow-hidden h-[276px]"
+                className="relative p-0 hover:shadow-lg transition-shadow border border-gray-200 rounded-xl bg-white w-full overflow-hidden h-[276px] group"
                 style={{ maxWidth: '360px' }}
               >
                 <WhiteBorderBeam 
@@ -161,12 +161,12 @@ function ClientContent() {
                 />
                 <div className="absolute bottom-0 left-0 w-full p-8 pb-8">
                   <div className="flex flex-col">
-                    <div className="bg-gray-100 p-4 rounded-lg inline-block w-max">
-                      <FontAwesomeIcon icon={faSparkles} size="lg" className="text-gray-600" />
+                    <div className="bg-gray-100 p-4 rounded-lg inline-block w-max transition-colors duration-300 group-hover:bg-red-50">
+                      <FontAwesomeIcon icon={faSparkles} size="lg" className="text-gray-600 transition-colors duration-300 group-hover:text-red-600" />
                     </div>
                     <TextAnimate 
                       as="h3" 
-                      className="text-xl font-bold mt-5"
+                      className="text-xl font-bold mt-5 group-hover:text-red-600 transition-colors duration-300"
                       animation="slideUp"
                       startOnView
                       once
@@ -193,7 +193,7 @@ function ClientContent() {
             <div className="flex flex-col lg:flex-row justify-center gap-8 mb-8 w-full">
               {/* Card 3 - HYDRA (360px de largura) */}
               <div 
-                className="relative p-0 hover:shadow-lg transition-shadow border border-gray-200 rounded-xl bg-white w-full overflow-hidden h-[276px]"
+                className="relative p-0 hover:shadow-lg transition-shadow border border-gray-200 rounded-xl bg-white w-full overflow-hidden h-[276px] group"
                 style={{ maxWidth: '360px' }}
               >
                 <WhiteBorderBeam 
@@ -203,12 +203,12 @@ function ClientContent() {
                 />
                 <div className="absolute bottom-0 left-0 w-full p-8 pb-8">
                   <div className="flex flex-col">
-                    <div className="bg-gray-100 p-4 rounded-lg inline-block w-max">
-                      <FontAwesomeIcon icon={faHydra} size="lg" className="text-gray-600" />
+                    <div className="bg-gray-100 p-4 rounded-lg inline-block w-max transition-colors duration-300 group-hover:bg-red-50">
+                      <FontAwesomeIcon icon={faHydra} size="lg" className="text-gray-600 transition-colors duration-300 group-hover:text-red-600" />
                     </div>
                     <TextAnimate 
                       as="h3" 
-                      className="text-xl font-bold mt-2"
+                      className="text-xl font-bold mt-2 group-hover:text-red-600 transition-colors duration-300"
                       animation="slideUp"
                       startOnView
                       once
@@ -232,7 +232,7 @@ function ClientContent() {
 
               {/* Card 4 - Dashboards (752px de largura) */}
               <div 
-                className="relative p-0 hover:shadow-lg transition-shadow border border-gray-200 rounded-xl bg-white w-full overflow-hidden h-[276px]"
+                className="relative p-0 hover:shadow-lg transition-shadow border border-gray-200 rounded-xl bg-white w-full overflow-hidden h-[276px] group"
                 style={{ maxWidth: '752px' }}
               >
                 <WhiteBorderBeam 
@@ -243,12 +243,12 @@ function ClientContent() {
                 />
                 <div className="absolute bottom-0 left-0 w-full p-8 pb-8">
                   <div className="flex flex-col">
-                    <div className="bg-gray-100 p-4 rounded-lg inline-block w-max">
-                      <FontAwesomeIcon icon={faChartTreeMap} size="lg" className="text-gray-600" />
+                    <div className="bg-gray-100 p-4 rounded-lg inline-block w-max transition-colors duration-300 group-hover:bg-red-50">
+                      <FontAwesomeIcon icon={faChartTreeMap} size="lg" className="text-gray-600 transition-colors duration-300 group-hover:text-red-600" />
                     </div>
                     <TextAnimate 
                       as="h3" 
-                      className="text-xl font-bold mt-5"
+                      className="text-xl font-bold mt-5 group-hover:text-red-600 transition-colors duration-300"
                       animation="slideUp"
                       startOnView
                       once
@@ -276,7 +276,7 @@ function ClientContent() {
               <div className="flex justify-center">
                 <Button 
                   variant="ghost" 
-                  className="flex items-center text-gray-700" 
+                  className="flex items-center text-gray-700 hover:text-red-600 transition-colors duration-300" 
                   onClick={handleVerBacklog}
                 >
                   Ver backlog completo <FontAwesomeIcon icon={faArrowRight} className="ml-2" />

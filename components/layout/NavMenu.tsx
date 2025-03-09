@@ -40,12 +40,12 @@ const defaultItems: MenuItem[] = [
   {
     icon: faChartTreeMap,
     label: "Dashboard",
-    href: "#"
+    href: "/dashboard"
   },
   {
     icon: faSparkles,
     label: "Geração de Conteúdo",
-    href: "#"
+    href: "/geracao-conteudo"
   },
   {
     icon: faList,
@@ -89,8 +89,8 @@ export const NavMenu = memo(function NavMenu({ items = defaultItems }: NavMenuPr
                       href={item.href} 
                       className={`flex items-center justify-center w-12 h-12 rounded-xl ${
                         active 
-                          ? "bg-black text-white" 
-                          : "text-gray-500 hover:text-gray-800 transition-colors duration-200"
+                          ? "bg-red-600 text-white" 
+                          : "text-gray-500 hover:text-red-500 hover:bg-red-50 transition-colors duration-200"
                       }`}
                     >
                       <FontAwesomeIcon icon={item.icon} className="w-5 h-5" />

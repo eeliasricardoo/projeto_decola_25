@@ -29,28 +29,11 @@ function BacklogCard({
   description: string;
   index: number;
 }) {
-  // Array de classes de cores para os ícones
-  const iconColors = [
-    "bg-blue-50 text-blue-600",
-    "bg-indigo-50 text-indigo-600",
-    "bg-purple-50 text-purple-600", 
-    "bg-pink-50 text-pink-600",
-    "bg-red-50 text-red-600",
-    "bg-orange-50 text-orange-600", 
-    "bg-amber-50 text-amber-600",
-    "bg-yellow-50 text-yellow-600",
-    "bg-lime-50 text-lime-600",
-    "bg-green-50 text-green-600",
-    "bg-emerald-50 text-emerald-600",
-    "bg-teal-50 text-teal-600",
-    "bg-cyan-50 text-cyan-600",
-  ];
-
-  // Seleciona uma cor com base no índice do card
-  const colorClass = iconColors[index % iconColors.length];
+  // Classe de cor vermelha para todos os ícones
+  const colorClass = "bg-red-50 text-red-600";
 
   return (
-    <div className="bg-white rounded-xl p-8 shadow-sm border border-gray-100 flex flex-col h-full transition-all duration-300 hover:shadow-md hover:border-gray-200 hover:translate-y-[-4px]">
+    <div className="bg-white rounded-xl p-8 shadow-sm border border-gray-100 flex flex-col h-full transition-all duration-300 hover:shadow-md hover:border-red-200 hover:translate-y-[-4px]">
       <div className={`mb-4 w-16 h-16 flex items-center justify-center rounded-full ${colorClass}`}>
         <FontAwesomeIcon icon={icon} className="w-8 h-8" />
       </div>
@@ -64,200 +47,189 @@ export default function BacklogPage() {
   const backlogItems = [
     {
       icon: faPlug,
-      title: "AI em Progresso",
-      description: "Lista de tarefas, sprints e fluxo de trabalho de todo o projeto.",
+      title: "API de Progresso",
+      description: "API de Progresso para troca de dados em tempo real com o iFood, permitindo segmentação personalizada e gatilhos de engajamento.",
     },
     {
       icon: faListCheck,
-      title: "Governança de Portfólio",
-      description: "Gestão de portfólio de produtos e serviços digitais.",
+      title: "Governança do Portfólio de Conteúdos",
+      description: "Geração de Relatórios de consumo de materiais fácil e acessível.",
     },
     {
       icon: faRadar,
-      title: "Equipamento",
-      description: "Gestão de equipamentos e recursos físicos disponíveis.",
+      title: "Rastreamento",
+      description: "Identificação automática de conteúdos que precisam de atualização devido a mudanças no iFood.",
     },
     {
       icon: faCommentAltSmile,
-      title: "Agente de IA Suporte D.O",
-      description: "Assistente virtual para suporte e resolução de dúvidas.",
+      title: "Agente de IA, Suporte DX",
+      description: "Suporte automático para usuários.",
     },
     {
       icon: faUserTieHairLong,
       title: "Programa Profissionalizante",
-      description: "Cursos e capacitações digitais para os colaboradores.",
+      description: "Configuração de turmas pagas incluindo cursos, aulas ao vivo, quizzes e fóruns/comunidades.",
     },
     {
       icon: faPersonChalkboard,
-      title: "Ferramenta de Turma",
-      description: "Gestão de grupos de alunos e turmas para treinamentos.",
+      title: "Ferramenta de Tutoria",
+      description: "Implementação de suporte 24/7 para dúvidas. Opção de chatbot + IA no dinamizador para automação de respostas.",
     },
     {
       icon: faTransporter1,
-      title: "Toolzz Chaos",
-      description: "Ferramenta para testes caóticos e simulações de sistemas.",
+      title: "Toolzz Clones",
+      description: "Treinamento e personalização dos Avatares e Clones de Voz.",
     },
     {
       icon: faSparkles,
       title: "Toolzz Creator",
-      description: "Plataforma para criação e desenvolvimento de código personalizado.",
+      description: "Ferramenta para geração automatizada de textos, materiais de vídeo e FAQs inteligentes.",
     },
     {
       icon: faFileLines, 
-      title: "Transcrição & Vídeo Analysis",
-      description: "Serviço para transcrição e análise de vídeos.",
+      title: "Transcrição & Vídeo Analyzer",
+      description: "Adaptação dos conteúdos de vídeo automaticamente para transcrição de IA.",
     },
     {
       icon: faScaleBalanced,
-      title: "Agente de IA Compliance",
-      description: "Assistente para verificação de conformidade com normas e regulamentos.",
+      title: "Agente de IA, Compliance",
+      description: "Orientação sobre normas sanitárias e fiscais, checklist para regularização de boas práticas e múltiplos insights sobre novas diretrizes públicas.",
     },
     {
       icon: faCalculator,
-      title: "Agente de IA Precificador",
-      description: "Sistema inteligente para cálculos e sugestões de preços.",
+      title: "Agente de IA, Precificador",
+      description: "Cálculos inteligentes de precificação para lojas, sugestões baseadas no mercado, além de recomendação de ajustes.",
     },
     {
       icon: faCommentAltSmile,
-      title: "Agente de IA Suporte B2B",
-      description: "Assistente virtual para suporte a clientes empresariais.",
+      title: "Agente de IA, Suporte RX",
+      description: "Sugestões automatizadas para melhorar a rentabilidade do restaurante.",
     },
     {
       icon: faSquareBinary,
-      title: "Agente de IA B2B Analyst",
-      description: "Análise de dados e insights para relações empresariais.",
+      title: "BINARY Agente de IA, BI Analyst",
+      description: "Inteligência de dados avançada para tomada de decisão estratégica.",
     },
     {
       icon: faMoneyCheckPen,
-      title: "Agente de IA Logística",
-      description: "Otimização de rotas e gestão de entregas e logística.",
+      title: "Agente de IA, Logística",
+      description: "Planejamento inteligente de compras, sugestões de fornecedores, contratos e distribuição automatizada para otimizar as operações logísticas.",
     },
     {
       icon: faChartPie,
-      title: "Agente de IA Marketing e Vendas",
-      description: "Estratégias e automação para marketing e vendas.",
+      title: "Agente de IA, Marketing e Vendas",
+      description: "Estratégias para aumentar pedidos e conversão, análise de campanhas promocionais e tendências de mercado.",
     },
     {
       icon: faCoin,
-      title: "Agente de IA Patrimônio",
-      description: "Gestão e controle de ativos e patrimônios da empresa.",
+      title: "Agente de IA, Financeiro",
+      description: "Assistente inteligente de gestão financeira, projeções de lucros sobre investimentos e sugestões de melhoria.",
     },
     {
       icon: faWhatsapp,
-      title: "Integração WhatsApp",
-      description: "Conecta a plataforma com o WhatsApp para comunicação direta.",
+      title: "Integração Whatsapp",
+      description: "Assistente Inteligente, atendimento 24/7, sugestões e alertas, comandos rápidos.",
     },
     {
       icon: faTableColumns,
       title: "Dashboard Web",
-      description: "Painéis de controle e visualização de métricas importantes.",
+      description: "Dashboard Personalizado histórico de interações, materiais e tags.",
     },
     {
       icon: faUserAstronaut,
       title: "Avatar Digital",
-      description: "Representação digital personalizada para interações virtuais.",
+      description: "Representação virtual de consultores, aulas e tutores personalizados, postagem no WhatsApp.",
     },
     {
       icon: faFileXls,
-      title: "Processo Automatizado",
-      description: "Automação de fluxos de trabalho e processos empresariais.",
+      title: "XLS - Eventos Restaurantes",
+      description: "Implementar captação de Eventos Real Time para Restaurantes.",
     },
     {
       icon: faChartTreeMap,
-      title: "360º Nacionalmente",
-      description: "Visão completa das operações em todo o território nacional.",
+      title: "Eventos Restaurantes",
+      description: "Para Restaurantes com SSO e dados sensorizados para intervenções educacionais.",
     },
     {
       icon: faGlobe,
-      title: "Processo Preditivo",
-      description: "Análise preditiva para antecipação de tendências e demandas.",
+      title: "SSO Restaurantes",
+      description: "Para Restaurantes com SSO e dados sensorizados para intervenções educacionais.",
     },
     {
       icon: faFileXls,
-      title: "AI Vídeo Tagger",
-      description: "Sistema de etiquetagem automática para vídeos com IA.",
+      title: "XLS - Eventos Parceiros",
+      description: "Implementar captação de Eventos Real Time para Restaurantes.",
     },
     {
       icon: faGrid,
-      title: "AI Vídeo Editor",
-      description: "Editor de vídeo com recursos de inteligência artificial.",
+      title: "Central de Relatórios",
+      description: "Criação de Relatórios personalizados com os Eventos Real Time.",
     },
     {
       icon: faBookmark,
-      title: "AI Vídeo Analytics",
-      description: "Análise de métricas e desempenho de vídeos com IA.",
+      title: "AI Vídeo Tagger",
+      description: "Ajusta os segmentos de recomendação conforme as métricas pesquisadas, permitindo um alinhamento de conteúdos direcionado às pesquisas do usuário.",
     },
     {
       icon: faEdit,
-      title: "Search Lexical",
-      description: "Mecanismo de busca avançado com análise lexical.",
+      title: "AI Vídeo Editor",
+      description: "Cria uma nova mídia com base no conteúdo existente. Sugestão de cortes inteligentes e edição dinâmica de feedback, levando em conta o uso do material.",
     },
     {
       icon: faChartLine,
-      title: "Storyboard, Social Learning e Classificações Sociais",
-      description: "Ferramentas para aprendizado social e interativo.",
+      title: "AI Vídeo Insights",
+      description: "Aplica as métricas analisadas para melhoria no engajamento do usuário. Leva em conta interações e histórico de visualizações.",
     },
     {
       icon: faSearch,
-      title: "Dashboard: Quiz para Gráficos",
-      description: "Sistema de questionários com visualização gráfica dos resultados.",
+      title: "Search Embed",
+      description: "Implementa busca inteligente personalizada em qualquer site, aplicativo ou plataforma.",
     },
     {
       icon: faThumbsUp,
-      title: "Storyboard: Quiz Interativo",
-      description: "Questionários interativos em formato de histórias.",
+      title: "Storyboard, Social Learning e Desafios Entre Usuários",
+      description: "Possibilita ideação de competições e colaboração com amigos, desafios e quizzes.",
     },
     {
       icon: faSealQuestion,
-      title: "Storyboard: Podcast",
-      description: "Criação e gestão de podcasts educacionais.",
+      title: "Storyboard, Quiz para Coleta",
+      description: "Quiz interativo para conhecimento. Faz pesquisas de mercado e coleta de informações.",
     },
     {
       icon: faHandPointUp,
-      title: "Storyboard: Analytics",
-      description: "Análise de desempenho e métricas de storyboards.",
+      title: "Storyboard, Quiz Interativo",
+      description: "Criação de quizzes complexos para aprendizado em FAQ na teoria.",
     },
     {
       icon: faMicrophoneLines,
-      title: "Ranking & Gamificação",
-      description: "Sistema de classificação e elementos de gamificação.",
+      title: "Storyboard, Podcast",
+      description: "Criação e Upload de Áudios como um conteúdo vinculado.",
     },
     {
       icon: faChartMixed,
-      title: "Aprendizagem Adaptativa",
-      description: "Sistema de educação personalizado conforme perfil do usuário.",
+      title: "Storyboard, Relatórios",
+      description: "Novos métodos interativos de desenvolvimento de reports no Storyboard.",
     },
     {
       icon: faRankingStar,
-      title: "Geração Automática de Questões Personalizadas",
-      description: "Criação de questões adaptadas ao nível de cada aluno.",
+      title: "Ranking & Gamificação",
+      description: "Inserção de Ranking para Alunos para ranqueamento de conteúdos com métricas de engajamento.",
     },
     {
       icon: faWandSparkles,
-      title: "Automação Inteligente",
-      description: "Processos automatizados com inteligência artificial.",
+      title: "Aprendizagem Adaptativa",
+      description: "Quiz e recomendações mais fáceis se estiver com dificuldades e desafios mais complexos se você estiver progredindo.",
     },
     {
       icon: faVial,
-      title: "Testes e Experimentos",
-      description: "Ambiente para testes e experimentação de novos recursos.",
+      title: "Geração Automática de Questões Personalizadas",
+      description: "Com base no que o aluno já sabe, o sistema adapta os questionários e recomenda conteúdos que precisam ser reforçados.",
     },
   ];
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-white to-gray-50">
       <div className="container mx-auto px-4 sm:px-6 md:px-8 py-16 max-w-7xl">
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Backlog <span className="font-bold">Decola</span>{" "}
-            <span className="text-gray-400">2025</span>
-          </h1>
-          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-            Solução Integrada de Aprendizado para{" "}
-            <span className="font-medium">Entregadores e Restaurantes</span>
-          </p>
-        </div>
-
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {backlogItems.map((item, index) => (
             <BacklogCard

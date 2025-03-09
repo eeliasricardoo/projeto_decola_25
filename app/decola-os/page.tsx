@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import Image from "next/image";
 import { faUserAstronaut, faTableColumns } from "@fortawesome/pro-solid-svg-icons";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
@@ -127,6 +128,11 @@ const conclusionSection = {
 };
 
 export default function DecolaOS() {
+  // Hook para garantir que a página inicie do topo
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="flex flex-col items-center min-h-screen bg-white">
       {/* Conteúdo principal */}

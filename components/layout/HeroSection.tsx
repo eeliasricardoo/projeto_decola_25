@@ -43,7 +43,7 @@ export function HeroSection({
   const titleContent = highlight ? (
     <>
       <span className="text-black">{title.split(" ")[0]} </span>
-      <span className="text-[#F01624]">{title.split(" ").slice(1).join(" ")}</span>
+      <span className="text-red-600">{title.split(" ").slice(1).join(" ")}</span>
     </>
   ) : (
     <span className="text-black">{title}</span>
@@ -65,7 +65,7 @@ export function HeroSection({
           {description}
         </p>
 
-        <div className="h-1 w-24 bg-[#F01624] mx-auto mt-8 rounded-full"></div>
+        <div className="h-1 w-24 bg-red-600 mx-auto mt-8 rounded-full"></div>
       </div>
     </div>
   );
@@ -99,7 +99,7 @@ export function HeroSection({
           {description}
         </TextAnimate>
 
-        <div className="h-1 w-24 bg-[#F01624] mx-auto mt-8 rounded-full"></div>
+        <div className="h-1 w-24 bg-red-600 mx-auto mt-8 rounded-full"></div>
       </motion.div>
     </div>
   );
