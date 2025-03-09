@@ -1,5 +1,6 @@
 "use client";
 
+import { memo } from "react";
 import { motion } from "framer-motion";
 import { TextAnimate } from "@/components/magicui/text-animate";
 
@@ -12,7 +13,7 @@ export interface HeroSectionProps {
   animation?: boolean;
 }
 
-export function HeroSection({ 
+export const HeroSection = memo(function HeroSection({ 
   title, 
   subtitle, 
   description, 
@@ -30,7 +31,7 @@ export function HeroSection({
   const subtitleSizes = {
     small: "text-2xl md:text-3xl",
     medium: "text-3xl md:text-4xl",
-    large: "text-4xl md:text-[96px]"
+    large: "text-4xl md:text-[60px]"
   };
 
   const descriptionSizes = {
@@ -43,7 +44,7 @@ export function HeroSection({
   const titleContent = highlight ? (
     <>
       <span className="text-black">{title.split(" ")[0]} </span>
-      <span className="text-[#F01624]">{title.split(" ").slice(1).join(" ")}</span>
+      <span className="text-red-600">{title.split(" ").slice(1).join(" ")}</span>
     </>
   ) : (
     <span className="text-black">{title}</span>
@@ -51,7 +52,7 @@ export function HeroSection({
 
   // Componente base para renderização sem animação
   const baseComponent = (
-    <div className="w-full py-16 px-8 text-center mb-16">
+    <div className="w-full py-16 px-8 text-center mb-16 bg-gradient-to-b from-white to-gray-50">
       <div className="max-w-5xl mx-auto">
         <h1 className={`${titleSizes[size]} font-bold leading-tight mb-4`}>
           {titleContent}
@@ -65,14 +66,14 @@ export function HeroSection({
           {description}
         </p>
 
-        <div className="h-1 w-24 bg-[#F01624] mx-auto mt-8 rounded-full"></div>
+        <div className="h-1 w-24 bg-red-600 mx-auto mt-8 rounded-full"></div>
       </div>
     </div>
   );
 
   // Componente com animação
   const animatedComponent = (
-    <div className="w-full py-16 px-8 text-center mb-16">
+    <div className="w-full py-16 px-8 text-center mb-16 bg-gradient-to-b from-white to-gray-50">
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
@@ -99,10 +100,10 @@ export function HeroSection({
           {description}
         </TextAnimate>
 
-        <div className="h-1 w-24 bg-[#F01624] mx-auto mt-8 rounded-full"></div>
+        <div className="h-1 w-24 bg-red-600 mx-auto mt-8 rounded-full"></div>
       </motion.div>
     </div>
   );
 
   return animation ? animatedComponent : baseComponent;
-} 
+}); 

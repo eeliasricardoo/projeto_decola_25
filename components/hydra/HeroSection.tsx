@@ -17,7 +17,7 @@ export function HeroSection({
   highlight = true 
 }: HeroSectionProps) {
   return (
-    <div className="w-full py-16 px-8 text-center mb-16">
+    <div className="w-full py-16 px-8 text-center mb-16 bg-gradient-to-b from-white to-gray-50">
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}

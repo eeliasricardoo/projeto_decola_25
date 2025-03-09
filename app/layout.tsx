@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Instrument_Sans } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 import { AppLayout } from "@/components/layout";
+import { ScrollToTop } from "@/components/layout";
 import "./globals.css";
 
 const instrumentSans = Instrument_Sans({
@@ -13,6 +14,11 @@ const instrumentSans = Instrument_Sans({
 export const metadata: Metadata = {
   title: "Projeto Decola 25 - Toolzz",
   description: "Solução Integrada de Gestão, Criação e Aprendizado para Entregadores e Restaurantes",
+};
+
+// Configuração para garantir que as páginas iniciem do topo
+export const viewport = {
+  scrollBehavior: 'auto',
 };
 
 export default function RootLayout({
@@ -29,9 +35,11 @@ export default function RootLayout({
         className={`${instrumentSans.variable} font-sans antialiased`}
         suppressHydrationWarning
       >
-        <AppLayout heroProps={null}>
-          {children}
-        </AppLayout>
+        <ScrollToTop>
+          <AppLayout heroProps={null}>
+            {children}
+          </AppLayout>
+        </ScrollToTop>
         <Toaster />
       </body>
     </html>

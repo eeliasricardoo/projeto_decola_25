@@ -11,36 +11,12 @@ interface FeatureCardProps {
 
 export function FeatureCard({ title, description, icon }: FeatureCardProps) {
   return (
-    <div className="flex flex-col justify-end" style={{ 
-      width: "359px", 
-      height: "360px",
-      borderRadius: "17px",
-      border: "1px solid #CDCDCD",
-      background: "linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, #FFF 69%)"
-    }}>
-      <div className="flex flex-col justify-end items-start gap-[16px] p-8" style={{ width: "299px", height: "302px" }}>
-        <FontAwesomeIcon icon={icon} style={{ color: "#B0B0B0", fontSize: "48px" }} />
-        <div className="flex flex-col gap-2">
-          <h3 style={{ 
-            color: "#0D0D0D",
-            fontFamily: "'Instrument Sans', sans-serif",
-            fontSize: "20px",
-            fontWeight: "700",
-            lineHeight: "normal"
-          }}>
-            {title}
-          </h3>
-          <p style={{ 
-            color: "#838383",
-            fontFamily: "'Instrument Sans', sans-serif",
-            fontSize: "16px",
-            fontWeight: "400",
-            lineHeight: "normal"
-          }}>
-            {description}
-          </p>
-        </div>
+    <div className="bg-white rounded-xl p-8 shadow-sm border border-gray-100 flex flex-col h-full transition-all duration-300 hover:shadow-md hover:border-gray-200 hover:translate-y-[-4px]">
+      <div className="mb-4 w-16 h-16 flex items-center justify-center rounded-xl bg-gray-100 group">
+        <FontAwesomeIcon icon={icon} className="w-8 h-8 text-gray-700 transform transition-transform group-hover:scale-110" />
       </div>
+      <h3 className="text-lg font-semibold mb-2 text-gray-900">{title}</h3>
+      <p className="text-sm text-gray-600 leading-relaxed">{description}</p>
     </div>
   );
 } 

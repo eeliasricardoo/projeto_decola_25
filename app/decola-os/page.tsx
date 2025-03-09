@@ -1,17 +1,32 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
-import { faUserAstronaut, faTableColumns } from "@fortawesome/pro-solid-svg-icons";
+import { 
+  faUserAstronaut, 
+  faTableColumns, 
+  faLightbulb, 
+  faCalendar,
+  faSearch,
+  faClipboard,
+  faRocket,
+  faAward,
+  faChartLine,
+  faMoneyBill,
+  faRobot,
+  faInfoCircle,
+  faCheck,
+  faGear,
+  faLayerGroup
+} from "@fortawesome/pro-solid-svg-icons";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 // Componentes
 import { HeroSectionProps } from "@/components/layout";
-import { AgentCard } from "@/components/decolaos/AgentCard";
 import { FeatureCard } from "@/components/decolaos/FeatureCard";
-import { Footer } from "@/components/decolaos/Footer";
-import { TextSection } from "@/components/decolaos/TextSection";
-import { StepSection } from "@/components/decolaos/StepSection";
-import { BenefitSection } from "@/components/decolaos/BenefitSection";
+import { FadeIn } from "@/components/ui";
+import { Button } from "@/components/ui/button";
 
 // Configuração do HeroSection para esta página
 export const heroProps: HeroSectionProps = {
@@ -24,18 +39,25 @@ export const heroProps: HeroSectionProps = {
 
 // Dados dos agentes
 const agents = [
-  { name: "Finicius", imagePath: "/agentes/Finicius.png" },
-  { name: "Logilson", imagePath: "/agentes/Logilson.png" },
-  { name: "Marketina", imagePath: "/agentes/Marketina.png" },
-  { name: "Suportana", imagePath: "/agentes/Suportana.png" },
+  { name: "Finicius", imagePath: "/agentes/apenas agentes/finicius.png", description: "Controle de fluxo de caixa e análise de faturamento, projeções de lucro, saúde financeira do negócio." },
+  { name: "Logilson", imagePath: "/agentes/apenas agentes/logilson.png", description: "Planejamento inteligente de compras, sugestões de fornecedores, comparativo de preços e controle de estoque." },
+  { name: "Marketina", imagePath: "/agentes/apenas agentes/marketina.png", description: "Estratégias para aumentar pedidos e melhorar a visibilidade, campanhas promocionais e descontos estratégicos." },
+  { name: "Suportana", imagePath: "/agentes/apenas agentes/suportana.png", description: "Suporte constante para os usuários, sugestões automatizadas para melhorar a rentabilidade do restaurante." },
 ];
 
 const secondRowAgents = [
-  { name: "Advanusa", imagePath: "/agentes/Advanusa.png" },
-  { name: "Ateneudes", imagePath: "/agentes/Ateneudes.png" },
-  { name: "Precifinelson", imagePath: "/agentes/Precifinelson.png" },
-  { name: "Arthutor", imagePath: "/agentes/Arthutor.png" },
+  { name: "Advanusa", imagePath: "/agentes/apenas agentes/advanusa.png", description: "Orientação sobre normas sanitárias e fiscais, checklist para regularização e boas práticas e atualizações sobre novas leis." },
+  { name: "Ateneudes", imagePath: "/agentes/apenas agentes/atenedeus.png", description: "Suporte contínuo para os usuários, atendimento 24 horas para tirar dúvidas e ajudar." },
+  { name: "Precifinelson", imagePath: "/agentes/apenas agentes/precifinelson.png", description: "Calculadora inteligente de precificação de pratos, sugestões de margem de lucro, análise de rentabilidade." },
+  { name: "Arthutor", imagePath: "/agentes/apenas agentes/arthutor.png", description: "Implementação de suporte 24/7 para dúvidas. Opção de chatbot AI ou FAQ dinâmico para automação de respostas." },
 ];
+
+// Dados de Edu - agente especial
+const eduAgent = {
+  name: "Edu",
+  imagePath: "/agentes/apenas agentes/edu.png",
+  description: "O Edu é um agente de inteligência artificial especializado em educação financeira para entregadores de aplicativos de delivery."
+};
 
 // Dados dos cards de recursos
 const featureCards = [
@@ -58,7 +80,7 @@ const featureCards = [
 
 // Dados das seções de texto
 const introSection = {
-  title: "Agentes de IA para Gestão Inteligente de Restaurantes",
+  title: "Agentes de IA para Gestão Inteligente",
   paragraphs: [
     "O iFood OS será um ecossistema de agentes de IA especializados, atuando como consultores virtuais para donos de restaurantes cadastrados no iFood.",
     "Inspirado no modelo de acompanhamento do Sebrae, os agentes oferecerão uma jornada de capacitação, implementação e crescimento sustentável.",
@@ -127,80 +149,331 @@ const conclusionSection = {
 };
 
 export default function DecolaOS() {
-  return (
-    <div className="flex flex-col items-center min-h-screen bg-white">
-      {/* Conteúdo principal */}
-      <div className="w-full">
-        {/* Nota: O HeroSection agora é renderizado automaticamente pelo AppLayout */}
-        
-        {/* Conteúdo principal - apenas imagens */}
-        <main className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          {/* Grid de imagens - primeira linha */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-8 justify-center">
-            {agents.map((agent) => (
-              <AgentCard key={agent.name} name={agent.name} imagePath={agent.imagePath} />
-            ))}
+  // Estado para controlar o carregamento da página
+  const [pageLoading, setPageLoading] = useState(true);
+  const [activeSection, setActiveSection] = useState(0);
+  
+  // Efeito para simular o carregamento inicial da página
+  useEffect(() => {
+    // Simula o carregamento inicial da página
+    const timer = setTimeout(() => {
+      setPageLoading(false);
+    }, 800);
+    
+    // Anima a rolagem entre seções
+    const sectionTimer = setInterval(() => {
+      setActiveSection(prev => (prev + 1) % 4);
+    }, 5000);
+    
+    return () => {
+      clearTimeout(timer);
+      clearInterval(sectionTimer);
+    };
+  }, []);
+  
+  if (pageLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="flex flex-col items-center">
+          <div className="h-16 w-16 bg-gray-200 rounded-xl flex items-center justify-center animate-pulse mb-4">
+            <FontAwesomeIcon icon={faRobot} className="h-8 w-8 text-gray-400" />
           </div>
+          <div className="h-4 w-40 bg-gray-200 rounded animate-pulse"></div>
+          <div className="mt-2 text-gray-400 text-sm">Carregando Decola OS...</div>
+        </div>
+      </div>
+    );
+  }
 
-          {/* Edu - Imagem central */}
-          <div className="flex justify-center mb-8">
-            <div className="rounded-2xl overflow-hidden relative" style={{ width: "1144px", height: "260px", maxWidth: "100%" }}>
-              <Image 
-                src="/agentes/Edu.png" 
-                alt="Edu" 
-                fill
-                style={{ objectFit: 'cover' }}
-              />
+  return (
+    <div className="min-h-screen py-8 bg-gray-50">
+      <div className="container mx-auto px-4">
+        {/* Conteúdo principal */}
+        <div className="bg-white rounded-xl shadow-md overflow-hidden border-0">
+          {/* Header principal - Estilo Dashboard */}
+          <FadeIn className="w-full" duration={800}>
+            <div className="bg-gray-100 p-8">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="h-16 w-16 bg-gray-200 rounded-xl flex items-center justify-center relative group">
+                  <div className="absolute inset-0 bg-gray-300 rounded-xl transform scale-0 transition-transform group-hover:scale-100 origin-center"></div>
+                  <FontAwesomeIcon icon={faRobot} className="h-8 w-8 text-gray-700 relative z-10 transition-transform group-hover:scale-110" />
+                </div>
+                <div>
+                  <h1 className="text-3xl font-bold">Decola OS</h1>
+                  <p className="text-gray-600">Força de Trabalho com Agentes de IA</p>
+                </div>
+              </div>
+              <p className="text-gray-700 mb-8 max-w-3xl">
+                O Decola OS é um ecossistema de agentes especializados que atuam como consultores virtuais,
+                proporcionando suporte e orientação para gestão, aprendizado e operação.
+              </p>
+              
+              {/* Cards de funcionalidades no header - Estilo Dashboard */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {featureCards.map((card, index) => (
+                  <FadeIn key={index} delay={200 * (index + 1)} duration={600}>
+                    <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300 hover:translate-y-[-4px]">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="h-10 w-10 bg-gray-100 rounded-full flex items-center justify-center group">
+                          <FontAwesomeIcon icon={card.icon} className="h-5 w-5 text-gray-700 transform transition-transform group-hover:scale-110" />
+                        </div>
+                        <h3 className="font-semibold text-gray-900 text-lg">{card.title}</h3>
+                      </div>
+                      <p className="text-gray-600 text-sm">
+                        {card.description}
+                      </p>
+                    </div>
+                  </FadeIn>
+                ))}
+              </div>
+            </div>
+          </FadeIn>
+
+          {/* BentoGrid de Agentes com dimensões específicas */}
+          <div className="p-8 border-t border-gray-100">
+            <h2 className="text-2xl font-bold mb-10 text-center">Nossos Agentes Especialistas</h2>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-10 mx-auto max-w-7xl">
+              {/* Primeira linha de agentes */}
+              {agents.map((agent, index) => (
+                <FadeIn key={agent.name} delay={150 * index} duration={600}>
+                  <div className="flex flex-col" style={{ width: "268.13px", maxWidth: "100%" }}>
+                    <div className="overflow-hidden rounded-lg border border-gray-100 relative" style={{ width: "268.13px", height: "268.13px", maxWidth: "100%" }}>
+                      <Image 
+                        src={agent.imagePath} 
+                        alt={agent.name} 
+                        fill
+                        style={{ objectFit: 'contain' }}
+                        sizes="(max-width: 768px) 100vw, 268px"
+                        loading="eager"
+                        quality={85}
+                      />
+                    </div>
+                    <div className="pt-3 px-2">
+                      <div className="flex items-center gap-2 mb-2">
+                        <h3 className="font-bold text-gray-900">{agent.name}</h3>
+                        <div className="bg-black text-white text-[10px] px-1 py-0.5 rounded">AI</div>
+                      </div>
+                      <p className="text-gray-600 text-sm leading-snug line-clamp-4">{agent.description}</p>
+                    </div>
+                  </div>
+                </FadeIn>
+              ))}
+            </div>
+
+            {/* Card de Edu - largura completa */}
+            <div className="flex justify-center mb-10">
+              <FadeIn delay={300} duration={800}>
+                <div className="flex rounded-lg border border-gray-100 overflow-hidden" style={{ width: "1144px", maxWidth: "100%" }}>
+                  <div className="p-6 w-2/5 flex flex-col justify-center bg-white">
+                    <div className="flex items-center gap-2 mb-2">
+                      <h3 className="font-bold text-gray-900 text-xl">Edu</h3>
+                      <div className="bg-black text-white text-[10px] px-1 py-0.5 rounded">AI</div>
+                    </div>
+                    <p className="text-gray-600 text-sm leading-snug">{eduAgent.description}</p>
+                  </div>
+                  <div className="w-3/5 relative" style={{ height: "260px" }}>
+                    <Image 
+                      src={eduAgent.imagePath} 
+                      alt={eduAgent.name} 
+                      fill
+                      style={{ objectFit: 'contain' }}
+                      sizes="(max-width: 1200px) 100vw, 700px"
+                      priority
+                      quality={90}
+                    />
+                  </div>
+                </div>
+              </FadeIn>
+            </div>
+
+            {/* Segunda linha de agentes */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mx-auto max-w-7xl">
+              {secondRowAgents.map((agent, index) => (
+                <FadeIn key={agent.name} delay={150 * index} duration={600}>
+                  <div className="flex flex-col" style={{ width: "268.13px", maxWidth: "100%" }}>
+                    <div className="overflow-hidden rounded-lg border border-gray-100 relative" style={{ width: "268.13px", height: "268.13px", maxWidth: "100%" }}>
+                      <Image 
+                        src={agent.imagePath} 
+                        alt={agent.name} 
+                        fill
+                        style={{ objectFit: 'contain' }}
+                        sizes="(max-width: 768px) 100vw, 268px"
+                        loading="eager"
+                        quality={85}
+                      />
+                    </div>
+                    <div className="pt-3 px-2">
+                      <div className="flex items-center gap-2 mb-2">
+                        <h3 className="font-bold text-gray-900">{agent.name}</h3>
+                        <div className="bg-black text-white text-[10px] px-1 py-0.5 rounded">AI</div>
+                      </div>
+                      <p className="text-gray-600 text-sm leading-snug line-clamp-4">{agent.description}</p>
+                    </div>
+                  </div>
+                </FadeIn>
+              ))}
+            </div>
+          </div>
+          
+          {/* Interface Principal - Estilo Dashboard */}
+          <div className="p-8 border-t border-gray-100">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* Coluna 1 - Descrição e Introdução */}
+              <FadeIn delay={300} duration={800}>
+                <div className="flex flex-col space-y-4">
+                  <div className="bg-gray-50 p-8 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300">
+                    <div className="flex items-center mb-6">
+                      <div className="h-12 w-12 bg-gray-200 text-gray-700 rounded-xl flex items-center justify-center mr-4 font-bold text-xs">
+                        AI
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-gray-900 text-lg">{introSection.title}</h3>
+                        <p className="text-gray-500 text-sm">Consultores virtuais para gestão eficiente</p>
+                      </div>
+                    </div>
+                    
+                    <div className="space-y-4 text-base">
+                      {introSection.paragraphs.map((paragraph, index) => (
+                        <p key={index} className="text-gray-700">
+                          {paragraph}
+                        </p>
+                      ))}
+                    </div>
+                  </div>
+                  
+                  <div className="bg-gray-50 p-8 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300">
+                    <div className="flex justify-between items-center mb-4">
+                      <h3 className="font-semibold text-gray-900 text-lg">Benefícios Estratégicos</h3>
+                    </div>
+                    <p className="text-gray-600 mb-4">
+                      {strategicSection.introduction}
+                    </p>
+                    <div className="flex flex-col space-y-3">
+                      {strategicSection.benefits.map((benefit, index) => (
+                        <div key={index} className="bg-white p-4 rounded-lg border border-gray-200 hover:border-gray-300 transition-colors duration-300">
+                          <div className="flex items-center gap-2 mb-2">
+                            <div className="h-8 w-8 bg-gray-100 rounded-full flex items-center justify-center group">
+                              <FontAwesomeIcon icon={[faAward, faChartLine, faMoneyBill, faRobot][index % 4]} className="h-4 w-4 text-gray-600 group-hover:text-gray-800 transition-colors duration-300" />
+                            </div>
+                            <p className="font-medium text-gray-800">{benefit.title}</p>
+                          </div>
+                          <p className="text-gray-600 text-sm ml-10">{benefit.description}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </FadeIn>
+              
+              {/* Coluna 2 - Jornada de Capacitação */}
+              <FadeIn delay={500} duration={800}>
+                <div className="bg-gray-50 p-8 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300">
+                  <h3 className="font-semibold text-gray-900 text-lg mb-4">{journeySection.title}</h3>
+                  <p className="text-gray-600 mb-6">{journeySection.introduction}</p>
+                  
+                  <div className="space-y-6">
+                    {journeySection.steps.map((step, index) => (
+                      <div key={index} className="bg-white p-4 rounded-lg border border-gray-200 flex items-start gap-4 hover:border-gray-300 transition-all duration-300 hover:shadow-sm">
+                        <div className="w-10 h-10 bg-gray-100 rounded-xl flex items-center justify-center flex-shrink-0 group">
+                          <FontAwesomeIcon icon={[faSearch, faClipboard, faRocket][index % 3]} className="h-5 w-5 text-gray-600 group-hover:scale-110 transition-transform duration-300" />
+                        </div>
+                        <div>
+                          <h4 className="font-semibold text-gray-800 mb-1">{step.title}</h4>
+                          <div className="space-y-1">
+                            {step.description.map((desc, i) => (
+                              <p key={i} className="text-gray-600 text-sm">{desc}</p>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </FadeIn>
             </div>
           </div>
 
-          {/* Grid de imagens - segunda linha */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 justify-center">
-            {secondRowAgents.map((agent) => (
-              <AgentCard key={agent.name} name={agent.name} imagePath={agent.imagePath} />
-            ))}
+          {/* Seção Como Funciona - Estilo Dashboard */}
+          <div className={`p-8 border-t border-gray-100 bg-gray-50 transition-opacity duration-500 ${activeSection === 0 ? 'opacity-100' : 'opacity-80'}`}>
+            <FadeIn>
+              <h2 className="text-2xl font-bold mb-8 text-center">
+                Como Funciona?
+              </h2>
+
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transform transition-transform duration-300 hover:translate-y-[-4px] hover:shadow-md">
+                  <div className="w-16 h-16 bg-gray-100 rounded-xl flex items-center justify-center mx-auto mb-4 group">
+                    <FontAwesomeIcon icon={faSearch} className="h-8 w-8 text-gray-600 transform transition-transform duration-300 group-hover:scale-110 group-hover:rotate-[-10deg]" />
+                  </div>
+                  <h3 className="font-bold text-center mb-3">Mapeamento</h3>
+                  <p className="text-gray-600 text-center">
+                    Diagnóstico do restaurante com levantamento de desafios e oportunidades.
+                  </p>
+                </div>
+
+                <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transform transition-transform duration-300 hover:translate-y-[-4px] hover:shadow-md">
+                  <div className="w-16 h-16 bg-gray-100 rounded-xl flex items-center justify-center mx-auto mb-4 group">
+                    <FontAwesomeIcon icon={faGear} className="h-8 w-8 text-gray-600 transform transition-transform duration-300 group-hover:scale-110 group-hover:rotate-[20deg]" />
+                  </div>
+                  <h3 className="font-bold text-center mb-3">Implementação</h3>
+                  <p className="text-gray-600 text-center">
+                    Recomendações práticas e ações semanais para melhorias no negócio.
+                  </p>
+                </div>
+
+                <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transform transition-transform duration-300 hover:translate-y-[-4px] hover:shadow-md">
+                  <div className="w-16 h-16 bg-gray-100 rounded-xl flex items-center justify-center mx-auto mb-4 group">
+                    <FontAwesomeIcon icon={faRocket} className="h-8 w-8 text-gray-600 transform transition-transform duration-300 group-hover:scale-110" />
+                  </div>
+                  <h3 className="font-bold text-center mb-3">Crescimento</h3>
+                  <p className="text-gray-600 text-center">
+                    Estratégias avançadas para escalar o negócio.
+                  </p>
+                </div>
+
+                <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 transform transition-transform duration-300 hover:translate-y-[-4px] hover:shadow-md">
+                  <div className="w-16 h-16 bg-gray-100 rounded-xl flex items-center justify-center mx-auto mb-4 group">
+                    <FontAwesomeIcon icon={faLayerGroup} className="h-8 w-8 text-gray-600 transform transition-transform duration-300 group-hover:scale-110" />
+                  </div>
+                  <h3 className="font-bold text-center mb-3">Personalização</h3>
+                  <p className="text-gray-600 text-center">
+                    Permite ajustar o sistema de acordo com
+                    seu contexto específico.
+                  </p>
+                </div>
+              </div>
+            </FadeIn>
           </div>
-        </main>
 
-        {/* Cards adicionais */}
-        <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 justify-center">
-            {featureCards.map((card, index) => (
-              <FeatureCard 
-                key={index}
-                title={card.title}
-                description={card.description}
-                icon={card.icon}
-              />
-            ))}
+          {/* Seção Conclusão */}
+          <div className={`p-8 border-t border-gray-100 transition-opacity duration-500 ${activeSection === 1 ? 'opacity-100' : 'opacity-80'}`}>
+            <div className="max-w-4xl mx-auto">
+              <FadeIn delay={300}>
+                <h2 className="text-2xl font-bold mb-6 text-center">
+                  {conclusionSection.title}
+                </h2>
+    
+                <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 mb-6 hover:shadow-md transition-all duration-300">
+                  <p className="text-gray-700 mb-4">
+                    {conclusionSection.paragraphs[0]}
+                  </p>
+    
+                  <p className="text-gray-700">
+                    {conclusionSection.paragraphs[1]}
+                  </p>
+                </div>
+                
+                <div className="flex justify-center mt-8">
+                  <Button className="bg-gray-800 hover:bg-gray-900 text-white px-8 py-2 text-lg transform transition-transform duration-300 hover:scale-105 active:scale-95 rounded-xl flex items-center gap-3">
+                    <FontAwesomeIcon icon={faCalendar} className="h-5 w-5" />
+                    <span>Agendar demonstração</span>
+                  </Button>
+                </div>
+              </FadeIn>
+            </div>
           </div>
-        </section>
-
-        {/* Seções de texto */}
-        <TextSection 
-          title={introSection.title} 
-          paragraphs={introSection.paragraphs} 
-        />
-
-        <StepSection 
-          title={journeySection.title}
-          introduction={journeySection.introduction}
-          steps={journeySection.steps}
-        />
-
-        <BenefitSection 
-          title={strategicSection.title}
-          introduction={strategicSection.introduction}
-          benefits={strategicSection.benefits}
-        />
-
-        <TextSection 
-          title={conclusionSection.title} 
-          paragraphs={conclusionSection.paragraphs} 
-        />
-
-        {/* Rodapé simples */}
-        <Footer />
+        </div>
       </div>
     </div>
   );

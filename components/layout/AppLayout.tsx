@@ -31,16 +31,18 @@ export function AppLayout({ children, heroProps }: AppLayoutProps) {
   };
   
   return (
-    <div className="flex flex-col min-h-screen bg-white">
+    <div className="flex flex-col min-h-screen bg-gray-50">
       {/* Renderiza o NavMenu apenas se não for a home */}
       {!isHomePage && <NavMenu />}
       
-      {/* Conteúdo principal com margem à esquerda para acomodar o menu (se não for a home) */}
-      <div className={`w-full ${!isHomePage ? 'pl-24 sm:pl-32 md:pl-36' : ''}`}>
+      {/* Conteúdo principal com margens ajustadas seguindo a regra de 8px */}
+      <div className={`w-full ${!isHomePage ? 'pl-24 sm:pl-32 md:pl-40' : ''}`}>
         {/* Renderiza o HeroSection se showHero for true */}
         {showHero && <HeroSection {...defaultHeroProps} />}
         
-        {children}
+        <main className="flex-grow">
+          {children}
+        </main>
       </div>
     </div>
   );

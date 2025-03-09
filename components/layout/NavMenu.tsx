@@ -5,9 +5,9 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
-import { faUserBountyHunter, faHydra, faChartTreeMap, faSparkles } from "@fortawesome/pro-solid-svg-icons";
-import { faList, faHome } from "@fortawesome/free-solid-svg-icons";
-import { memo } from "react";
+import { faUserBountyHunter, faHydra, faChartTreeMap, faSparkles, faList } from "@fortawesome/pro-solid-svg-icons";
+import { faHome } from "@fortawesome/free-solid-svg-icons";
+import { memo, useMemo } from "react";
 import * as Tooltip from "@/components/ui/tooltip";
 
 interface MenuItem {
@@ -40,70 +40,79 @@ const defaultItems: MenuItem[] = [
   {
     icon: faChartTreeMap,
     label: "Dashboard",
-    href: "#"
+    href: "/dashboard"
   },
   {
     icon: faSparkles,
     label: "Geração de Conteúdo",
-    href: "#"
+    href: "/geracao-conteudo"
   },
   {
     icon: faList,
     label: "Backlog",
-    href: "#"
+    href: "/backlog"
   }
 ];
+
+// Item de navegação memoizado
+const NavItem = memo(function NavItem({ 
+  item, 
+  isActive 
+}: { 
+  item: MenuItem; 
+  isActive: boolean;
+}) {
+  return (
+    <Tooltip.Root delayDuration={300}>
+      <Tooltip.Trigger asChild>
+        <Link 
+          href={item.href} 
+          className={`relative flex items-center justify-center w-12 h-12 rounded-xl transition-all duration-300 ${
+            isActive 
+              ? "bg-gray-100 text-red-600" 
+              : "text-gray-500 hover:text-red-500 hover:bg-gray-50"
+          }`}
+        >
+          {isActive && (
+            <span className="absolute -left-2 w-1 h-8 bg-red-600 rounded-r-md" />
+          )}
+          <FontAwesomeIcon icon={item.icon} className={`w-5 h-5 ${isActive ? 'transform scale-105' : ''}`} />
+        </Link>
+      </Tooltip.Trigger>
+      {item.label && (
+        <Tooltip.Content side="right" sideOffset={8} className="bg-gray-800 text-white px-4 py-2 text-xs rounded-md shadow-lg border-0 z-50">
+          {item.label}
+        </Tooltip.Content>
+      )}
+    </Tooltip.Root>
+  );
+});
 
 export const NavMenu = memo(function NavMenu({ items = defaultItems }: NavMenuProps) {
   // Usa o hook usePathname para obter o pathname atual de forma segura para SSR
   const pathname = usePathname();
 
+  // Memoizar os itens com os status de ativo
+  const navigationItems = useMemo(() => {
+    return items.map(item => ({
+      ...item,
+      isActive: item.active || pathname === item.href
+    }));
+  }, [items, pathname]);
+
   return (
     <Tooltip.Provider>
-      <div className="fixed left-8 top-1/2 transform -translate-y-1/2 z-50">
-        <div className="bg-white rounded-2xl shadow-lg py-6 px-1 flex flex-col items-center">
-          {/* Logo */}
-          <div className="mb-6">
-            <div className="flex flex-col items-center gap-2">
-              <Image 
-                src="/logo.svg"
-                alt="Toolzz Logo"
-                width={100}
-                height={22}
-                className="p-1"
-                priority
-              />
-            </div>
-          </div>
-
+      <div className="fixed left-8 top-1/2 transform -translate-y-1/2 z-40">
+        <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl py-8 px-2 flex flex-col items-center gap-8 border border-gray-100">
           {/* Menu de navegação vertical */}
-          <nav className="flex flex-col space-y-5">
-            {items.map((item, index) => {
-              // Verifica se o item está ativo com base no pathname atual
-              const active = item.active || pathname === item.href;
-              
-              return (
-                <Tooltip.Root key={index} delayDuration={300}>
-                  <Tooltip.Trigger asChild>
-                    <Link 
-                      href={item.href} 
-                      className={`flex items-center justify-center w-12 h-12 rounded-xl ${
-                        active 
-                          ? "bg-black text-white" 
-                          : "text-gray-500 hover:text-gray-800 transition-colors duration-200"
-                      }`}
-                    >
-                      <FontAwesomeIcon icon={item.icon} className="w-5 h-5" />
-                    </Link>
-                  </Tooltip.Trigger>
-                  {item.label && (
-                    <Tooltip.Content side="right" sideOffset={8}>
-                      {item.label}
-                    </Tooltip.Content>
-                  )}
-                </Tooltip.Root>
-              );
-            })}
+          <nav className="flex flex-col space-y-8">
+            {navigationItems.map((item, index) => (
+              <NavItem 
+                key={`${item.href}-${index}`} 
+                item={item} 
+                isActive={item.isActive} 
+              />
+            ))}
           </nav>
         </div>
       </div>
