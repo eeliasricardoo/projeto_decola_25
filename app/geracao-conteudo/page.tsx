@@ -1,6 +1,6 @@
 "use client";
 
-import { Card, CardContent } from "@/components/ui/card";
+import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { 
   faVideo, 
@@ -21,261 +21,226 @@ import {
   faArrowRight
 } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { HeroSectionProps } from "@/components/layout";
-import { useEffect, useState } from "react";
-
-// Exportando hero props para ser usado no layout
-export const heroProps: HeroSectionProps = {
-  title: "Geração de Conteúdo",
-  subtitle: "Educacional feito por IA",
-  description: "Praticidade e facilidade para gerar vídeos, podcasts e mais",
-  size: "large",
-  animation: true,
-  highlight: true
-};
+import { 
+  Button, 
+  PageHeader, 
+  FadeIn, 
+  MainInterface, 
+  MainInterfaceSection, 
+  MainInterfaceCard,
+  FeatureCard,
+  FeatureCardCentered,
+  HowItWorksSection
+} from "@/components/ui";
 
 export default function GeracaoConteudoPage() {
-  // Estado para controlar a exibição da animação
-  const [showAnimation, setShowAnimation] = useState(false);
+  // Estado para controlar o carregamento da página
+  const [pageLoading, setPageLoading] = useState(true);
   
-  // Efeito para iniciar a animação após o carregamento do componente
+  // Efeito para simular o carregamento inicial da página
   useEffect(() => {
-    // Delay de 500ms para iniciar a animação após o carregamento da página
+    // Simula o carregamento inicial da página
     const timer = setTimeout(() => {
-      setShowAnimation(true);
-    }, 500);
+      setPageLoading(false);
+    }, 800);
     
     return () => clearTimeout(timer);
   }, []);
+  
+  if (pageLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="flex flex-col items-center">
+          <div className="h-16 w-16 bg-gray-200 rounded-xl flex items-center justify-center animate-pulse mb-4">
+            <FontAwesomeIcon icon={faWandMagicSparkles} className="h-8 w-8 text-gray-400" />
+          </div>
+          <div className="h-4 w-40 bg-gray-200 rounded animate-pulse"></div>
+          <div className="mt-2 text-gray-400 text-sm">Carregando Geração de Conteúdo...</div>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div className="min-h-screen py-8">
+    <div className="min-h-screen py-8 bg-gray-50">
       <div className="container mx-auto px-4">
-        {/* Informação sobre o propósito dos cards */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-4 mb-8 flex items-center gap-3">
-          <div className="h-8 w-8 bg-red-100 rounded-lg flex items-center justify-center text-red-600">
-            <FontAwesomeIcon icon={faInfoCircle} className="h-4 w-4" />
+        <div className="bg-white rounded-xl shadow-md overflow-hidden border-0">
+          <PageHeader
+            title="Geração de Conteúdo"
+            subtitle="Educacional feito por IA"
+            description="Praticidade e facilidade para gerar vídeos, podcasts e mais conteúdos para sua plataforma de aprendizado."
+            icon={faWandMagicSparkles}
+            cards={[
+              {
+                icon: faVideo,
+                title: "Vídeos Personalizados",
+                description: "Crie vídeos com avatares digitais personalizados para seus treinamentos"
+              },
+              {
+                icon: faFileAudio,
+                title: "Podcasts Educacionais",
+                description: "Gere conteúdos de áudio com vozes naturais para diferentes tipos de conteúdo"
+              },
+              {
+                icon: faChartBar,
+                title: "Análise de Engagement",
+                description: "Acompanhe métricas de engajamento dos conteúdos gerados para otimizar seus resultados"
+              }
+            ]}
+          />
+          
+          {/* Nota Informativa */}
+          <div className="p-4 mx-8 mb-8 bg-white rounded-xl shadow-sm border border-gray-100 flex items-center gap-3">
+            <div className="h-8 w-8 bg-gray-100 rounded-lg flex items-center justify-center text-gray-700">
+              <FontAwesomeIcon icon={faInfoCircle} className="h-4 w-4" />
+            </div>
+            <p className="text-gray-700 text-sm">
+              <span className="font-medium">Nota:</span> As funcionalidades abaixo são representações visuais das possibilidades do sistema. Para acessar os recursos, entre em contato com o suporte.
+            </p>
           </div>
-          <p className="text-gray-700 text-sm">
-            <span className="font-medium">Nota:</span> As funcionalidades abaixo são apenas representações visuais das possibilidades do sistema. Para acessar os recursos, entre em contato com o suporte.
-          </p>
-        </div>
-
-        {/* Layout com três grandes blocos, seguindo a estrutura da imagem */}
-        <div className="grid grid-cols-2 gap-8 mb-16">
-          {/* Bloco 1 - Avatar e Clones */}
-          <div className="flex flex-col space-y-8">
-            {/* Área de Avatar e Clone */}
-            <div className="grid grid-cols-2 gap-8 h-64">
-              {/* Card de Criar Avatar */}
-              <div className="bg-white shadow-md rounded-xl hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-100">
-                <div className="p-6 h-full flex flex-col items-center justify-center space-y-4">
-                  {/* Ícone grande de adição */}
-                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-gray-100 to-gray-200 border border-gray-200 flex items-center justify-center">
-                    <FontAwesomeIcon icon={faPlus} className="h-8 w-8 text-gray-700" />
+          
+          {/* Interface Principal */}
+          <MainInterface>
+            {/* Coluna 1 - Avatar e Clones */}
+            <MainInterfaceSection delay={300}>
+              <MainInterfaceCard 
+                title="Criação de Avatar" 
+                subtitle="Personalize seu próprio avatar digital"
+                icon={<FontAwesomeIcon icon={faUserCircle} className="h-6 w-6" />}
+              >
+                <div className="grid grid-cols-2 gap-4 mb-6">
+                  <div className="bg-white p-6 rounded-xl border border-gray-100 hover:shadow-md transition-all duration-300 flex flex-col items-center justify-center">
+                    <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4 group">
+                      <FontAwesomeIcon icon={faPlus} className="h-6 w-6 text-gray-700 group-hover:scale-110 transition-transform" />
+                    </div>
+                    <h4 className="font-medium text-center mb-3">Criar novo Avatar</h4>
+                    <div className="bg-gray-50 hover:bg-gray-100 py-2 px-4 rounded-lg text-sm cursor-pointer transition-colors duration-300 flex items-center gap-2 group">
+                      <span>Enviar vídeo</span>
+                      <FontAwesomeIcon icon={faArrowRight} className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    </div>
+                    <p className="text-gray-500 text-xs mt-2">Até 2 minutos de vídeo</p>
                   </div>
                   
-                  <p className="text-center font-semibold text-gray-800 text-lg">Criar novo Avatar</p>
-                  
-                  <div className="bg-gray-50 hover:bg-gray-100 py-2 px-5 rounded-lg text-sm flex items-center gap-2 transition-all duration-300 border border-gray-200 cursor-default group">
-                    <span>Enviar vídeo</span>
-                    <FontAwesomeIcon icon={faArrowRight} className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:translate-x-1" />
+                  <div className="bg-white p-6 rounded-xl border border-gray-100 hover:shadow-md transition-all duration-300 flex flex-col items-center justify-center">
+                    <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4 relative overflow-hidden group">
+                      <FontAwesomeIcon icon={faUserCircle} className="h-6 w-6 text-gray-700 group-hover:scale-110 transition-transform" />
+                    </div>
+                    <h4 className="font-medium text-center mb-3">Clone de Voz</h4>
+                    <Button className="bg-gray-800 hover:bg-gray-900 transition-all duration-300">
+                      Gerar Clone
+                    </Button>
                   </div>
+                </div>
+                
+                <FeatureCard
+                  icon={faUserCircle}
+                  title="Clones de Vídeo e Voz"
+                  description="Treinamento e personalização dos Avatars e Clones de Voz para uso em seus conteúdos educacionais"
+                  iconBgColor="bg-gray-100"
+                  iconColor="text-gray-700"
+                />
+              </MainInterfaceCard>
+            </MainInterfaceSection>
+            
+            {/* Coluna 2 - Ferramentas IA */}
+            <MainInterfaceSection delay={500}>
+              <MainInterfaceCard
+                title="Ferramentas de IA"
+                subtitle="Crie conteúdos educacionais inteligentes"
+                icon={<FontAwesomeIcon icon={faRobot} className="h-6 w-6" />}
+              >
+                <div className="mb-6 bg-white p-6 rounded-xl border border-gray-100 hover:shadow-md transition-all duration-300">
+                  <div className="flex flex-col items-center">
+                    <div className="w-20 h-20 bg-gray-100 rounded-xl flex items-center justify-center mb-4 group">
+                      <FontAwesomeIcon icon={faWandMagicSparkles} className="h-8 w-8 text-gray-700 group-hover:scale-110 transition-transform" />
+                    </div>
+                    <h3 className="font-semibold text-center mb-2">Geração de Conteúdo</h3>
+                    <p className="text-gray-600 text-center text-sm">
+                      Ferramenta completa para construção de vídeos, podcasts e materiais educacionais usando Inteligência Artificial
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="space-y-4">
+                  <FeatureCard
+                    icon={faBookmark}
+                    title="AI Video Tagger"
+                    description="Ajuste os algoritmos de recomendação com base em objetos e pessoas que aparecem em um vídeo"
+                    iconBgColor="bg-gray-100"
+                    iconColor="text-gray-700"
+                  />
                   
-                  <p className="text-gray-400 text-xs">
-                    O seu vídeo deve ter até 2 minutos.
+                  <FeatureCard
+                    icon={faPencilAlt}
+                    title="AI Video Editor"
+                    description="Crie uma nova mídia com base no conteúdo existente usando o editor de vídeo inteligente"
+                    iconBgColor="bg-gray-100"
+                    iconColor="text-gray-700"
+                  />
+                  
+                  <FeatureCard
+                    icon={faChartBar}
+                    title="AI Video Insights"
+                    description="Aplique os metadados extraídos para melhorar a experiência do usuário e o engajamento"
+                    iconBgColor="bg-gray-100"
+                    iconColor="text-gray-700"
+                  />
+                </div>
+              </MainInterfaceCard>
+            </MainInterfaceSection>
+          </MainInterface>
+          
+          {/* Seção de Como Funciona */}
+          <HowItWorksSection
+            title="Como Funciona a Geração de Conteúdo"
+            steps={[
+              {
+                icon: faVideo,
+                title: "Capture",
+                description: "Envie vídeos ou áudios para criar seu avatar digital ou clone de voz"
+              },
+              {
+                icon: faRobot,
+                title: "IA Processa",
+                description: "A inteligência artificial processa e cria modelos personalizados"
+              },
+              {
+                icon: faWandMagicSparkles,
+                title: "Crie",
+                description: "Utilize os modelos para criar novos conteúdos educacionais"
+              },
+              {
+                icon: faChartLine,
+                title: "Analise",
+                description: "Acompanhe métricas e resultados dos conteúdos gerados"
+              }
+            ]}
+          />
+          
+          {/* Seção Toolzz AI */}
+          <div className="p-8 border-b border-gray-100 bg-gray-50">
+            <div className="max-w-4xl mx-auto">
+              <FadeIn delay={300}>
+                <h2 className="text-2xl font-bold mb-6 text-center">
+                  Toolzz AI - Content Makers
+                </h2>
+    
+                <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 mb-6 hover:shadow-md transition-all duration-300">
+                  <p className="text-gray-700 mb-4">
+                    A equipe Toolzz AI Content Makers utiliza as mais recentes tecnologias de inteligência artificial para criar
+                    conteúdos educacionais personalizados que atendem às necessidades específicas de cada cliente.
+                  </p>
+    
+                  <p className="text-gray-700">
+                    Com nossa plataforma, você pode gerar avatares digitais, clones de voz, vídeos automatizados, podcasts educacionais
+                    e diversos outros tipos de conteúdo, tudo isso com qualidade profissional e em uma fração do tempo e custo
+                    de produção tradicional.
                   </p>
                 </div>
-              </div>
-              
-              {/* Card de Gerar Clone */}
-              <div className="neumorph hover-lift transition-all duration-300 overflow-hidden">
-                <div className="p-6 h-full flex flex-col items-center justify-center space-y-6">
-                  <div className="w-20 h-20 rounded-full neumorph-inset flex items-center justify-center relative overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-r from-gray-100 to-gray-200 opacity-50"></div>
-                    <FontAwesomeIcon icon={faUserCircle} className="h-10 w-10 text-gray-500" />
-                  </div>
-                  
-                  <button className="py-2 px-6 rounded-lg gradient-gray text-white flex items-center gap-2 transition-all duration-300 ripple-effect">
-                    <span>Gerar Clone</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-            
-            {/* Card de Clones de Vídeo e Voz */}
-            <div className="neumorph hover-lift transition-all duration-300 overflow-hidden">
-              <div className="p-6 h-full">
-                <div className="flex items-start gap-4">
-                  <div className="h-12 w-12 rounded-xl gradient-gray flex items-center justify-center flex-shrink-0">
-                    <FontAwesomeIcon icon={faUserCircle} className="h-6 w-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="font-medium text-gray-800 text-lg tracking-wide">Clones de Vídeo e Voz</h3>
-                    <p className="text-gray-500 text-sm mt-2">Treinamento e personalização dos Avatars e Clones de Voz</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          {/* Bloco 2 - Geração de Conteúdo */}
-          <div>
-            <div className="neumorph hover-lift transition-all duration-300 overflow-hidden h-full">
-              <div className="p-8 h-full flex flex-col">
-                <div className="flex flex-col items-center justify-center h-full space-y-8">
-                  <div className="w-24 h-24 rounded-2xl gradient-purple animate-soft-pulse flex items-center justify-center">
-                    <FontAwesomeIcon icon={faWandMagicSparkles} className="h-10 w-10 text-white" />
-                  </div>
-                  
-                  <div className="text-center space-y-4">
-                    <h3 className="font-semibold text-gray-900 text-2xl tracking-wide">Geração de Conteúdo</h3>
-                    <p className="text-gray-600">Ferramenta para construção de vídeos e outras mídias</p>
-                  </div>
-                </div>
-              </div>
+              </FadeIn>
             </div>
           </div>
         </div>
-
-        {/* Bloco 3 - Integração, Transcrição e AI Tools (linha inteira) */}
-        <div className="col-span-2">
-          <div className="grid grid-cols-2 gap-8">
-            {/* Coluna esquerda - Integração com LMS */}
-            <div className="neumorph hover-lift transition-all duration-300 overflow-hidden">
-              <div className="p-6 h-full">
-                <div className="flex flex-col h-full">
-                  <div className="mb-6">
-                    <div className="font-semibold text-gray-900 text-lg mb-4">Conecte sua conta Toolzz LMS</div>
-                    <div className="neumorph-inset py-3 px-4 rounded-lg text-gray-500 mb-4">
-                      API Token
-                    </div>
-                    <div className="flex justify-end">
-                      <button className="py-2 px-6 rounded-lg gradient-blue text-white flex items-center gap-2 transition-all duration-300 ripple-effect">
-                        <span>Conectar</span>
-                        <FontAwesomeIcon icon={faArrowRight} className="h-3 w-3" />
-                      </button>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start gap-4 mt-auto">
-                    <div className="h-12 w-12 rounded-xl gradient-blue flex items-center justify-center flex-shrink-0">
-                      <FontAwesomeIcon icon={faPlug} className="h-6 w-6 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="font-medium text-gray-800 text-lg tracking-wide">Integração com LMS</h3>
-                      <p className="text-gray-500 text-sm mt-2">Conexão direta com banco do LMS para aprendizado de estruturas</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            {/* Coluna direita - Transcrição & Video Analyzer */}
-            <div className="bg-white shadow-md rounded-xl hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-100">
-              <div className="p-6 h-full">
-                <div className="flex flex-col h-full">
-                  <div className="flex-1 flex items-center justify-center">
-                    <div className="w-24 h-24 rounded-xl bg-gradient-to-r from-red-400 to-red-500 flex items-center justify-center">
-                      <FontAwesomeIcon icon={faVideo} className="h-10 w-10 text-white" />
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start gap-4 mt-6">
-                    <div className="h-12 w-12 rounded-xl bg-gradient-to-r from-red-400 to-red-500 flex items-center justify-center flex-shrink-0">
-                      <FontAwesomeIcon icon={faFileAudio} className="h-6 w-6 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="font-medium text-gray-800 text-lg tracking-wide">Transcrição & Video Analyzer</h3>
-                      <p className="text-gray-500 text-sm mt-2">Adaptação dos conteúdos de vídeo e outros materiais para tunning da IA.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          {/* Cards de AI Tools (3 cards na linha abaixo) */}
-          <div className="grid grid-cols-3 gap-8 mt-8">
-            {/* AI Video Tagger */}
-            <div className="bg-white shadow-md rounded-xl hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-100">
-              <div className="p-6 h-full">
-                <div className="flex flex-col h-full">
-                  <div className="h-14 w-14 rounded-xl bg-gradient-to-r from-emerald-400 to-green-500 flex items-center justify-center mb-5">
-                    <FontAwesomeIcon icon={faBookmark} className="h-6 w-6 text-white" />
-                  </div>
-                  <h3 className="font-medium text-gray-800 text-lg tracking-wide mb-3">AI Video Tagger</h3>
-                  <p className="text-gray-500 text-sm">Ajuste os algoritmos de recomendação com base em objetos e pessoas que aparecem em um vídeo</p>
-                </div>
-              </div>
-            </div>
-            
-            {/* AI Video Editor */}
-            <div className="neumorph hover-lift transition-all duration-300 overflow-hidden">
-              <div className="p-6 h-full">
-                <div className="flex flex-col h-full">
-                  <div className="h-14 w-14 rounded-xl gradient-blue animate-soft-pulse flex items-center justify-center mb-5">
-                    <FontAwesomeIcon icon={faPencilAlt} className="h-6 w-6 text-white" />
-                  </div>
-                  <h3 className="font-medium text-gray-800 text-lg tracking-wide mb-3">AI Video Editor</h3>
-                  <p className="text-gray-500 text-sm">Crie uma nova mídia com base no conteúdo existente usando o editor de vídeo</p>
-                </div>
-              </div>
-            </div>
-            
-            {/* AI Video Insights */}
-            <div className="neumorph hover-lift transition-all duration-300 overflow-hidden">
-              <div className="p-6 h-full">
-                <div className="flex flex-col h-full">
-                  <div className="h-14 w-14 rounded-xl gradient-purple animate-soft-pulse flex items-center justify-center mb-5">
-                    <FontAwesomeIcon icon={faChartBar} className="h-6 w-6 text-white" />
-                  </div>
-                  <h3 className="font-medium text-gray-800 text-lg tracking-wide mb-3">AI Video Insights</h3>
-                  <p className="text-gray-500 text-sm">Aplique os metadados extraídos para melhorar a experiência do usuário</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Seção de Informações do serviço */}
-      <div className="max-w-[800px] mx-auto neumorph p-8 mb-8">
-        <h2 className="text-xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-800">
-          O time Toolzz AI Content Makers
-        </h2>
-
-        <p className="text-gray-800 text-base mb-6">
-          O time Toolzz AI Content Makers é a solução definitiva para empresas que precisam otimizar a
-          criação, atualização e personalização de conteúdos dentro do LMS.
-        </p>
-
-        <div className="space-y-4 text-base mb-6">
-          <p className="text-gray-700">
-            Nossa equipe de especialistas em Inteligência Artificial cuida de tudo: geração de avatares e clones de vídeo e voz, transcrição e lapidação de materiais e treinamento da IA para que ela compreenda e replique o conhecimento com máxima eficiência.
-          </p>
-
-          <p className="text-gray-700">
-            Isso significa menos tempo, custo e esforço para manter os conteúdos sempre atualizados, garantindo um alto padrão de qualidade de forma ágil e personalizada para cada cliente.
-          </p>
-
-          <p className="text-gray-700">
-            Se a necessidade é velocidade e precisão na adaptação de conteúdos, o Toolzz Service AI Content Makers entrega exatamente isso, transformando o fluxo de produção e atualização de conhecimento em algo simples, escalável e automatizado.
-          </p>
-        </div>
-      </div>
-
-      {/* Botão de Demonstração */}
-      <div className="flex justify-center mb-16">
-        <button className="neumorph hover-lift py-5 px-8 rounded-full text-gray-800 flex items-center gap-3 transition-all duration-300 group">
-          <span className="h-8 gradient-red px-4 py-1 rounded-full text-white text-sm mr-2">
-            Demonstração
-          </span>
-          <span>Agende sua demonstração</span>
-          <FontAwesomeIcon icon={faArrowRight} className="h-4 w-4 ml-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:translate-x-1" />
-        </button>
       </div>
     </div>
   );

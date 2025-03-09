@@ -1,4 +1,6 @@
-import { Metadata } from "next";
+"use client";
+
+import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { 
   faPlug, faListCheck, faRadar, faCommentAltSmile, 
@@ -9,14 +11,21 @@ import {
   faGrid, faBookmark, faEdit, faChartLine,
   faSearch, faThumbsUp, faSealQuestion, faHandPointUp,
   faMicrophoneLines, faChartMixed, faRankingStar, faWandSparkles,
-  faVial
+  faVial, faListAlt, faInfo
 } from "@fortawesome/pro-solid-svg-icons";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+import { 
+  PageHeader, 
+  FadeIn, 
+  MainInterface,
+  MainInterfaceSection
+} from "@/components/ui";
 
-export const metadata: Metadata = {
-  title: "Backlog Decola 2025 | Solução Integrada de Aprendizado",
-  description: "Backlog do projeto Decola 2025 - Solução Integrada de Aprendizado para Entregadores e Restaurantes",
-};
+interface BacklogItem {
+  icon: any;
+  title: string;
+  description: string;
+}
 
 function BacklogCard({ 
   icon, 
@@ -29,22 +38,47 @@ function BacklogCard({
   description: string;
   index: number;
 }) {
-  // Classe de cor vermelha para todos os ícones
-  const colorClass = "bg-red-50 text-red-600";
-
   return (
-    <div className="bg-white rounded-xl p-8 shadow-sm border border-gray-100 flex flex-col h-full transition-all duration-300 hover:shadow-md hover:border-red-200 hover:translate-y-[-4px]">
-      <div className={`mb-4 w-16 h-16 flex items-center justify-center rounded-full ${colorClass}`}>
-        <FontAwesomeIcon icon={icon} className="w-8 h-8" />
+    <FadeIn delay={index * 100} duration={600}>
+      <div className="bg-white rounded-xl p-8 shadow-sm border border-gray-100 flex flex-col h-full transition-all duration-300 hover:shadow-md hover:border-gray-200 hover:translate-y-[-4px]">
+        <div className="mb-4 w-16 h-16 flex items-center justify-center rounded-xl bg-gray-100 group">
+          <FontAwesomeIcon icon={icon} className="w-8 h-8 text-gray-700 transform transition-transform group-hover:scale-110" />
+        </div>
+        <h3 className="text-lg font-semibold mb-2">{title}</h3>
+        <p className="text-sm text-gray-600 leading-relaxed">{description}</p>
       </div>
-      <h3 className="text-lg font-semibold mb-2">{title}</h3>
-      <p className="text-sm text-gray-500 leading-relaxed">{description}</p>
-    </div>
+    </FadeIn>
   );
 }
 
 export default function BacklogPage() {
-  const backlogItems = [
+  // Estado para controlar o carregamento da página
+  const [pageLoading, setPageLoading] = useState(true);
+  
+  useEffect(() => {
+    // Simula o carregamento inicial da página
+    const timer = setTimeout(() => {
+      setPageLoading(false);
+    }, 800);
+    
+    return () => clearTimeout(timer);
+  }, []);
+  
+  if (pageLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="flex flex-col items-center">
+          <div className="h-16 w-16 bg-gray-200 rounded-xl flex items-center justify-center animate-pulse mb-4">
+            <FontAwesomeIcon icon={faListAlt} className="h-8 w-8 text-gray-400" />
+          </div>
+          <div className="h-4 w-40 bg-gray-200 rounded animate-pulse"></div>
+          <div className="mt-2 text-gray-400 text-sm">Carregando Backlog...</div>
+        </div>
+      </div>
+    );
+  }
+
+  const backlogItems: BacklogItem[] = [
     {
       icon: faPlug,
       title: "API de Progresso",
@@ -228,27 +262,48 @@ export default function BacklogPage() {
   ];
 
   return (
-    <div className="min-h-screen">
-      <div className="container py-8 px-4 mx-auto">
-        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 mb-8">
-          <h1 className="text-3xl font-bold mb-6">
-            Backlog
-          </h1>
-          <p className="max-w-3xl text-gray-600 mb-10">
-            Recursos planejados e em desenvolvimento para as próximas versões da plataforma. Esta lista é atualizada regularmente conforme o feedback e necessidades dos usuários.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {backlogItems.map((item, index) => (
-            <BacklogCard 
-              key={index}
-              icon={item.icon}
-              title={item.title}
-              description={item.description}
-              index={index}
-            />
-          ))}
+    <div className="min-h-screen py-8 bg-gray-50">
+      <div className="container mx-auto px-4">
+        <div className="bg-white rounded-xl shadow-md overflow-hidden border-0">
+          <PageHeader
+            title="Backlog"
+            subtitle="Recursos em Desenvolvimento"
+            description="Recursos planejados e em desenvolvimento para as próximas versões da plataforma. Esta lista é atualizada regularmente conforme o feedback e necessidades dos usuários."
+            icon={faListAlt}
+            cards={[
+              {
+                icon: faInfo,
+                title: "Atualizações Regulares",
+                description: "O backlog é atualizado constantemente com base no feedback dos usuários e novas necessidades identificadas"
+              },
+              {
+                icon: faChartLine,
+                title: "Priorização Estratégica",
+                description: "Os itens são priorizados com base no impacto para o negócio e facilidade de implementação"
+              },
+              {
+                icon: faListCheck,
+                title: "Transparência no Roadmap",
+                description: "Compartilhamos nosso roadmap para que você possa acompanhar o desenvolvimento das funcionalidades"
+              }
+            ]}
+          />
+          
+          <MainInterface columns={1}>
+            <MainInterfaceSection>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {backlogItems.map((item, index) => (
+                  <BacklogCard 
+                    key={index}
+                    icon={item.icon}
+                    title={item.title}
+                    description={item.description}
+                    index={index}
+                  />
+                ))}
+              </div>
+            </MainInterfaceSection>
+          </MainInterface>
         </div>
       </div>
     </div>
