@@ -1,0 +1,37 @@
+@layer utilities {
+  /* Animação de flutuação para as partículas */
+  @keyframes float {
+    0% {
+      transform: translateY(0) translateX(0);
+      opacity: 0;
+    }
+    25% {
+      opacity: 0.5;
+    }
+    50% {
+      transform: translateY(-20px) translateX(10px);
+      opacity: 0.8;
+    }
+    75% {
+      opacity: 0.5;
+    }
+    100% {
+      transform: translateY(-40px) translateX(0);
+      opacity: 0;
+    }
+  }
+
+  /* Animação de rotação lenta */
+  .animate-spin-slow {
+    animation: spin 8s linear infinite;
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+} 
