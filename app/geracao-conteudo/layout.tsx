@@ -1,5 +1,8 @@
+'use client';
+
 import { AppLayout } from "@/components/layout";
 import type { Metadata } from "next";
+import { heroProps } from "./page";
 
 export const metadata: Metadata = {
   title: "Geração de Conteúdo Educacional - IA Toolzz",
@@ -11,11 +14,5 @@ export default function GeracaoConteudoLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const heroProps = {
-    title: "Geração de Conteúdo Educacional",
-    description: "Transforme sua produção de conteúdo com IA",
-    gradientColors: ["from-blue-500", "to-purple-500"],
-  };
-
   return <AppLayout heroProps={heroProps}>{children}</AppLayout>;
 } 
