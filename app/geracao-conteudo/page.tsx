@@ -46,46 +46,52 @@ export default function GeracaoConteudoPage() {
       {/* Bento Grid - Layout moderno inspirado em caixas bento */}
       <div className="grid grid-cols-4 gap-4 mb-16 auto-rows-[minmax(160px,auto)]">
         {/* Card de Criar Avatar - DESTAQUE (2x2) */}
-        <Card className="col-span-2 row-span-2 bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
-          <CardContent className="p-6 h-full flex flex-col justify-between">
+        <Card className="col-span-2 row-span-2 bg-white border border-gray-200 rounded-xl shadow-md overflow-hidden">
+          <CardContent className="p-8 h-full flex flex-col justify-between">
             <div className="flex-1">
-              <div className="bg-gradient-to-br from-red-500 to-red-700 rounded-xl p-6 mb-4 flex flex-col items-center justify-center h-36 text-white">
-                <div className="flex justify-between w-full mb-2">
-                  <Badge className="bg-white/30 text-white">Representação visual</Badge>
-                  <Badge className="bg-white/30 text-white">Não interativo</Badge>
+              <div className="bg-gradient-to-br from-red-500 via-red-600 to-red-800 rounded-xl p-6 mb-8 flex flex-col items-center justify-center h-40 text-white shadow-lg relative overflow-hidden">
+                <div className="absolute top-0 left-0 right-0 w-full h-16 bg-gradient-to-r from-red-500/20 to-white/5"></div>
+                <div className="absolute bottom-0 right-0 w-24 h-24 rounded-full bg-red-400/20 -mr-8 -mb-8 blur-xl"></div>
+                <div className="flex justify-between w-full mb-4">
+                  <Badge className="bg-white/20 text-white backdrop-blur-sm border border-white/10 shadow-sm">Representação visual</Badge>
+                  <Badge className="bg-white/20 text-white backdrop-blur-sm border border-white/10 shadow-sm">Não interativo</Badge>
                 </div>
-                <div className="flex items-center gap-3 mt-2">
-                  <FontAwesomeIcon icon={faUserCircle} className="h-10 w-10 text-white" />
-                  <FontAwesomeIcon icon={faRobot} className="h-8 w-8 text-white" />
+                <div className="flex items-center gap-8 mt-2">
+                  <div className="bg-white/10 p-3 rounded-full backdrop-blur-sm border border-white/10 shadow-inner">
+                    <FontAwesomeIcon icon={faUserCircle} className="h-10 w-10 text-white" />
+                  </div>
+                  <div className="bg-white/10 p-2 rounded-full backdrop-blur-sm border border-white/10 shadow-inner">
+                    <FontAwesomeIcon icon={faRobot} className="h-8 w-8 text-white" />
+                  </div>
                 </div>
-                <p className="text-center font-medium text-white text-lg mt-3">Avatares por IA</p>
-                <p className="text-center text-red-100 text-sm mt-1">Processamento de vídeos para avatares</p>
+                <p className="text-center font-medium text-white text-xl mt-4">Avatares por IA</p>
+                <p className="text-center text-red-100 text-sm mt-2">Processamento de vídeos para avatares</p>
               </div>
               
-              <div className="bg-gray-50 rounded-xl p-4 border border-gray-200">
-                <div className="flex justify-between items-center mb-2">
+              <div className="bg-gray-50 rounded-xl p-6 border border-gray-200 shadow-inner">
+                <div className="flex justify-between items-center mb-4">
                   <p className="text-sm font-medium text-gray-900">Recursos de avatar</p>
-                  <Badge className="bg-gray-200 text-gray-700">Representação visual</Badge>
+                  <Badge className="bg-red-50 text-red-700 border border-red-100">Representação visual</Badge>
                 </div>
-                <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-full bg-gray-200 flex-shrink-0">
+                <div className="flex items-center gap-4">
+                  <div className="h-12 w-12 rounded-full bg-gradient-to-br from-gray-100 to-gray-200 flex-shrink-0 shadow-sm flex items-center justify-center border border-gray-200">
                     <FontAwesomeIcon icon={faUserCircle} className="h-10 w-10 text-gray-400" />
                   </div>
                   <div className="flex-1">
-                    <div className="h-2 w-3/4 bg-gray-200 rounded-full mb-2"></div>
-                    <div className="h-2 w-1/2 bg-gray-200 rounded-full"></div>
+                    <div className="h-2.5 w-3/4 bg-gradient-to-r from-gray-200 to-gray-300 rounded-full mb-3"></div>
+                    <div className="h-2.5 w-1/2 bg-gradient-to-r from-gray-200 to-gray-300 rounded-full"></div>
                   </div>
                 </div>
               </div>
             </div>
             
-            <div className="mt-6 pt-6 border-t border-gray-200">
+            <div className="mt-8 pt-6 border-t border-gray-200">
               <div className="flex items-center">
-                <div className="h-12 w-12 rounded-full bg-red-100 flex items-center justify-center mr-4">
-                  <FontAwesomeIcon icon={faFileVideo} className="h-6 w-6 text-red-600" />
+                <div className="h-16 w-16 rounded-full bg-gradient-to-br from-red-50 to-red-100 flex items-center justify-center mr-4 border border-red-100 shadow-sm">
+                  <FontAwesomeIcon icon={faFileVideo} className="h-8 w-8 text-red-600" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900">Tecnologia de Avatares</h3>
+                  <h3 className="font-semibold text-gray-900 text-lg">Tecnologia de Avatares</h3>
                   <p className="text-gray-600 text-sm">Visualização do recurso de criação de avatares</p>
                 </div>
               </div>
