@@ -29,26 +29,23 @@ export const heroProps: HeroSectionProps = {
 export default function GeracaoConteudoPage() {
   return (
     <div className="container mx-auto px-4">
-      {/* Grid de cards principais */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-        {/* Card de Criar Avatar */}
-        <Card className="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
-          <CardContent className="p-6">
-            <div className="mb-6">
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 mb-4">
-                <div className="flex justify-center items-center h-12">
-                  <FontAwesomeIcon icon={faPlus} className="h-5 w-5 text-gray-400" />
+      {/* Bento Grid - Layout moderno inspirado em caixas bento */}
+      <div className="grid grid-cols-4 gap-4 mb-16 auto-rows-[minmax(160px,auto)]">
+        {/* Card de Criar Avatar - DESTAQUE (2x2) */}
+        <Card className="col-span-2 row-span-2 bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
+          <CardContent className="p-6 h-full flex flex-col justify-between">
+            <div className="flex-1">
+              <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 mb-4 flex flex-col items-center justify-center h-32">
+                <div className="flex justify-center items-center h-12 w-12 rounded-full bg-black mb-2">
+                  <FontAwesomeIcon icon={faPlus} className="h-5 w-5 text-white" />
                 </div>
-                <p className="text-center text-gray-500 text-sm">Criar novo Avatar</p>
+                <p className="text-center font-medium text-gray-800">Criar novo Avatar</p>
+                <p className="text-center text-gray-500 text-sm mt-1">Enviar vídeo para processamento</p>
               </div>
               
-              <div className="flex items-center justify-between mt-4">
-                <div className="flex gap-2">
-                  <div className="h-3 w-16 bg-gray-200 rounded-full"></div>
-                </div>
-                <Button variant="outline" size="icon" className="h-8 w-8 rounded-full border-gray-200">
-                  <FontAwesomeIcon icon={faRobot} className="h-4 w-4 text-gray-400" />
-                </Button>
+              <div className="space-y-3">
+                <div className="h-2 w-3/4 bg-gray-200 rounded-full mx-auto"></div>
+                <div className="h-2 w-1/2 bg-gray-200 rounded-full mx-auto"></div>
               </div>
             </div>
             
@@ -66,155 +63,115 @@ export default function GeracaoConteudoPage() {
           </CardContent>
         </Card>
 
-        {/* Card de Geração de Conteúdo */}
-        <Card className="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
-          <CardContent className="p-6">
-            <div className="mb-6">
-              <div className="h-32 bg-gray-100 rounded-lg flex flex-col items-center justify-center">
-                <div className="bg-gray-300 h-6 w-32 rounded-md mb-4"></div>
-                <div className="space-y-2 w-3/4">
-                  <div className="h-2 w-full bg-gray-200 rounded-full"></div>
-                  <div className="h-2 w-full bg-gray-200 rounded-full"></div>
-                  <div className="h-2 w-full bg-gray-200 rounded-full"></div>
-                </div>
+        {/* Card de Geração de Conteúdo (2x1) */}
+        <Card className="col-span-2 bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
+          <CardContent className="p-6 h-full">
+            <div className="flex items-center h-full justify-between">
+              <div className="flex flex-col justify-center">
+                <h3 className="font-semibold text-gray-900 mb-2">Geração de Conteúdo</h3>
+                <p className="text-gray-500 text-sm">Ferramenta para criação de vídeos e outras mídias</p>
               </div>
-            </div>
-            
-            <div className="mt-6 pt-6 border-t border-gray-100">
-              <div className="flex items-center">
-                <div className="h-12 w-12 rounded-full bg-gray-100 flex items-center justify-center mr-4">
-                  <FontAwesomeIcon icon={faPenNib} className="h-6 w-6 text-gray-600" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900">Geração de Conteúdo</h3>
-                  <p className="text-gray-500 text-sm">Ferramenta para criação de vídeos e outras mídias</p>
-                </div>
+              <div className="h-16 w-16 bg-gray-100 rounded-full flex items-center justify-center">
+                <FontAwesomeIcon icon={faPenNib} className="h-6 w-6 text-gray-600" />
               </div>
             </div>
           </CardContent>
         </Card>
 
-        {/* Card de Clones de Vídeo e Voz */}
-        <Card className="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
-          <CardContent className="p-6">
-            <div className="mb-6">
-              <div className="h-24 bg-gray-100 rounded-lg p-4 flex flex-col justify-between">
-                <div className="h-4 w-32 bg-gray-300 rounded-md"></div>
-                
-                <div className="flex items-center gap-4">
-                  <div className="h-12 w-12 bg-gray-200 rounded-full flex-shrink-0 flex items-center justify-center">
-                    <div className="h-8 w-8 bg-gray-300 rounded-full"></div>
-                  </div>
-                  <div className="h-2 w-full bg-gray-200 rounded-full"></div>
-                </div>
+        {/* Card de Clones de Vídeo e Voz (1x1) */}
+        <Card className="col-span-1 bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
+          <CardContent className="p-4 h-full">
+            <div className="flex flex-col items-center justify-center h-full text-center">
+              <div className="h-12 w-12 rounded-full bg-gray-100 flex items-center justify-center mb-3">
+                <FontAwesomeIcon icon={faVideo} className="h-5 w-5 text-gray-600" />
               </div>
-            </div>
-            
-            <div className="mt-6 pt-6 border-t border-gray-100">
-              <div className="flex items-center">
-                <div className="h-12 w-12 bg-gray-100 rounded-md flex items-center justify-center mr-4">
-                  <FontAwesomeIcon icon={faVideo} className="h-6 w-6 text-gray-600" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900">Clones de Vídeo e Voz</h3>
-                  <p className="text-gray-500 text-sm">Treinamento e personalização dos Avatares e Clones de Voz</p>
-                </div>
-              </div>
+              <h3 className="font-semibold text-gray-900 text-sm">Clones de Vídeo</h3>
+              <p className="text-gray-500 text-xs mt-1">Treinamento e personalização</p>
             </div>
           </CardContent>
         </Card>
 
-        {/* Card de Integração com LMS */}
-        <Card className="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
-          <CardContent className="p-6">
-            <div className="mb-6">
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
-                <div className="flex justify-between items-start mb-3">
-                  <h4 className="font-medium text-sm">Conecte sua conta Toolzz LMS</h4>
-                  <Badge className="bg-black text-white text-xs rounded-full px-3 py-1">Conectar</Badge>
-                </div>
-                <p className="text-gray-500 text-sm">LMS Token...</p>
-              </div>
-              
-              <div className="mt-4 space-y-2">
-                <div className="h-2 w-full bg-gray-100 rounded-full"></div>
-                <div className="h-2 w-full bg-gray-100 rounded-full"></div>
-                <div className="h-2 w-3/4 bg-gray-100 rounded-full"></div>
-              </div>
-            </div>
-            
-            <div className="mt-6 pt-6 border-t border-gray-100">
-              <div className="flex items-center">
-                <div className="h-12 w-12 rounded-full bg-gray-100 flex items-center justify-center mr-4">
-                  <FontAwesomeIcon icon={faPlug} className="h-6 w-6 text-gray-600" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900">Integração com LMS</h3>
-                  <p className="text-gray-500 text-sm">Conexão direta com banco do LMS para sincronização de estruturas</p>
-                </div>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Segunda linha de cards */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-        {/* Card de Transcrição & Video Analyzer */}
-        <Card className="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
-          <CardContent className="p-6">
-            <div className="mb-6">
-              <div className="h-24 bg-gray-100 rounded-lg flex items-center justify-center">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="12" cy="12" r="10" stroke="#9CA3AF" strokeWidth="2"/>
-                  <path d="M10 8L16 12L10 16V8Z" fill="#9CA3AF"/>
+        {/* Card de Voz (1x1) */}
+        <Card className="col-span-1 bg-gray-900 border border-gray-200 rounded-xl shadow-sm overflow-hidden text-white">
+          <CardContent className="p-4 h-full">
+            <div className="flex flex-col items-center justify-center h-full text-center">
+              <div className="h-12 w-12 rounded-full bg-gray-800 flex items-center justify-center mb-3">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" fill="white"/>
+                  <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 5C13.66 5 15 6.34 15 8C15 9.66 13.66 11 12 11C10.34 11 9 9.66 9 8C9 6.34 10.34 5 12 5ZM12 19.2C9.5 19.2 7.29 17.92 6 15.98C6.03 13.99 10 12.9 12 12.9C13.99 12.9 17.97 13.99 18 15.98C16.71 17.92 14.5 19.2 12 19.2Z" stroke="white" strokeWidth="1"/>
                 </svg>
               </div>
-            </div>
-            
-            <div className="mt-6 pt-6 border-t border-gray-100">
-              <div className="flex items-center">
-                <div className="h-12 w-12 rounded-full bg-gray-100 flex items-center justify-center mr-4">
-                  <FontAwesomeIcon icon={faFileAudio} className="h-6 w-6 text-gray-600" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900">Transcrição & Video Analyzer</h3>
-                  <p className="text-gray-500 text-sm">Interpretação e indexação de vídeo e outras mídias para busca de IA</p>
-                </div>
-              </div>
+              <h3 className="font-semibold text-white text-sm">Clones de Voz</h3>
+              <p className="text-gray-300 text-xs mt-1">Personalização</p>
             </div>
           </CardContent>
         </Card>
 
-        {/* Card de AI Video Insights */}
-        <Card className="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
-          <CardContent className="p-6">
-            <div className="mb-6">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="h-24 bg-gray-100 rounded-lg flex items-center justify-center">
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M21 21H3V3H21V21Z" stroke="#9CA3AF" strokeWidth="2" strokeLinejoin="round"/>
-                    <path d="M3 16L8 11L13 16L21 8" stroke="#9CA3AF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </div>
-                <div className="h-24 bg-gray-100 rounded-lg flex flex-col justify-center px-4">
-                  <div className="h-2 w-full bg-gray-300 rounded-full mb-2"></div>
-                  <div className="h-2 w-3/4 bg-gray-300 rounded-full mb-2"></div>
-                  <div className="h-2 w-1/2 bg-gray-300 rounded-full"></div>
-                </div>
+        {/* Card de Video Analyzer (1x1) */}
+        <Card className="col-span-1 bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
+          <CardContent className="p-4 h-full">
+            <div className="flex flex-col items-center justify-center h-full">
+              <div className="h-12 w-12 rounded-full bg-gray-100 flex items-center justify-center mb-3">
+                <FontAwesomeIcon icon={faFileAudio} className="h-5 w-5 text-gray-600" />
               </div>
+              <h3 className="font-semibold text-gray-900 text-sm text-center">Video Analyzer</h3>
+              <p className="text-gray-500 text-xs text-center mt-1">Análise de conteúdo</p>
             </div>
-            
-            <div className="mt-6 pt-6 border-t border-gray-100">
-              <div className="flex items-center">
-                <div className="h-12 w-12 rounded-full bg-gray-100 flex items-center justify-center mr-4">
-                  <FontAwesomeIcon icon={faChartLine} className="h-6 w-6 text-gray-600" />
+          </CardContent>
+        </Card>
+
+        {/* Card de Transcrição (1x1) */}
+        <Card className="col-span-1 bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
+          <CardContent className="p-4 h-full">
+            <div className="flex flex-col items-center justify-center h-full text-center">
+              <div className="h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center mb-3">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="4" y="4" width="16" height="16" rx="2" stroke="#9CA3AF" strokeWidth="2"/>
+                  <path d="M8 9H16" stroke="#9CA3AF" strokeWidth="2" strokeLinecap="round"/>
+                  <path d="M8 13H16" stroke="#9CA3AF" strokeWidth="2" strokeLinecap="round"/>
+                  <path d="M8 17H12" stroke="#9CA3AF" strokeWidth="2" strokeLinecap="round"/>
+                </svg>
+              </div>
+              <h3 className="font-semibold text-gray-900 text-sm">Transcrição</h3>
+              <p className="text-gray-500 text-xs mt-1">Texto para áudio</p>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Card de Integração com LMS (2x1) */}
+        <Card className="col-span-2 bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
+          <CardContent className="p-6 h-full">
+            <div className="flex items-center h-full justify-between">
+              <div>
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center">
+                    <FontAwesomeIcon icon={faPlug} className="h-5 w-5 text-gray-600" />
+                  </div>
+                  <h3 className="font-semibold text-gray-900">Integração com LMS</h3>
+                </div>
+                <p className="text-gray-500 text-sm">Conexão direta com banco do LMS para sincronização</p>
+              </div>
+              <Badge className="bg-black text-white text-xs rounded-full px-4 py-1">Conectar</Badge>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Card de AI Video Insights (4x1) */}
+        <Card className="col-span-4 bg-gradient-to-r from-gray-900 to-gray-800 rounded-xl shadow-sm overflow-hidden text-white">
+          <CardContent className="p-6 h-full">
+            <div className="flex items-center justify-between">
+              <div className="flex gap-4 items-center">
+                <div className="h-12 w-12 bg-white/10 rounded-lg flex items-center justify-center">
+                  <FontAwesomeIcon icon={faChartLine} className="h-6 w-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900">AI Video Insights</h3>
-                  <p className="text-gray-500 text-sm">Análise de métricas e insights para melhorar a experiência do usuário</p>
+                  <h3 className="font-semibold text-white text-lg">AI Video Insights</h3>
+                  <p className="text-gray-300 text-sm mt-1">Análise de métricas e insights para melhorar a experiência do usuário</p>
                 </div>
               </div>
+              <Button className="bg-white text-gray-900 hover:bg-gray-100">
+                Ver métricas
+              </Button>
             </div>
           </CardContent>
         </Card>
