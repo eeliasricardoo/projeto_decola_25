@@ -152,21 +152,6 @@ export default function DecolaOS() {
       <div className="w-full">
         {/* Nota: O HeroSection agora é renderizado automaticamente pelo AppLayout */}
         
-        <div className="container mx-auto px-4 pt-8">
-          {/* Informação sobre o propósito dos cards */}
-          <div className="bg-white rounded-2xl p-4 shadow-md border border-gray-100 mb-8 flex items-center">
-            <div className="h-12 w-12 bg-red-50 rounded-xl flex-shrink-0 flex items-center justify-center mr-4">
-              <FontAwesomeIcon icon={faLightbulb} className="h-5 w-5 text-red-600" />
-            </div>
-            <div>
-              <span className="font-medium text-gray-900">Nota</span>
-              <p className="text-gray-600 text-sm">
-                Os agentes de IA apresentados são representações visuais das possibilidades do sistema. Para acessar os recursos, entre em contato com o suporte.
-              </p>
-            </div>
-          </div>
-        </div>
-
         {/* Conteúdo principal - apenas imagens */}
         <main className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {/* Grid de imagens - primeira linha */}
