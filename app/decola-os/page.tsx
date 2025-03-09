@@ -233,27 +233,28 @@ export default function DecolaOS() {
           <div className="p-8 border-t border-gray-100">
             <h2 className="text-2xl font-bold mb-10 text-center">Nossos Agentes Especialistas</h2>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mb-10 mx-auto max-w-7xl">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-10 mx-auto max-w-7xl">
               {/* Primeira linha de agentes */}
               {agents.map((agent, index) => (
                 <FadeIn key={agent.name} delay={150 * index} duration={600}>
-                  <div className="flex flex-col group mx-auto" style={{ width: "268.13px", maxWidth: "100%" }}>
-                    <div className="overflow-hidden rounded-2xl relative mb-4 shadow-md transition-all duration-300 group-hover:shadow-lg" style={{ width: "268.13px", height: "268.13px", maxWidth: "100%" }}>
+                  <div className="flex flex-col" style={{ width: "268.13px", maxWidth: "100%" }}>
+                    <div className="overflow-hidden rounded-lg border border-gray-100 relative" style={{ width: "268.13px", height: "268.13px", maxWidth: "100%" }}>
                       <Image 
                         src={agent.imagePath} 
                         alt={agent.name} 
                         fill
-                        style={{ objectFit: 'cover' }}
-                        className="transition-transform duration-500 group-hover:scale-105"
+                        style={{ objectFit: 'contain' }}
                         sizes="(max-width: 768px) 100vw, 268px"
+                        loading="eager"
+                        quality={85}
                       />
                     </div>
-                    <div className="px-2">
-                      <div className="flex items-center mb-1.5">
-                        <h3 className="font-bold text-gray-900 text-lg">{agent.name}</h3>
-                        <div className="ml-2 bg-gray-900 text-white text-[10px] px-1.5 py-0.5 rounded font-medium">AI</div>
+                    <div className="pt-3 px-2">
+                      <div className="flex items-center gap-2 mb-2">
+                        <h3 className="font-bold text-gray-900">{agent.name}</h3>
+                        <div className="bg-black text-white text-[10px] px-1 py-0.5 rounded">AI</div>
                       </div>
-                      <p className="text-gray-600 text-sm leading-snug line-clamp-3">{agent.description}</p>
+                      <p className="text-gray-600 text-sm leading-snug line-clamp-4">{agent.description}</p>
                     </div>
                   </div>
                 </FadeIn>
@@ -263,50 +264,51 @@ export default function DecolaOS() {
             {/* Card de Edu - largura completa */}
             <div className="flex justify-center mb-10">
               <FadeIn delay={300} duration={800}>
-                <div className="relative rounded-2xl overflow-hidden shadow-lg group transition-all duration-300 hover:shadow-xl" style={{ width: "min(1144px, 100%)", height: "260px" }}>
-                  <Image 
-                    src={eduAgent.imagePath} 
-                    alt={eduAgent.name} 
-                    fill
-                    style={{ objectFit: 'cover' }}
-                    className="transition-transform duration-700 group-hover:scale-105"
-                    sizes="(max-width: 1200px) 100vw, 1144px"
-                    priority
-                  />
-                  <div className="absolute left-8 bottom-8 flex items-start" style={{ maxWidth: "min(40%, 360px)" }}>
-                    <div className="bg-white/90 backdrop-blur-sm p-4 rounded-lg shadow-md">
-                      <div className="flex items-center mb-2">
-                        <h3 className="font-bold text-gray-900 text-xl">{eduAgent.name}</h3>
-                        <div className="ml-2 bg-gray-900 text-white text-xs px-2 py-0.5 rounded-md font-medium">AI</div>
-                      </div>
-                      <p className="text-gray-700 text-sm leading-relaxed">{eduAgent.description}</p>
+                <div className="flex rounded-lg border border-gray-100 overflow-hidden" style={{ width: "1144px", maxWidth: "100%" }}>
+                  <div className="p-6 w-2/5 flex flex-col justify-center bg-white">
+                    <div className="flex items-center gap-2 mb-2">
+                      <h3 className="font-bold text-gray-900 text-xl">Edu</h3>
+                      <div className="bg-black text-white text-[10px] px-1 py-0.5 rounded">AI</div>
                     </div>
+                    <p className="text-gray-600 text-sm leading-snug">{eduAgent.description}</p>
+                  </div>
+                  <div className="w-3/5 relative" style={{ height: "260px" }}>
+                    <Image 
+                      src={eduAgent.imagePath} 
+                      alt={eduAgent.name} 
+                      fill
+                      style={{ objectFit: 'contain' }}
+                      sizes="(max-width: 1200px) 100vw, 700px"
+                      priority
+                      quality={90}
+                    />
                   </div>
                 </div>
               </FadeIn>
             </div>
 
             {/* Segunda linha de agentes */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mx-auto max-w-7xl">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mx-auto max-w-7xl">
               {secondRowAgents.map((agent, index) => (
                 <FadeIn key={agent.name} delay={150 * index} duration={600}>
-                  <div className="flex flex-col group mx-auto" style={{ width: "268.13px", maxWidth: "100%" }}>
-                    <div className="overflow-hidden rounded-2xl relative mb-4 shadow-md transition-all duration-300 group-hover:shadow-lg" style={{ width: "268.13px", height: "268.13px", maxWidth: "100%" }}>
+                  <div className="flex flex-col" style={{ width: "268.13px", maxWidth: "100%" }}>
+                    <div className="overflow-hidden rounded-lg border border-gray-100 relative" style={{ width: "268.13px", height: "268.13px", maxWidth: "100%" }}>
                       <Image 
                         src={agent.imagePath} 
                         alt={agent.name} 
                         fill
-                        style={{ objectFit: 'cover' }}
-                        className="transition-transform duration-500 group-hover:scale-105"
+                        style={{ objectFit: 'contain' }}
                         sizes="(max-width: 768px) 100vw, 268px"
+                        loading="eager"
+                        quality={85}
                       />
                     </div>
-                    <div className="px-2">
-                      <div className="flex items-center mb-1.5">
-                        <h3 className="font-bold text-gray-900 text-lg">{agent.name}</h3>
-                        <div className="ml-2 bg-gray-900 text-white text-[10px] px-1.5 py-0.5 rounded font-medium">AI</div>
+                    <div className="pt-3 px-2">
+                      <div className="flex items-center gap-2 mb-2">
+                        <h3 className="font-bold text-gray-900">{agent.name}</h3>
+                        <div className="bg-black text-white text-[10px] px-1 py-0.5 rounded">AI</div>
                       </div>
-                      <p className="text-gray-600 text-sm leading-snug line-clamp-3">{agent.description}</p>
+                      <p className="text-gray-600 text-sm leading-snug line-clamp-4">{agent.description}</p>
                     </div>
                   </div>
                 </FadeIn>

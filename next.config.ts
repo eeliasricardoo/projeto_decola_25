@@ -4,12 +4,15 @@ const nextConfig: NextConfig = {
   /* config options here */
   reactStrictMode: true,
   
-  // Configurações de imagens para melhorar performance
+  // Configurações de imagens para melhorar performance no Vercel
   images: {
+    domains: [],
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
     imageSizes: [16, 32, 48, 64, 96, 128, 256],
     minimumCacheTTL: 60,
+    remotePatterns: [],
+    unoptimized: process.env.NODE_ENV === 'development', // Otimiza apenas em produção
   },
   
   // Configurações para melhorar a hidratação
@@ -47,6 +50,9 @@ const nextConfig: NextConfig = {
       bodySizeLimit: '2mb',
     },
   },
+  
+  // Configuração específica para o Vercel
+  output: 'standalone',
 };
 
 export default nextConfig;
