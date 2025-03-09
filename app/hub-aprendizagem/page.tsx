@@ -347,6 +347,15 @@ export default function HubAprendizagem() {
   // Estado para controlar o carregamento da página
   const [pageLoading, setPageLoading] = useState(true);
   
+  // Exemplos de buscas para o efeito de digitação
+  const searchExamples = [
+    "Como melhorar minha taxa de entregas?",
+    "Dicas para economizar combustível",
+    "Melhores práticas para atendimento ao cliente",
+    "Como lidar com entregas em dias chuvosos?",
+    "Estratégias para aumentar minhas avaliações"
+  ];
+  
   // Efeito para simular o carregamento inicial da página
   useEffect(() => {
     // Simula o carregamento inicial da página
@@ -356,6 +365,28 @@ export default function HubAprendizagem() {
     
     return () => clearTimeout(timer);
   }, []);
+  
+  // Features de aprendizagem para exibir na página
+  const learningFeatures = [
+    {
+      icon: faGraduationCap,
+      title: "Cursos Personalizados",
+      description: "Aprendizado adaptado ao seu perfil e objetivos profissionais",
+      color: "bg-blue-100 text-blue-600"
+    },
+    {
+      icon: faGamepad,
+      title: "Aprendizado Gamificado",
+      description: "Ganhe pontos, desbloqueie conquistas e aprenda de forma divertida",
+      color: "bg-green-100 text-green-600"
+    },
+    {
+      icon: faChartLine,
+      title: "Análise de Desempenho",
+      description: "Acompanhe seu progresso com métricas detalhadas e insights",
+      color: "bg-purple-100 text-purple-600"
+    }
+  ];
   
   // Toggle FAQ
   const toggleFAQ = (index: number) => {
