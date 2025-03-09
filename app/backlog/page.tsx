@@ -228,11 +228,20 @@ export default function BacklogPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-white to-gray-50">
-      <div className="container mx-auto px-4 sm:px-6 md:px-8 py-16 max-w-7xl">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div className="min-h-screen">
+      <div className="container py-8 px-4 mx-auto">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 mb-8">
+          <h1 className="text-3xl font-bold mb-6">
+            Backlog
+          </h1>
+          <p className="max-w-3xl text-gray-600 mb-10">
+            Recursos planejados e em desenvolvimento para as próximas versões da plataforma. Esta lista é atualizada regularmente conforme o feedback e necessidades dos usuários.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {backlogItems.map((item, index) => (
-            <BacklogCard
+            <BacklogCard 
               key={index}
               icon={item.icon}
               title={item.title}
@@ -242,6 +251,6 @@ export default function BacklogPage() {
           ))}
         </div>
       </div>
-    </main>
+    </div>
   );
 } 

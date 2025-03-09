@@ -25,7 +25,7 @@ function ClientContent() {
   };
 
   return (
-    <div className="flex flex-col items-center min-h-screen bg-white" suppressHydrationWarning>
+    <div className="min-h-screen">
       {/* Container principal com largura máxima */}
       <div className="w-full max-w-8xl mx-auto px-4 md:px-8 lg:px-16">
         <div className="relative">
@@ -303,7 +303,7 @@ export default function Home() {
   // Durante a renderização no servidor, gera um esqueleto ou conteúdo simples
   if (!isMounted) {
     return (
-      <div className="flex flex-col items-center min-h-screen bg-white" suppressHydrationWarning>
+      <div className="min-h-screen">
         {/* Container vazio com a mesma estrutura para não causar alterações no layout */}
         <div className="w-full max-w-8xl mx-auto px-4 md:px-8 lg:px-16">
           <div className="relative">

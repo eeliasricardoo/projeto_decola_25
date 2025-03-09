@@ -51,93 +51,95 @@ export default function GeracaoConteudoPage() {
   }, []);
 
   return (
-    <div className="container mx-auto px-4">
-      {/* Informação sobre o propósito dos cards */}
-      <div className="glass p-4 rounded-xl mb-8 flex items-center gap-3 border border-gray-200">
-        <div className="h-8 w-8 neumorph-inset rounded-full flex items-center justify-center text-red-500">
-          <FontAwesomeIcon icon={faInfoCircle} className="h-4 w-4" />
+    <div className="min-h-screen py-8">
+      <div className="container mx-auto px-4">
+        {/* Informação sobre o propósito dos cards */}
+        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-4 mb-8 flex items-center gap-3">
+          <div className="h-8 w-8 bg-red-100 rounded-lg flex items-center justify-center text-red-600">
+            <FontAwesomeIcon icon={faInfoCircle} className="h-4 w-4" />
+          </div>
+          <p className="text-gray-700 text-sm">
+            <span className="font-medium">Nota:</span> As funcionalidades abaixo são apenas representações visuais das possibilidades do sistema. Para acessar os recursos, entre em contato com o suporte.
+          </p>
         </div>
-        <p className="text-gray-700 text-sm">
-          <span className="font-medium">Nota:</span> As funcionalidades abaixo são apenas representações visuais das possibilidades do sistema. Para acessar os recursos, entre em contato com o suporte.
-        </p>
-      </div>
 
-      {/* Layout com três grandes blocos, seguindo a estrutura da imagem */}
-      <div className="grid grid-cols-2 gap-8 mb-16">
-        {/* Bloco 1 - Avatar e Clones */}
-        <div className="flex flex-col space-y-8">
-          {/* Área de Avatar e Clone */}
-          <div className="grid grid-cols-2 gap-8 h-64">
-            {/* Card de Criar Avatar */}
-            <div className="neumorph hover-lift transition-all duration-300 overflow-hidden">
-              <div className="p-6 h-full flex flex-col items-center justify-center space-y-4">
-                {/* Ícone grande de adição */}
-                <div className="w-16 h-16 rounded-xl gradient-gray flex items-center justify-center animate-soft-pulse">
-                  <FontAwesomeIcon icon={faPlus} className="h-8 w-8 text-white" />
+        {/* Layout com três grandes blocos, seguindo a estrutura da imagem */}
+        <div className="grid grid-cols-2 gap-8 mb-16">
+          {/* Bloco 1 - Avatar e Clones */}
+          <div className="flex flex-col space-y-8">
+            {/* Área de Avatar e Clone */}
+            <div className="grid grid-cols-2 gap-8 h-64">
+              {/* Card de Criar Avatar */}
+              <div className="bg-white shadow-md rounded-xl hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-100">
+                <div className="p-6 h-full flex flex-col items-center justify-center space-y-4">
+                  {/* Ícone grande de adição */}
+                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-gray-100 to-gray-200 border border-gray-200 flex items-center justify-center">
+                    <FontAwesomeIcon icon={faPlus} className="h-8 w-8 text-gray-700" />
+                  </div>
+                  
+                  <p className="text-center font-semibold text-gray-800 text-lg">Criar novo Avatar</p>
+                  
+                  <div className="bg-gray-50 hover:bg-gray-100 py-2 px-5 rounded-lg text-sm flex items-center gap-2 transition-all duration-300 border border-gray-200 cursor-default group">
+                    <span>Enviar vídeo</span>
+                    <FontAwesomeIcon icon={faArrowRight} className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:translate-x-1" />
+                  </div>
+                  
+                  <p className="text-gray-400 text-xs">
+                    O seu vídeo deve ter até 2 minutos.
+                  </p>
                 </div>
-                
-                <p className="text-center font-semibold text-gray-800 text-lg">Criar novo Avatar</p>
-                
-                <div className="glass py-2 px-5 rounded-lg text-sm flex items-center gap-2 transition-all duration-300 cursor-default group">
-                  <span>Enviar vídeo</span>
-                  <FontAwesomeIcon icon={faArrowRight} className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:translate-x-1" />
+              </div>
+              
+              {/* Card de Gerar Clone */}
+              <div className="neumorph hover-lift transition-all duration-300 overflow-hidden">
+                <div className="p-6 h-full flex flex-col items-center justify-center space-y-6">
+                  <div className="w-20 h-20 rounded-full neumorph-inset flex items-center justify-center relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-r from-gray-100 to-gray-200 opacity-50"></div>
+                    <FontAwesomeIcon icon={faUserCircle} className="h-10 w-10 text-gray-500" />
+                  </div>
+                  
+                  <button className="py-2 px-6 rounded-lg gradient-gray text-white flex items-center gap-2 transition-all duration-300 ripple-effect">
+                    <span>Gerar Clone</span>
+                  </button>
                 </div>
-                
-                <p className="text-gray-400 text-xs">
-                  O seu vídeo deve ter até 2 minutos.
-                </p>
               </div>
             </div>
             
-            {/* Card de Gerar Clone */}
+            {/* Card de Clones de Vídeo e Voz */}
             <div className="neumorph hover-lift transition-all duration-300 overflow-hidden">
-              <div className="p-6 h-full flex flex-col items-center justify-center space-y-6">
-                <div className="w-20 h-20 rounded-full neumorph-inset flex items-center justify-center relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-r from-gray-100 to-gray-200 opacity-50"></div>
-                  <FontAwesomeIcon icon={faUserCircle} className="h-10 w-10 text-gray-500" />
+              <div className="p-6 h-full">
+                <div className="flex items-start gap-4">
+                  <div className="h-12 w-12 rounded-xl gradient-gray flex items-center justify-center flex-shrink-0">
+                    <FontAwesomeIcon icon={faUserCircle} className="h-6 w-6 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="font-medium text-gray-800 text-lg tracking-wide">Clones de Vídeo e Voz</h3>
+                    <p className="text-gray-500 text-sm mt-2">Treinamento e personalização dos Avatars e Clones de Voz</p>
+                  </div>
                 </div>
-                
-                <button className="py-2 px-6 rounded-lg gradient-gray text-white flex items-center gap-2 transition-all duration-300 ripple-effect">
-                  <span>Gerar Clone</span>
-                </button>
               </div>
             </div>
           </div>
           
-          {/* Card de Clones de Vídeo e Voz */}
-          <div className="neumorph hover-lift transition-all duration-300 overflow-hidden">
-            <div className="p-6 h-full">
-              <div className="flex items-start gap-4">
-                <div className="h-12 w-12 rounded-xl gradient-gray flex items-center justify-center flex-shrink-0">
-                  <FontAwesomeIcon icon={faUserCircle} className="h-6 w-6 text-white" />
-                </div>
-                <div>
-                  <h3 className="font-medium text-gray-800 text-lg tracking-wide">Clones de Vídeo e Voz</h3>
-                  <p className="text-gray-500 text-sm mt-2">Treinamento e personalização dos Avatars e Clones de Voz</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        {/* Bloco 2 - Geração de Conteúdo */}
-        <div>
-          <div className="neumorph hover-lift transition-all duration-300 overflow-hidden h-full">
-            <div className="p-8 h-full flex flex-col">
-              <div className="flex flex-col items-center justify-center h-full space-y-8">
-                <div className="w-24 h-24 rounded-2xl gradient-purple animate-soft-pulse flex items-center justify-center">
-                  <FontAwesomeIcon icon={faWandMagicSparkles} className="h-10 w-10 text-white" />
-                </div>
-                
-                <div className="text-center space-y-4">
-                  <h3 className="font-semibold text-gray-900 text-2xl tracking-wide">Geração de Conteúdo</h3>
-                  <p className="text-gray-600">Ferramenta para construção de vídeos e outras mídias</p>
+          {/* Bloco 2 - Geração de Conteúdo */}
+          <div>
+            <div className="neumorph hover-lift transition-all duration-300 overflow-hidden h-full">
+              <div className="p-8 h-full flex flex-col">
+                <div className="flex flex-col items-center justify-center h-full space-y-8">
+                  <div className="w-24 h-24 rounded-2xl gradient-purple animate-soft-pulse flex items-center justify-center">
+                    <FontAwesomeIcon icon={faWandMagicSparkles} className="h-10 w-10 text-white" />
+                  </div>
+                  
+                  <div className="text-center space-y-4">
+                    <h3 className="font-semibold text-gray-900 text-2xl tracking-wide">Geração de Conteúdo</h3>
+                    <p className="text-gray-600">Ferramenta para construção de vídeos e outras mídias</p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        
+
         {/* Bloco 3 - Integração, Transcrição e AI Tools (linha inteira) */}
         <div className="col-span-2">
           <div className="grid grid-cols-2 gap-8">
@@ -172,17 +174,17 @@ export default function GeracaoConteudoPage() {
             </div>
             
             {/* Coluna direita - Transcrição & Video Analyzer */}
-            <div className="neumorph hover-lift transition-all duration-300 overflow-hidden">
+            <div className="bg-white shadow-md rounded-xl hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-100">
               <div className="p-6 h-full">
                 <div className="flex flex-col h-full">
                   <div className="flex-1 flex items-center justify-center">
-                    <div className="w-24 h-24 rounded-2xl gradient-red animate-soft-pulse flex items-center justify-center">
+                    <div className="w-24 h-24 rounded-xl bg-gradient-to-r from-red-400 to-red-500 flex items-center justify-center">
                       <FontAwesomeIcon icon={faVideo} className="h-10 w-10 text-white" />
                     </div>
                   </div>
                   
                   <div className="flex items-start gap-4 mt-6">
-                    <div className="h-12 w-12 rounded-xl gradient-red flex items-center justify-center flex-shrink-0">
+                    <div className="h-12 w-12 rounded-xl bg-gradient-to-r from-red-400 to-red-500 flex items-center justify-center flex-shrink-0">
                       <FontAwesomeIcon icon={faFileAudio} className="h-6 w-6 text-white" />
                     </div>
                     <div>
@@ -198,10 +200,10 @@ export default function GeracaoConteudoPage() {
           {/* Cards de AI Tools (3 cards na linha abaixo) */}
           <div className="grid grid-cols-3 gap-8 mt-8">
             {/* AI Video Tagger */}
-            <div className="neumorph hover-lift transition-all duration-300 overflow-hidden">
+            <div className="bg-white shadow-md rounded-xl hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-100">
               <div className="p-6 h-full">
                 <div className="flex flex-col h-full">
-                  <div className="h-14 w-14 rounded-xl gradient-green animate-soft-pulse flex items-center justify-center mb-5">
+                  <div className="h-14 w-14 rounded-xl bg-gradient-to-r from-emerald-400 to-green-500 flex items-center justify-center mb-5">
                     <FontAwesomeIcon icon={faBookmark} className="h-6 w-6 text-white" />
                   </div>
                   <h3 className="font-medium text-gray-800 text-lg tracking-wide mb-3">AI Video Tagger</h3>

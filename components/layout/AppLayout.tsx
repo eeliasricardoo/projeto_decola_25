@@ -31,7 +31,7 @@ export function AppLayout({ children, heroProps }: AppLayoutProps) {
   };
   
   return (
-    <div className="flex flex-col min-h-screen bg-white">
+    <div className="flex flex-col min-h-screen bg-gray-50">
       {/* Renderiza o NavMenu apenas se não for a home */}
       {!isHomePage && <NavMenu />}
       

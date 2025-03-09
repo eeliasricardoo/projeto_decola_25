@@ -2,8 +2,21 @@
 
 import { useEffect } from "react";
 import Image from "next/image";
-import { faUserAstronaut, faTableColumns } from "@fortawesome/pro-solid-svg-icons";
+import { 
+  faUserAstronaut, 
+  faTableColumns, 
+  faLightbulb, 
+  faCalendar,
+  faSearch,
+  faClipboard,
+  faRocket,
+  faAward,
+  faChartLine,
+  faMoneyBill,
+  faRobot
+} from "@fortawesome/pro-solid-svg-icons";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 // Componentes
 import { HeroSectionProps } from "@/components/layout";
@@ -134,11 +147,26 @@ export default function DecolaOS() {
   }, []);
 
   return (
-    <div className="flex flex-col items-center min-h-screen bg-white">
+    <div className="flex flex-col items-center min-h-screen">
       {/* Conteúdo principal */}
       <div className="w-full">
         {/* Nota: O HeroSection agora é renderizado automaticamente pelo AppLayout */}
         
+        <div className="container mx-auto px-4 pt-8">
+          {/* Informação sobre o propósito dos cards */}
+          <div className="bg-white rounded-2xl p-4 shadow-md border border-gray-100 mb-8 flex items-center">
+            <div className="h-12 w-12 bg-red-50 rounded-xl flex-shrink-0 flex items-center justify-center mr-4">
+              <FontAwesomeIcon icon={faLightbulb} className="h-5 w-5 text-red-600" />
+            </div>
+            <div>
+              <span className="font-medium text-gray-900">Nota</span>
+              <p className="text-gray-600 text-sm">
+                Os agentes de IA apresentados são representações visuais das possibilidades do sistema. Para acessar os recursos, entre em contato com o suporte.
+              </p>
+            </div>
+          </div>
+        </div>
+
         {/* Conteúdo principal - apenas imagens */}
         <main className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {/* Grid de imagens - primeira linha */}
@@ -182,28 +210,94 @@ export default function DecolaOS() {
           </div>
         </section>
 
-        {/* Seções de texto */}
-        <TextSection 
-          title={introSection.title} 
-          paragraphs={introSection.paragraphs} 
-        />
+        {/* Container unificado para todo o conteúdo textual */}
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="bg-white rounded-2xl shadow-md border border-gray-100 p-8 mb-16">
+            {/* Seções de texto dentro do mesmo container */}
+            <div className="mb-16">
+              <h2 className="text-2xl font-bold mb-6 text-gray-900">{introSection.title}</h2>
+              <div className="space-y-4 text-base">
+                {introSection.paragraphs.map((paragraph, index) => (
+                  <p key={index} className="text-gray-700">
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
+            </div>
 
-        <StepSection 
-          title={journeySection.title}
-          introduction={journeySection.introduction}
-          steps={journeySection.steps}
-        />
+            <div className="border-t border-gray-100 pt-16 mb-16">
+              <h2 className="text-2xl font-bold mb-6 text-gray-900">{journeySection.title}</h2>
+              <p className="text-gray-700 text-base mb-8">
+                {journeySection.introduction}
+              </p>
+              
+              <div className="space-y-8">
+                {journeySection.steps.map((step, index) => (
+                  <div key={index} className="flex items-center">
+                    <div className="h-12 w-12 bg-red-50 rounded-xl flex-shrink-0 flex items-center justify-center mr-4">
+                      <FontAwesomeIcon icon={[faSearch, faClipboard, faRocket][index % 3]} className="h-5 w-5 text-red-600" />
+                    </div>
+                    <div>
+                      <h3 className="font-medium text-gray-900">{step.title}</h3>
+                      <div className="text-gray-600 text-sm">
+                        {step.description.map((paragraph, pIndex) => (
+                          <p key={pIndex} className="mt-1">
+                            {paragraph}
+                          </p>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
 
-        <BenefitSection 
-          title={strategicSection.title}
-          introduction={strategicSection.introduction}
-          benefits={strategicSection.benefits}
-        />
+            <div className="border-t border-gray-100 pt-16 mb-16">
+              <h2 className="text-2xl font-bold mb-6 text-gray-900">{strategicSection.title}</h2>
+              <p className="text-gray-700 text-base mb-8">
+                {strategicSection.introduction}
+              </p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {strategicSection.benefits.map((benefit, index) => (
+                  <div key={index} className="flex items-center">
+                    <div className="h-12 w-12 bg-red-50 rounded-xl flex-shrink-0 flex items-center justify-center mr-4">
+                      <FontAwesomeIcon icon={[faAward, faChartLine, faMoneyBill, faRobot][index % 4]} className="h-5 w-5 text-red-600" />
+                    </div>
+                    <div>
+                      <h3 className="font-medium text-gray-900">{benefit.title}</h3>
+                      <p className="text-gray-600 text-sm">{benefit.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
 
-        <TextSection 
-          title={conclusionSection.title} 
-          paragraphs={conclusionSection.paragraphs} 
-        />
+            <div className="border-t border-gray-100 pt-16">
+              <h2 className="text-2xl font-bold mb-6 text-gray-900">{conclusionSection.title}</h2>
+              <div className="space-y-4 text-base">
+                {conclusionSection.paragraphs.map((paragraph, index) => (
+                  <p key={index} className="text-gray-700">
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Botão de Demonstração */}
+          <div className="flex justify-center mb-16">
+            <button className="bg-white rounded-xl border border-gray-200 shadow-md py-4 px-6 text-gray-800 flex items-center hover:shadow-lg transition-all duration-300">
+              <div className="h-12 w-12 bg-red-50 rounded-xl flex-shrink-0 flex items-center justify-center mr-4">
+                <FontAwesomeIcon icon={faCalendar} className="h-5 w-5 text-red-600" />
+              </div>
+              <div>
+                <span className="font-medium text-gray-900">Demonstração</span>
+                <p className="text-gray-600 text-sm">Agende sua demonstração</p>
+              </div>
+            </button>
+          </div>
+        </div>
 
         {/* Rodapé simples */}
         <Footer />

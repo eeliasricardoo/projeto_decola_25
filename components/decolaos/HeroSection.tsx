@@ -8,7 +8,7 @@ interface HeroSectionProps {
 
 export function HeroSection({ title, subtitle, description }: HeroSectionProps) {
   return (
-    <div className="w-full py-12 px-4 sm:px-6 lg:px-8 text-center mb-8">
+    <div className="w-full py-12 px-4 sm:px-6 lg:px-8 text-center mb-8 bg-gradient-to-b from-white to-gray-50">
       <h1 className="text-[96px] font-bold leading-tight">{title}</h1>
       <h2 className="text-[96px] font-regular leading-tight mb-8">{subtitle}</h2>
       <p className="text-[24px] text-[#5E5E5E] font-normal max-w-4xl mx-auto">
