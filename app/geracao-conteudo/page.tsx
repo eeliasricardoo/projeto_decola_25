@@ -15,7 +15,9 @@ import {
   faWandMagicSparkles,
   faFileVideo,
   faChartBar,
-  faInfoCircle
+  faInfoCircle,
+  faPencilAlt,
+  faBookmark
 } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
@@ -57,121 +59,180 @@ export default function GeracaoConteudoPage() {
         </p>
       </div>
 
-      {/* Bento Grid - Layout moderno inspirado em caixas bento */}
-      <div className="grid grid-cols-4 gap-4 mb-16 auto-rows-[minmax(160px,auto)]">
-        {/* Card de Geração de Conteúdo (2x1) - agora expandido para 2x2 */}
-        <Card className="col-span-2 row-span-2 bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
-          <CardContent className="p-6 h-full">
-            <div className="flex flex-col h-full justify-center">
-              <div className="flex items-center justify-between mb-8">
-                <h3 className="font-semibold text-gray-900 text-xl">Geração de Conteúdo</h3>
-                <div className="h-16 w-16 flex items-center justify-center">
-                  <FontAwesomeIcon icon={faWandMagicSparkles} className="h-10 w-10 text-gray-700" />
+      {/* Layout com três grandes blocos, seguindo a estrutura da imagem */}
+      <div className="grid grid-cols-2 gap-8 mb-16">
+        {/* Bloco 1 - Avatar e Clones */}
+        <div className="flex flex-col space-y-8">
+          {/* Área de Avatar e Clone */}
+          <div className="grid grid-cols-2 gap-4 h-64">
+            {/* Card de Criar Avatar */}
+            <Card className="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
+              <CardContent className="p-4 h-full flex flex-col items-center justify-center space-y-4">
+                {/* Ícone grande de adição */}
+                <div className="h-16 w-16 rounded-full border-2 border-gray-300 flex items-center justify-center">
+                  <FontAwesomeIcon icon={faPlus} className="h-8 w-8 text-gray-800" />
                 </div>
-              </div>
-              <p className="text-gray-600 mb-6">Ferramenta para construção de vídeos e outras mídias</p>
-              
-              {/* Recursos adicionais */}
-              <div className="bg-gray-50 rounded-lg p-4 border border-gray-200 mt-auto">
-                <div className="flex items-start gap-3">
-                  <div className="h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0 border border-gray-200">
-                    <FontAwesomeIcon icon={faFileVideo} className="h-6 w-6 text-gray-600" />
-                  </div>
-                  <div>
-                    <h3 className="font-medium text-gray-800 text-base">Recursos de mídia</h3>
-                    <p className="text-gray-500 text-sm mt-1">Criação e edição de conteúdo educacional</p>
-                  </div>
+                
+                <p className="text-center font-semibold text-gray-800 text-lg">Criar novo Avatar</p>
+                
+                <div className="bg-gray-100 hover:bg-gray-200 text-gray-800 py-1 px-4 rounded-md border border-gray-300 text-sm inline-block cursor-default">
+                  Enviar vídeo
                 </div>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Card de Clones de Vídeo (1x1) */}
-        <Card className="col-span-1 bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
-          <CardContent className="p-5 h-full">
-            <div className="flex flex-col items-center justify-center h-full text-center">
-              <div className="h-14 w-14 rounded-xl bg-gray-100 flex items-center justify-center mb-3 border border-gray-200">
-                <FontAwesomeIcon icon={faVideo} className="h-6 w-6 text-gray-700" />
-              </div>
-              <h3 className="font-semibold text-gray-900 text-base">Clones de Vídeo</h3>
-              <p className="text-gray-500 text-sm mt-1">Representação visual</p>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Card de Voz (1x1) */}
-        <Card className="col-span-1 bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
-          <CardContent className="p-5 h-full">
-            <div className="flex flex-col items-center justify-center h-full text-center">
-              <div className="h-14 w-14 rounded-xl bg-gray-100 flex items-center justify-center mb-3 border border-gray-200">
-                <FontAwesomeIcon icon={faVolumeHigh} className="h-6 w-6 text-gray-700" />
-              </div>
-              <h3 className="font-semibold text-gray-900 text-base">Clones de Voz</h3>
-              <p className="text-gray-500 text-sm mt-1">Representação visual</p>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Card de Video Analyzer (1x1) */}
-        <Card className="col-span-1 bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
-          <CardContent className="p-5 h-full">
-            <div className="flex flex-col items-center justify-center h-full">
-              <div className="h-14 w-14 rounded-xl bg-gray-100 flex items-center justify-center mb-3 border border-gray-200">
-                <FontAwesomeIcon icon={faFileAudio} className="h-6 w-6 text-gray-700" />
-              </div>
-              <h3 className="font-semibold text-gray-900 text-base text-center">Video Analyzer</h3>
-              <p className="text-gray-500 text-sm text-center mt-1">Representação visual</p>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Card de Transcrição (1x1) */}
-        <Card className="col-span-1 bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
-          <CardContent className="p-5 h-full">
-            <div className="flex flex-col items-center justify-center h-full text-center">
-              <div className="h-14 w-14 rounded-xl bg-gray-100 flex items-center justify-center mb-3 border border-gray-200">
-                <FontAwesomeIcon icon={faFileAudio} className="h-6 w-6 text-gray-700" />
-              </div>
-              <h3 className="font-semibold text-gray-900 text-base">Transcrição</h3>
-              <p className="text-gray-500 text-sm mt-1">Representação visual</p>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Card de Integração com LMS (2x1) */}
-        <Card className="col-span-2 bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
-          <CardContent className="p-6 h-full">
-            <div className="flex items-center h-full justify-between">
-              <div>
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="h-12 w-12 rounded-xl bg-gray-100 flex items-center justify-center border border-gray-200">
-                    <FontAwesomeIcon icon={faPlug} className="h-5 w-5 text-gray-700" />
-                  </div>
-                  <h3 className="font-semibold text-gray-900 text-lg">Integração com LMS</h3>
+                
+                <p className="text-gray-400 text-xs">
+                  O seu vídeo deve ter até 2 minutos.
+                </p>
+              </CardContent>
+            </Card>
+            
+            {/* Card de Gerar Clone */}
+            <Card className="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
+              <CardContent className="p-4 h-full flex flex-col items-center justify-center space-y-4">
+                <div className="h-16 w-16 rounded-full bg-gray-200 flex items-center justify-center">
+                  <FontAwesomeIcon icon={faUserCircle} className="h-10 w-10 text-gray-400" />
                 </div>
-                <p className="text-gray-500">Conexão direta com banco do LMS para aprendizado de estruturas</p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Card de AI Video Insights (4x1) */}
-        <Card className="col-span-4 bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
-          <CardContent className="p-6 h-full">
-            <div className="flex items-center justify-between">
-              <div className="flex gap-4 items-center">
-                <div className="h-14 w-14 bg-gray-100 rounded-xl flex items-center justify-center border border-gray-200">
-                  <FontAwesomeIcon icon={faChartBar} className="h-7 w-7 text-gray-700" />
+                
+                <Badge className="bg-gray-800 hover:bg-black text-white cursor-default py-1 px-4">
+                  Gerar Clone
+                </Badge>
+              </CardContent>
+            </Card>
+          </div>
+          
+          {/* Card de Clones de Vídeo e Voz */}
+          <Card className="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
+            <CardContent className="p-6 h-full">
+              <div className="flex items-start gap-3">
+                <div className="h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0 border border-gray-200">
+                  <FontAwesomeIcon icon={faUserCircle} className="h-6 w-6 text-gray-600" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900 text-xl">AI Video Insights</h3>
-                  <p className="text-gray-500 text-sm mt-1">Aplique os metadados extraídos para melhorar a experiência do usuário</p>
+                  <h3 className="font-medium text-gray-800 text-base">Clones de Vídeo e Voz</h3>
+                  <p className="text-gray-500 text-sm mt-1">Treinamento e personalização dos Avatars e Clones de Voz</p>
                 </div>
               </div>
-            </div>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
+        </div>
+        
+        {/* Bloco 2 - Geração de Conteúdo */}
+        <div>
+          <Card className="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden h-full">
+            <CardContent className="p-6 h-full flex flex-col">
+              <div className="flex flex-col items-center justify-center h-full space-y-8">
+                <div className="flex justify-center">
+                  <div className="flex items-center justify-center h-24 w-24">
+                    <FontAwesomeIcon icon={faWandMagicSparkles} className="h-10 w-10 text-gray-700" />
+                  </div>
+                </div>
+                
+                <div className="text-center space-y-4">
+                  <h3 className="font-semibold text-gray-900 text-xl">Geração de Conteúdo</h3>
+                  <p className="text-gray-600">Ferramenta para construção de vídeos e outras mídias</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+        
+        {/* Bloco 3 - Integração, Transcrição e AI Tools (linha inteira) */}
+        <div className="col-span-2">
+          <div className="grid grid-cols-2 gap-8">
+            {/* Coluna esquerda - Integração com LMS */}
+            <Card className="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
+              <CardContent className="p-6 h-full">
+                <div className="flex flex-col h-full">
+                  <div className="mb-4">
+                    <div className="font-semibold text-gray-900 text-lg mb-2">Conecte sua conta Toolzz LMS</div>
+                    <div className="bg-gray-100 py-2 px-3 rounded-md border border-gray-200 text-gray-400 mb-4">
+                      API Token
+                    </div>
+                    <div className="flex justify-end">
+                      <button className="bg-gray-800 hover:bg-black text-white py-1 px-4 rounded-md text-sm">
+                        Conectar
+                      </button>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-3 mt-auto">
+                    <div className="h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0 border border-gray-200">
+                      <FontAwesomeIcon icon={faPlug} className="h-5 w-5 text-gray-700" />
+                    </div>
+                    <div>
+                      <h3 className="font-medium text-gray-800 text-base">Integração com LMS</h3>
+                      <p className="text-gray-500 text-sm mt-1">Conexão direta com banco do LMS para aprendizado de estruturas</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+            
+            {/* Coluna direita - Transcrição & Video Analyzer */}
+            <Card className="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
+              <CardContent className="p-6 h-full">
+                <div className="flex flex-col h-full">
+                  <div className="flex-1 flex items-center justify-center">
+                    <div className="h-16 w-16 bg-gray-800 rounded-full flex items-center justify-center">
+                      <FontAwesomeIcon icon={faVideo} className="h-6 w-6 text-white" />
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-3 mt-6">
+                    <div className="h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0 border border-gray-200">
+                      <FontAwesomeIcon icon={faFileAudio} className="h-5 w-5 text-gray-700" />
+                    </div>
+                    <div>
+                      <h3 className="font-medium text-gray-800 text-base">Transcrição & Video Analyzer</h3>
+                      <p className="text-gray-500 text-sm mt-1">Adaptação dos conteúdos de vídeo e outros materiais para tunning da IA.</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+          
+          {/* Cards de AI Tools (3 cards na linha abaixo) */}
+          <div className="grid grid-cols-3 gap-8 mt-8">
+            {/* AI Video Tagger */}
+            <Card className="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
+              <CardContent className="p-6 h-full">
+                <div className="flex flex-col h-full">
+                  <div className="h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center mb-4 border border-gray-200">
+                    <FontAwesomeIcon icon={faBookmark} className="h-5 w-5 text-gray-700" />
+                  </div>
+                  <h3 className="font-medium text-gray-800 text-base mb-2">AI Video Tagger</h3>
+                  <p className="text-gray-500 text-sm">Ajuste os algoritmos de recomendação com base em objetos e pessoas que aparecem em um vídeo</p>
+                </div>
+              </CardContent>
+            </Card>
+            
+            {/* AI Video Editor */}
+            <Card className="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
+              <CardContent className="p-6 h-full">
+                <div className="flex flex-col h-full">
+                  <div className="h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center mb-4 border border-gray-200">
+                    <FontAwesomeIcon icon={faPencilAlt} className="h-5 w-5 text-gray-700" />
+                  </div>
+                  <h3 className="font-medium text-gray-800 text-base mb-2">AI Video Editor</h3>
+                  <p className="text-gray-500 text-sm">Crie uma nova mídia com base no conteúdo existente usando o editor de vídeo</p>
+                </div>
+              </CardContent>
+            </Card>
+            
+            {/* AI Video Insights */}
+            <Card className="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
+              <CardContent className="p-6 h-full">
+                <div className="flex flex-col h-full">
+                  <div className="h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center mb-4 border border-gray-200">
+                    <FontAwesomeIcon icon={faChartBar} className="h-5 w-5 text-gray-700" />
+                  </div>
+                  <h3 className="font-medium text-gray-800 text-base mb-2">AI Video Insights</h3>
+                  <p className="text-gray-500 text-sm">Aplique os metadados extraídos para melhorar a experiência do usuário</p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
       </div>
 
       {/* Seção de Informações do serviço */}
