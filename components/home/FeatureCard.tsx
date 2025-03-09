@@ -35,7 +35,7 @@ export const FeatureCard = memo(function FeatureCard({
   return (
     <Link href={href} className="block w-full" style={{ maxWidth }}>
       <div 
-        className="relative p-0 hover:shadow-lg transition-shadow border border-gray-200 rounded-xl bg-white w-full overflow-hidden cursor-pointer group"
+        className="relative p-0 hover:shadow-lg transition-shadow duration-300 border border-gray-200 rounded-xl bg-white w-full overflow-hidden cursor-pointer group"
         style={{ height }}
       >
         <WhiteBorderBeam 
@@ -44,14 +44,14 @@ export const FeatureCard = memo(function FeatureCard({
           reverse={reverse}
           initialOffset={animationOffset}
         />
-        <div className="absolute bottom-0 left-0 w-full p-8 pb-8">
+        <div className="absolute bottom-0 left-0 w-full p-8">
           <div className="flex flex-col">
             <div className="bg-gray-100 p-4 rounded-lg inline-block w-max transition-colors duration-300 group-hover:bg-red-50">
               <FontAwesomeIcon icon={icon} size="lg" className="text-gray-600 transition-colors duration-300 group-hover:text-red-600" />
             </div>
             <TextAnimateOptimized 
               as="h3" 
-              className="text-xl font-bold mt-5 group-hover:text-red-600 transition-colors duration-300"
+              className="text-xl font-bold mt-4 group-hover:text-red-600 transition-colors duration-300"
               animation="slideUp"
               startOnView
               once

@@ -1,8 +1,11 @@
 "use client";
 
-import { useCallback } from "react";
-import { HomeBanner, FeatureCards } from "@/components/home";
+import { useCallback, Suspense, lazy } from "react";
+import { HomeBanner } from "@/components/home";
 import dynamic from "next/dynamic";
+
+// Carregamento dinâmico dos componentes secundários
+const FeatureCards = lazy(() => import("@/components/home").then(mod => ({ default: mod.FeatureCards })));
 
 // Componente cliente para conteúdo interativo
 function ClientContent() {
@@ -25,7 +28,9 @@ function ClientContent() {
           <HomeBanner onConferir={handleConferir} />
           
           {/* Cards Grid - Bento Grid sobre o banner */}
-          <FeatureCards onBacklogClick={handleVerBacklog} />
+          <Suspense fallback={<div className="h-[400px]" />}>
+            <FeatureCards onBacklogClick={handleVerBacklog} />
+          </Suspense>
         </div>
       </div>
     </div>

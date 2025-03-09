@@ -74,13 +74,13 @@ const NavItem = memo(function NavItem({
           }`}
         >
           {isActive && (
-            <span className="absolute -left-2 w-1 h-8 bg-red-600 rounded-r-md transform scale-y-100 transition-transform duration-300" />
+            <span className="absolute -left-2 w-1 h-8 bg-red-600 rounded-r-md" />
           )}
           <FontAwesomeIcon icon={item.icon} className={`w-5 h-5 ${isActive ? 'transform scale-105' : ''}`} />
         </Link>
       </Tooltip.Trigger>
       {item.label && (
-        <Tooltip.Content side="right" sideOffset={8} className="bg-gray-800 text-white px-4 py-2 text-xs rounded-md shadow-lg border-0">
+        <Tooltip.Content side="right" sideOffset={8} className="bg-gray-800 text-white px-4 py-2 text-xs rounded-md shadow-lg border-0 z-50">
           {item.label}
         </Tooltip.Content>
       )}
@@ -102,9 +102,8 @@ export const NavMenu = memo(function NavMenu({ items = defaultItems }: NavMenuPr
 
   return (
     <Tooltip.Provider>
-      <div className="fixed left-8 top-1/2 transform -translate-y-1/2 z-50">
+      <div className="fixed left-8 top-1/2 transform -translate-y-1/2 z-40">
         <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl py-8 px-2 flex flex-col items-center gap-8 border border-gray-100">
-         
           {/* Menu de navegação vertical */}
           <nav className="flex flex-col space-y-8">
             {navigationItems.map((item, index) => (

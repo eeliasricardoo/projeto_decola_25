@@ -337,10 +337,15 @@ const QuizCard = ({ question, options, onSelect }: QuizCardProps) => {
 };
 
 export default function HubAprendizagem() {
+  const [activeTab, setActiveTab] = useState("busca");
+  const [openFaqIndex, setOpenFaqIndex] = useState(0);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [isSearching, setIsSearching] = useState(false);
+  const [searchResults, setSearchResults] = useState<any[]>([]);
+  const [showQuizResult, setShowQuizResult] = useState(false);
+  
   // Estado para controlar o carregamento da página
   const [pageLoading, setPageLoading] = useState(true);
-  // Estado para o FAQ
-  const [openFAQIndex, setOpenFAQIndex] = useState<number | null>(0);
   
   // Efeito para simular o carregamento inicial da página
   useEffect(() => {
@@ -352,16 +357,71 @@ export default function HubAprendizagem() {
     return () => clearTimeout(timer);
   }, []);
   
+  // Toggle FAQ
   const toggleFAQ = (index: number) => {
-    setOpenFAQIndex(openFAQIndex === index ? null : index);
+    setOpenFaqIndex(openFaqIndex === index ? -1 : index);
   };
-
+  
+  // Simulação de busca
+  const handleSearch = () => {
+    if (searchQuery.trim() === "") return;
+    
+    setIsSearching(true);
+    
+    // Simula uma busca com delay
+    setTimeout(() => {
+      const results = [
+        {
+          icon: faBook,
+          title: "Guia de Boas Práticas para Entrega",
+          description: "Dicas práticas para otimizar entregas e melhorar a experiência do cliente.",
+          tags: ["Entrega", "Guia Prático", "Otimização"]
+        },
+        {
+          icon: faChartLine,
+          title: "Curso: Estratégias para Aumentar o Volume de Entregas",
+          description: "Aprenda técnicas comprovadas para maximizar seu tempo e aumentar os ganhos.",
+          tags: ["Curso", "Estratégia", "Finanças"]
+        },
+        {
+          icon: faUserFriends,
+          title: "Comunidade: Dicas de Entregas em Horários de Pico",
+          description: "Discussão entre entregadores sobre como lidar com horários de alta demanda.",
+          tags: ["Comunidade", "Dicas", "Horário de Pico"]
+        }
+      ];
+      
+      setSearchResults(results);
+      setIsSearching(false);
+    }, 1500);
+  };
+  
+  // Perguntas Frequentes
+  const faqs = [
+    {
+      question: "Como posso melhorar minha taxa de entregas por hora?",
+      answer: "Para aumentar sua eficiência, recomendamos: 1) Planeje rotas eficientes; 2) Priorize pedidos próximos; 3) Mantenha seu aplicativo e GPS atualizados; 4) Conheça bem sua área de entrega; e 5) Evite horários de trânsito intenso quando possível."
+    },
+    {
+      question: "Quais equipamentos são recomendados para entregas mais seguras?",
+      answer: "Recomendamos: capacete de qualidade, luvas de proteção, jaqueta com faixas refletivas, suporte para celular à prova d'água, bag térmica de qualidade e kit básico de manutenção para problemas simples."
+    },
+    {
+      question: "Como funciona o sistema de avaliação de entregadores?",
+      answer: "O sistema considera vários fatores: pontualidade na entrega, integridade dos itens entregues, avaliações dos clientes, taxa de aceitação de pedidos e comportamento geral na plataforma."
+    },
+    {
+      question: "O que devo fazer se tiver problemas com um pedido durante a entrega?",
+      answer: "Entre em contato com o suporte imediatamente, mantenha o cliente informado sobre a situação, não tente resolver problemas que fogem do seu escopo e sempre documente ocorrências com fotos se necessário."
+    }
+  ];
+  
   if (pageLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="flex flex-col items-center">
           <div className="h-16 w-16 bg-gray-200 rounded-xl flex items-center justify-center animate-pulse mb-4">
-            <FontAwesomeIcon icon={faBook} className="h-8 w-8 text-gray-400" />
+            <FontAwesomeIcon icon={faHydra} className="h-8 w-8 text-gray-400" />
           </div>
           <div className="h-4 w-40 bg-gray-200 rounded animate-pulse"></div>
           <div className="mt-2 text-gray-400 text-sm">Carregando Hub de Aprendizagem...</div>
@@ -370,125 +430,74 @@ export default function HubAprendizagem() {
     );
   }
 
-  // Exemplos de buscas para a animação
-  const searchExamples = [
-    "técnicas de atendimento ao cliente",
-    "como melhorar a gestão de pedidos?",
-    "dicas para otimizar entregas",
-    "estratégias de marketing para restaurantes",
-    "análise de dados para delivery"
-  ];
-
-  // Resultados de busca simulados
-  const searchResults = [
-    {
-      icon: faBookOpen,
-      title: "Estratégias de Atendimento ao Cliente",
-      description: "Curso completo com técnicas avançadas para excelência no atendimento",
-      tags: ["Curso", "Iniciante", "4h de conteúdo"],
-      delay: 800
-    },
-    {
-      icon: faCode,
-      title: "Gestão Eficiente de Pedidos",
-      description: "Implementação prática de técnicas para reduzir tempo de entrega",
-      tags: ["Intermediário", "Hands-on", "Operações"],
-      delay: 1000
-    },
-    {
-      icon: faLightbulb,
-      title: "Análise de Dados para Performance",
-      description: "Aprenda a tomar decisões baseadas em dados para melhorar resultados",
-      tags: ["Avançado", "Projeto", "Analytics"],
-      delay: 1200
-    }
-  ];
-
-  // Recursos de aprendizagem
-  const learningFeatures = [
-    {
-      icon: faGamepad,
-      title: "Gamificação Inteligente",
-      description: "Sistema de recompensas e desafios que aumenta o engajamento e torna o aprendizado divertido",
-      color: "bg-gray-700"
-    },
-    {
-      icon: faBrain,
-      title: "Aprendizagem Adaptativa",
-      description: "Conteúdo personalizado que se adapta ao nível de conhecimento e ritmo de cada aluno",
-      color: "bg-gray-800"
-    },
-    {
-      icon: faUserFriends,
-      title: "Aprendizado Social",
-      description: "Colabore e compita com outros alunos em desafios, aumentando a motivação e retenção",
-      color: "bg-gray-700"
-    },
-    {
-      icon: faListCheck,
-      title: "Quiz Interativo",
-      description: "Questões personalizadas que guiam o aprendizado e avaliam o conhecimento em tempo real",
-      color: "bg-gray-600"
-    },
-    {
-      icon: faGradAlt,
-      title: "Trilhas de Aprendizado",
-      description: "Percursos estruturados com progressão de dificuldade e certificação ao final",
-      color: "bg-gray-800"
-    },
-    {
-      icon: faTrophy,
-      title: "Conquistas e Ranking",
-      description: "Sistema de insígnias e classificação que reconhece o progresso e incentiva a superação",
-      color: "bg-gray-700"
-    }
-  ];
-  
-  // Dados para o FAQ
-  const faqItems = [
-    {
-      question: "Como funciona a aprendizagem adaptativa no Hub iFood?",
-      answer: "A aprendizagem adaptativa utiliza inteligência artificial para analisar o desempenho e o comportamento do aluno, adaptando automaticamente o conteúdo, a dificuldade e o ritmo do aprendizado de acordo com as necessidades individuais de cada colaborador ou parceiro."
-    },
-    {
-      question: "Quais são os benefícios da gamificação para o time?",
-      answer: "A gamificação aumenta o engajamento dos colaboradores ao incorporar elementos de jogos como pontos, rankings, conquistas e recompensas. Isso estimula a motivação, torna o aprendizado mais divertido e promove uma competição saudável entre os membros do time."
-    },
-    {
-      question: "Como utilizar o Quiz Interativo para treinamentos?",
-      answer: "O Quiz Interativo pode ser configurado pelos gestores para avaliar conhecimentos, coletar informações ou guiar o aprendizado da equipe. É possível definir perguntas com múltiplas escolhas, verdadeiro ou falso, e até mesmo questões abertas com feedback automático."
-    },
-    {
-      question: "É possível personalizar os relatórios de desempenho por região?",
-      answer: "Sim, os relatórios são totalmente personalizáveis. Gestores podem escolher quais métricas desejam acompanhar, definir regiões específicas e visualizar os dados em diferentes formatos como gráficos, tabelas ou dashboards interativos."
-    }
-  ];
-  
-  // Dados para questões interativas
-  const quizQuestions = [
-    {
-      question: "Qual é o principal benefício da aprendizagem adaptativa para o iFood?",
-      options: [
-        "Redução de custos com materiais de treinamento",
-        "Personalização do conteúdo de acordo com as necessidades de cada colaborador",
-        "Menor necessidade de intervenção dos líderes",
-        "Possibilidade de avaliar grandes equipes simultaneamente"
-      ],
-      correctOption: 1
-    }
-  ];
-
   return (
     <div className="min-h-screen py-8 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="bg-white rounded-xl shadow-md overflow-hidden border-0">
-          <PageHeader
-            title="Hub de Aprendizagem"
-            subtitle="Experiência 3.0 de Educação"
-            description="Inovação nos mecanismos de aprendizado e engajamento da experiência principal, inspirado nos melhores aplicativos educacionais."
-            icon={faHydra}
-            cards={[]}
-          />
+          {/* Header principal - mais minimalista */}
+          <FadeIn className="w-full" duration={800}>
+            <div className="bg-gray-100 p-8">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="h-16 w-16 bg-gray-200 rounded-xl flex items-center justify-center relative group">
+                  <div className="absolute inset-0 bg-gray-300 rounded-xl transform scale-0 transition-transform group-hover:scale-100 origin-center"></div>
+                  <FontAwesomeIcon icon={faHydra} className="h-8 w-8 text-gray-700 relative z-10 transition-transform group-hover:scale-110" />
+                </div>
+                <div>
+                  <h1 className="text-3xl font-bold">Hub de Aprendizagem</h1>
+                  <p className="text-gray-600">Experiência 3.0 com recursos avançados</p>
+                </div>
+              </div>
+              <p className="text-gray-700 mb-8 max-w-3xl">
+                O Hub de Aprendizagem foi projetado para oferecer conteúdos educacionais personalizados e interativos,
+                combinando tecnologia avançada e pedagogia moderna para uma experiência de aprendizado mais eficaz.
+              </p>
+              
+              {/* Cards de funcionalidades no header */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <FadeIn delay={200} duration={600}>
+                  <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300 hover:translate-y-[-4px]">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="h-10 w-10 bg-gray-100 rounded-full flex items-center justify-center group">
+                        <FontAwesomeIcon icon={faSearch} className="h-5 w-5 text-gray-700 transform transition-transform group-hover:scale-110" />
+                      </div>
+                      <h3 className="font-semibold text-gray-900 text-lg">Busca inteligente</h3>
+                    </div>
+                    <p className="text-gray-600 text-sm">
+                      Encontre rapidamente conteúdos relevantes para suas necessidades de aprendizado
+                    </p>
+                  </div>
+                </FadeIn>
+                
+                <FadeIn delay={400} duration={600}>
+                  <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300 hover:translate-y-[-4px]">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="h-10 w-10 bg-gray-100 rounded-full flex items-center justify-center group">
+                        <FontAwesomeIcon icon={faGamepad} className="h-5 w-5 text-gray-700 transform transition-transform group-hover:scale-110" />
+                      </div>
+                      <h3 className="font-semibold text-gray-900 text-lg">Aprendizado interativo</h3>
+                    </div>
+                    <p className="text-gray-600 text-sm">
+                      Cursos com elementos de gamificação, quizzes e atividades práticas para engajamento
+                    </p>
+                  </div>
+                </FadeIn>
+                
+                <FadeIn delay={600} duration={600}>
+                  <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300 hover:translate-y-[-4px]">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="h-10 w-10 bg-gray-100 rounded-full flex items-center justify-center group">
+                        <FontAwesomeIcon icon={faChartLine} className="h-5 w-5 text-gray-700 transform transition-transform group-hover:scale-110" />
+                      </div>
+                      <h3 className="font-semibold text-gray-900 text-lg">Análise de progresso</h3>
+                    </div>
+                    <p className="text-gray-600 text-sm">
+                      Acompanhe seu desenvolvimento com métricas detalhadas e percursos personalizados
+                    </p>
+                  </div>
+                </FadeIn>
+              </div>
+            </div>
+          </FadeIn>
           
           {/* Cards de destaque - Seção melhorada */}
           <div className="px-8 pt-8 pb-16">

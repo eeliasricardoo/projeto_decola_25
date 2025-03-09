@@ -1,5 +1,6 @@
 "use client";
 
+import { memo } from "react";
 import { motion } from "framer-motion";
 import { TextAnimate } from "@/components/magicui/text-animate";
 
@@ -12,7 +13,7 @@ export interface HeroSectionProps {
   animation?: boolean;
 }
 
-export function HeroSection({ 
+export const HeroSection = memo(function HeroSection({ 
   title, 
   subtitle, 
   description, 
@@ -105,4 +106,4 @@ export function HeroSection({
   );
 
   return animation ? animatedComponent : baseComponent;
-} 
+}); 

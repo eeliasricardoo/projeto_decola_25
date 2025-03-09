@@ -19,7 +19,7 @@ export const FeatureCards = memo(function FeatureCards({ onBacklogClick }: Featu
     <div className="relative -mt-24 sm:-mt-32 md:-mt-40 lg:-mt-48 z-10 cards-section">
       <div className="flex flex-col items-center">
         {/* Primeira linha de cards */}
-        <div className="flex flex-col lg:flex-row justify-center gap-8 mb-8 w-full">
+        <div className="flex flex-col lg:flex-row justify-center gap-8 mb-8 w-full px-4 md:px-8">
           {/* Card 1 - Decola OS */}
           <FeatureCard
             icon={faUserBountyHunter}
@@ -41,13 +41,13 @@ export const FeatureCards = memo(function FeatureCards({ onBacklogClick }: Featu
             width={360}
             height={276}
             animationDelay={0.2}
-            animationOffset={25}
+            animationOffset={24}
             reverse={true}
           />
         </div>
 
         {/* Segunda linha de cards */}
-        <div className="flex flex-col lg:flex-row justify-center gap-8 mb-8 w-full">
+        <div className="flex flex-col lg:flex-row justify-center gap-8 mb-8 w-full px-4 md:px-8">
           {/* Card 3 - HYDRA */}
           <FeatureCard
             icon={faHydra}
@@ -57,7 +57,7 @@ export const FeatureCards = memo(function FeatureCards({ onBacklogClick }: Featu
             width={360}
             height={276}
             animationDelay={0.1}
-            animationOffset={50}
+            animationOffset={48}
           />
 
           {/* Card 4 - Dashboards */}
@@ -69,7 +69,7 @@ export const FeatureCards = memo(function FeatureCards({ onBacklogClick }: Featu
             width={752}
             height={276}
             animationDelay={0.2}
-            animationOffset={75}
+            animationOffset={72}
             reverse={true}
           />
         </div>

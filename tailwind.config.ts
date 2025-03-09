@@ -22,9 +22,10 @@ const config: Config = {
         sans: ["var(--font-instrument-sans)"],
       },
       spacing: {
-        // Garantindo a regra de 8px
         '0': '0',
+        '0.5': '4px',  // Meio valor para casos excepcionais
         '1': '8px',
+        '1.5': '12px', // Meio valor para casos excepcionais
         '2': '16px',
         '3': '24px',
         '4': '32px',
@@ -40,6 +41,14 @@ const config: Config = {
         '14': '112px',
         '15': '120px',
         '16': '128px',
+      },
+      margin: {
+        '-1': '-8px',
+        '-2': '-16px',
+        '-3': '-24px',
+        '-4': '-32px',
+        '-5': '-40px',
+        '-6': '-48px',
       },
       colors: {
         border: "hsl(var(--border))",

@@ -11,7 +11,7 @@ import {
   faGrid, faBookmark, faEdit, faChartLine,
   faSearch, faThumbsUp, faSealQuestion, faHandPointUp,
   faMicrophoneLines, faChartMixed, faRankingStar, faWandSparkles,
-  faVial, faListAlt, faInfo
+  faVial, faListAlt, faInfo, faRobot, faMicrophone
 } from "@fortawesome/pro-solid-svg-icons";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import { 
@@ -123,7 +123,12 @@ export default function BacklogPage() {
       icon: faFileLines, 
       title: "Transcrição & Vídeo Analyzer",
       description: "Adaptação dos conteúdos de vídeo automaticamente para transcrição de IA.",
-    },
+    }
+  ];
+
+  // Lista completa com todos os itens
+  const fullBacklogItems: BacklogItem[] = [
+    ...backlogItems,
     {
       icon: faScaleBalanced,
       title: "Agente de IA, Compliance",
@@ -251,59 +256,100 @@ export default function BacklogPage() {
     },
     {
       icon: faWandSparkles,
-      title: "Aprendizagem Adaptativa",
-      description: "Quiz e recomendações mais fáceis se estiver com dificuldades e desafios mais complexos se você estiver progredindo.",
+      title: "Dinamizador - Gerador de FAQS IA",
+      description: "Geração automatizada de respostas para perguntas frequentes usando inteligência artificial treinada em dados específicos.",
     },
     {
       icon: faVial,
-      title: "Geração Automática de Questões Personalizadas",
-      description: "Com base no que o aluno já sabe, o sistema adapta os questionários e recomenda conteúdos que precisam ser reforçados.",
-    },
+      title: "Labs Zone",
+      description: "Inserção de novos projetos Labs Toolzz dentro da plataforma do Hub de Aprendizagem.",
+    }
   ];
 
   return (
     <div className="min-h-screen py-8 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="bg-white rounded-xl shadow-md overflow-hidden border-0">
-          <PageHeader
-            title="Backlog"
-            subtitle="Recursos em Desenvolvimento"
-            description="Recursos planejados e em desenvolvimento para as próximas versões da plataforma. Esta lista é atualizada regularmente conforme o feedback e necessidades dos usuários."
-            icon={faListAlt}
-            cards={[
-              {
-                icon: faInfo,
-                title: "Atualizações Regulares",
-                description: "O backlog é atualizado constantemente com base no feedback dos usuários e novas necessidades identificadas"
-              },
-              {
-                icon: faChartLine,
-                title: "Priorização Estratégica",
-                description: "Os itens são priorizados com base no impacto para o negócio e facilidade de implementação"
-              },
-              {
-                icon: faListCheck,
-                title: "Transparência no Roadmap",
-                description: "Compartilhamos nosso roadmap para que você possa acompanhar o desenvolvimento das funcionalidades"
-              }
-            ]}
-          />
-          
-          <MainInterface columns={1}>
-            <MainInterfaceSection>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {backlogItems.map((item, index) => (
-                  <BacklogCard 
-                    key={index}
-                    icon={item.icon}
-                    title={item.title}
-                    description={item.description}
-                    index={index}
-                  />
-                ))}
+          {/* Header principal - mais minimalista */}
+          <FadeIn className="w-full" duration={800}>
+            <div className="bg-gray-100 p-8">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="h-16 w-16 bg-gray-200 rounded-xl flex items-center justify-center relative group">
+                  <div className="absolute inset-0 bg-gray-300 rounded-xl transform scale-0 transition-transform group-hover:scale-100 origin-center"></div>
+                  <FontAwesomeIcon icon={faListAlt} className="h-8 w-8 text-gray-700 relative z-10 transition-transform group-hover:scale-110" />
+                </div>
+                <div>
+                  <h1 className="text-3xl font-bold">Backlog</h1>
+                  <p className="text-gray-600">Lista de funcionalidades planejadas</p>
+                </div>
               </div>
-            </MainInterfaceSection>
-          </MainInterface>
+              <p className="text-gray-700 mb-8 max-w-3xl">
+                Este é o backlog completo do projeto, contendo todas as funcionalidades planejadas
+                e em desenvolvimento para as próximas versões da plataforma.
+              </p>
+              
+              {/* Cards de funcionalidades no header */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <FadeIn delay={200} duration={600}>
+                  <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300 hover:translate-y-[-4px]">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="h-10 w-10 bg-gray-100 rounded-full flex items-center justify-center group">
+                        <FontAwesomeIcon icon={faRobot} className="h-5 w-5 text-gray-700 transform transition-transform group-hover:scale-110" />
+                      </div>
+                      <h3 className="font-semibold text-gray-900 text-lg">Agentes de IA</h3>
+                    </div>
+                    <p className="text-gray-600 text-sm">
+                      Assistentes inteligentes especializados para diversas áreas de gestão e suporte
+                    </p>
+                  </div>
+                </FadeIn>
+                
+                <FadeIn delay={400} duration={600}>
+                  <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300 hover:translate-y-[-4px]">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="h-10 w-10 bg-gray-100 rounded-full flex items-center justify-center group">
+                        <FontAwesomeIcon icon={faChartLine} className="h-5 w-5 text-gray-700 transform transition-transform group-hover:scale-110" />
+                      </div>
+                      <h3 className="font-semibold text-gray-900 text-lg">Análise de dados</h3>
+                    </div>
+                    <p className="text-gray-600 text-sm">
+                      Ferramentas de BI, dashboard e visualização de dados para decisões estratégicas
+                    </p>
+                  </div>
+                </FadeIn>
+                
+                <FadeIn delay={600} duration={600}>
+                  <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300 hover:translate-y-[-4px]">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="h-10 w-10 bg-gray-100 rounded-full flex items-center justify-center group">
+                        <FontAwesomeIcon icon={faMicrophone} className="h-5 w-5 text-gray-700 transform transition-transform group-hover:scale-110" />
+                      </div>
+                      <h3 className="font-semibold text-gray-900 text-lg">Conteúdo interativo</h3>
+                    </div>
+                    <p className="text-gray-600 text-sm">
+                      Recursos avançados para criação e interação com material educacional
+                    </p>
+                  </div>
+                </FadeIn>
+              </div>
+            </div>
+          </FadeIn>
+        
+          {/* Grid de Backlog */}
+          <div className="p-8">
+            <h2 className="text-2xl font-bold mb-8 text-center">Funcionalidades no Backlog</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {fullBacklogItems.map((item, index) => (
+                <BacklogCard
+                  key={index}
+                  icon={item.icon}
+                  title={item.title}
+                  description={item.description}
+                  index={index}
+                />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </div>

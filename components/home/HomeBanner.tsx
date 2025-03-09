@@ -18,19 +18,21 @@ export const HomeBanner = memo(function HomeBanner({ onConferir }: HomeBannerPro
           src="/banner.png" 
           alt="Banner Principal" 
           fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 85vw"
+          sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 90vw, 85vw"
           style={{ objectFit: 'cover' }}
           priority
+          fetchPriority="high"
+          quality={90}
         />
       </div>
       
       {/* Conteúdo sobreposto ao banner */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center" suppressHydrationWarning>
-        <div className="flex flex-col items-center gap-4 text-center">
+      <div className="absolute inset-0 flex flex-col items-center justify-center px-4" suppressHydrationWarning>
+        <div className="flex flex-col items-center gap-8 text-center">
           {/* Título com formatação personalizada e animação */}
           <motion.h1 
-            className="text-4xl md:text-5xl lg:text-6xl text-center"
-            initial={{ opacity: 0, y: 20 }}
+            className="text-4xl md:text-5xl lg:text-6xl text-center leading-tight"
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
           >
@@ -62,7 +64,7 @@ export const HomeBanner = memo(function HomeBanner({ onConferir }: HomeBannerPro
 
           <TextAnimateOptimized 
             as="p" 
-            className="text-base md:text-lg lg:text-xl text-gray-700 max-w-2xl mt-2"
+            className="text-base md:text-lg lg:text-xl text-gray-700 max-w-2xl"
             by="word"
             animation="slideUp"
             delay={0.8}
@@ -75,7 +77,7 @@ export const HomeBanner = memo(function HomeBanner({ onConferir }: HomeBannerPro
           {/* Botão Conferir */}
           <Button 
             variant="outline" 
-            className="mt-8 rounded-full px-6 py-2 border-gray-300 bg-white text-sm hover:text-red-600 hover:border-red-200 transition-colors duration-300" 
+            className="rounded-full px-6 py-2 border-gray-300 bg-white/90 text-sm hover:text-red-600 hover:border-red-200 transition-colors duration-300" 
             onClick={onConferir}
           >
             Conferir 
