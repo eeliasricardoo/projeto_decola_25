@@ -59,66 +59,29 @@ export default function GeracaoConteudoPage() {
 
       {/* Bento Grid - Layout moderno inspirado em caixas bento */}
       <div className="grid grid-cols-4 gap-4 mb-16 auto-rows-[minmax(160px,auto)]">
-        {/* Card de Criar Avatar - DESTAQUE (2x2) */}
-        <Card className="col-span-2 row-span-2 bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden group">
-          <CardContent className="p-0 h-full flex flex-col justify-between">
-            <div className="flex-1">
-              <div className="bg-white p-8 flex flex-col items-center justify-center h-48 relative overflow-hidden">
-                {/* Ícone grande de adição */}
-                <div className="mb-4">
-                  <div className="h-16 w-16 rounded-full border-2 border-gray-300 flex items-center justify-center">
-                    <FontAwesomeIcon icon={faPlus} className="h-8 w-8 text-gray-800" />
-                  </div>
-                </div>
-                
-                {/* Textos */}
-                <div className="text-center">
-                  <p className="text-center font-semibold text-gray-800 text-lg">Criar novo Avatar</p>
-                </div>
-              </div>
-              
-              {/* Seção de Clone */}
-              <div className="p-6 bg-gray-50 border-t border-gray-200">
-                <div className="flex flex-col items-center">
-                  <div className="h-16 w-16 rounded-full bg-gray-200 flex items-center justify-center mb-3">
-                    <FontAwesomeIcon icon={faUserCircle} className="h-10 w-10 text-gray-400" />
-                  </div>
-                  <div className="text-center">
-                    <Badge className="bg-gray-800 hover:bg-black text-white cursor-default py-1 px-3 mb-2">
-                      Gerar Clone
-                    </Badge>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            {/* Footer com recursos de clones */}
-            <div className="p-6 bg-white border-t border-gray-200">
-              <div className="flex items-start gap-3">
-                <div className="h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0 border border-gray-200">
-                  <FontAwesomeIcon icon={faUserCircle} className="h-6 w-6 text-gray-600" />
-                </div>
-                <div>
-                  <h3 className="font-medium text-gray-800 text-base">Clones de Vídeo e Voz</h3>
-                  <p className="text-gray-500 text-sm mt-1">Treinamento e personalização dos Avatars e Clones de Voz</p>
-                </div>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Card de Geração de Conteúdo (2x1) */}
-        <Card className="col-span-2 bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
+        {/* Card de Geração de Conteúdo (2x1) - agora expandido para 2x2 */}
+        <Card className="col-span-2 row-span-2 bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
           <CardContent className="p-6 h-full">
-            <div className="flex items-center h-full justify-between">
-              <div className="flex flex-col justify-center">
-                <h3 className="font-semibold text-gray-900 mb-2 text-lg">Geração de Conteúdo</h3>
-                <p className="text-gray-600">Ferramenta para construção de vídeos e outras mídias</p>
-                <div className="flex gap-2 mt-4">
+            <div className="flex flex-col h-full justify-center">
+              <div className="flex items-center justify-between mb-8">
+                <h3 className="font-semibold text-gray-900 text-xl">Geração de Conteúdo</h3>
+                <div className="h-16 w-16 flex items-center justify-center">
+                  <FontAwesomeIcon icon={faWandMagicSparkles} className="h-10 w-10 text-gray-700" />
                 </div>
               </div>
-              <div className="h-20 w-20 flex items-center justify-center">
-                <FontAwesomeIcon icon={faWandMagicSparkles} className="h-8 w-8 text-gray-700" />
+              <p className="text-gray-600 mb-6">Ferramenta para construção de vídeos e outras mídias</p>
+              
+              {/* Recursos adicionais */}
+              <div className="bg-gray-50 rounded-lg p-4 border border-gray-200 mt-auto">
+                <div className="flex items-start gap-3">
+                  <div className="h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0 border border-gray-200">
+                    <FontAwesomeIcon icon={faFileVideo} className="h-6 w-6 text-gray-600" />
+                  </div>
+                  <div>
+                    <h3 className="font-medium text-gray-800 text-base">Recursos de mídia</h3>
+                    <p className="text-gray-500 text-sm mt-1">Criação e edição de conteúdo educacional</p>
+                  </div>
+                </div>
               </div>
             </div>
           </CardContent>
@@ -188,6 +151,23 @@ export default function GeracaoConteudoPage() {
                   <h3 className="font-semibold text-gray-900 text-lg">Integração com LMS</h3>
                 </div>
                 <p className="text-gray-500">Conexão direta com banco do LMS para aprendizado de estruturas</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Card de AI Video Insights (4x1) */}
+        <Card className="col-span-4 bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
+          <CardContent className="p-6 h-full">
+            <div className="flex items-center justify-between">
+              <div className="flex gap-4 items-center">
+                <div className="h-14 w-14 bg-gray-100 rounded-xl flex items-center justify-center border border-gray-200">
+                  <FontAwesomeIcon icon={faChartBar} className="h-7 w-7 text-gray-700" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-900 text-xl">AI Video Insights</h3>
+                  <p className="text-gray-500 text-sm mt-1">Aplique os metadados extraídos para melhorar a experiência do usuário</p>
+                </div>
               </div>
             </div>
           </CardContent>
